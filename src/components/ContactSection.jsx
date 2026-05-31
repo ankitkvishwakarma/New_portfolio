@@ -3,7 +3,10 @@ import { MessageSquare, Mail, ArrowUpRight } from "lucide-react";
 
 export default function ContactSection() {
   return (
-    <section className="bg-[#020b12] py-16 md:py-24 px-4 sm:px-6">
+    <section
+      id="contact"
+      className="py-16 md:py-24 px-4 sm:px-6"
+    >
       <div className="max-w-6xl mx-auto">
         
         {/* Heading */}
@@ -26,12 +29,22 @@ export default function ContactSection() {
 
         {/* Cards */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
-          
+
           {/* WhatsApp Card */}
           <motion.div
             whileHover={{ y: -8 }}
             transition={{ duration: 0.3 }}
-            className="group rounded-2xl md:rounded-3xl border border-cyan-500/10 bg-[#07141d]/70 backdrop-blur-xl p-6 md:p-8"
+            className="
+              group
+              rounded-2xl
+              md:rounded-3xl
+              border
+              border-cyan-500/10
+              bg-white/[0.03]
+              backdrop-blur-xl
+              p-6
+              md:p-8
+            "
           >
             <div className="w-12 h-12 md:w-14 md:h-14 rounded-2xl bg-cyan-500/10 flex items-center justify-center mb-6 md:mb-8">
               <MessageSquare className="w-6 h-6 md:w-7 md:h-7 text-cyan-400" />
@@ -51,7 +64,24 @@ export default function ContactSection() {
               href="https://wa.me/919999999999"
               target="_blank"
               rel="noreferrer"
-              className="flex items-center justify-center gap-2 md:gap-3 w-full py-3 md:py-4 rounded-full bg-cyan-400 text-black font-semibold hover:scale-[1.02] transition-all text-sm md:text-base"
+              className="
+                flex
+                items-center
+                justify-center
+                gap-2
+                md:gap-3
+                w-full
+                py-3
+                md:py-4
+                rounded-full
+                bg-cyan-400
+                text-black
+                font-semibold
+                hover:scale-[1.02]
+                transition-all
+                text-sm
+                md:text-base
+              "
             >
               Chat on WhatsApp
               <ArrowUpRight size={18} />
@@ -62,7 +92,17 @@ export default function ContactSection() {
           <motion.div
             whileHover={{ y: -8 }}
             transition={{ duration: 0.3 }}
-            className="group rounded-2xl md:rounded-3xl border border-cyan-500/10 bg-[#07141d]/70 backdrop-blur-xl p-6 md:p-8"
+            className="
+              group
+              rounded-2xl
+              md:rounded-3xl
+              border
+              border-cyan-500/10
+              bg-white/[0.03]
+              backdrop-blur-xl
+              p-6
+              md:p-8
+            "
           >
             <div className="w-12 h-12 md:w-14 md:h-14 rounded-2xl bg-cyan-500/10 flex items-center justify-center mb-6 md:mb-8">
               <Mail className="w-6 h-6 md:w-7 md:h-7 text-cyan-400" />
@@ -78,7 +118,27 @@ export default function ContactSection() {
 
             <a
               href="mailto:yourmail@gmail.com"
-              className="flex items-center justify-center gap-2 md:gap-3 w-full py-3 md:py-4 rounded-full border border-cyan-500/10 bg-[#041018] text-white font-semibold hover:border-cyan-400/30 transition-all text-sm md:text-base break-all"
+              className="
+                flex
+                items-center
+                justify-center
+                gap-2
+                md:gap-3
+                w-full
+                py-3
+                md:py-4
+                rounded-full
+                border
+                border-cyan-500/10
+                bg-white/[0.03]
+                text-white
+                font-semibold
+                hover:border-cyan-400/30
+                transition-all
+                text-sm
+                md:text-base
+                break-all
+              "
             >
               yourmail@gmail.com
               <ArrowUpRight size={18} />

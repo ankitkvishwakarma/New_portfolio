@@ -6,16 +6,15 @@ export default function AboutSection() {
     <section
       id="about"
       className="
-      relative
-      py-16
-      lg:py-24
-      px-4
-      sm:px-6
-      lg:px-8
-      bg-black
-      text-white
-      overflow-hidden
-    "
+  relative
+  py-16
+  lg:py-24
+  px-4
+  sm:px-6
+  lg:px-8
+  text-white
+  overflow-hidden
+"
     >
       {/* Background Glow */}
       <div className="absolute top-0 left-0 w-[350px] h-[350px] bg-cyan-500/10 blur-[180px]" />

@@ -9,25 +9,24 @@ import {
 export default function Hero() {
     return (
         <section
-            className="
-      relative
-      min-h-screen
-      lg:h-screen
-      overflow-hidden
-      bg-black
-      text-white
-      flex
-      items-center
-      justify-center
-      px-4
-      sm:px-6
-      lg:px-8
-      py-10
-    "
-        >
+  id="home"
+  className="
+  relative
+  min-h-screen
+  lg:h-screen
+  overflow-hidden
+  text-white
+  flex
+  items-center
+  justify-center
+  px-4
+  sm:px-6
+  lg:px-8
+  py-10
+"
+>
             {/* Glow Effects */}
-            <div className="absolute top-0 left-0 w-[500px] h-[500px] bg-cyan-500/10 blur-[180px]" />
-            <div className="absolute bottom-0 right-0 w-[500px] h-[500px] bg-purple-500/10 blur-[180px]" />
+            
 
             {/* Container */}
             <motion.div
