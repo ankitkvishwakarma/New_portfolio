@@ -1,6 +1,6 @@
 import Hero from "./components/HeroSection";
 import ParticlesBg from "./particals/ParticalsBg";
-// import Navbar from "./components/Navbar";
+import Navbar from "./components/Navbar";
 import AboutSection from "./components/AboutSection";
 import FeaturedProjects from "./components/FeaturedProjects";
 import ContactSection from "./components/ContactSection";
@@ -13,7 +13,7 @@ function App() {
       <AboutSection/>
       <FeaturedProjects/>
       <ContactSection/>
-      {/* <Navbar/> */}
+      <Navbar/>
     </div>
   );
 }

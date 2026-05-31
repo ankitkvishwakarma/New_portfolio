@@ -1,4 +1,5 @@
-import { motion } from "framer-motion";
+import { useEffect, useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 import {
   FaHome,
   FaUser,
@@ -16,104 +17,154 @@ const links = [
 ];
 
 export default function Navbar() {
-  return (
-    <div
-      className="
-      fixed
-      bottom-6
-      left-1/2
-      -translate-x-1/2
-      z-50
-      "
-    >
-      <div
-        className="
-        flex
-        items-center
-        gap-3
-        px-4
-        py-3
-        rounded-3xl
-        backdrop-blur-2xl
-        bg-white/[0.04]
-        border
-        border-white/10
-        shadow-[0_0_40px_rgba(0,255,255,0.08)]
-        "
-      >
-        {links.map((item, index) => {
-          const Icon = item.icon;
+  const [showNavbar, setShowNavbar] = useState(false);
 
-          return (
-            <motion.a
-              key={index}
-              href={`#${item.label.toLowerCase()}`}
-              whileHover={{
-                scale: 1.35,
-                y: -10,
-              }}
-              whileTap={{
-                scale: 0.95,
-              }}
-              className="
-              relative
-              group
-              w-14
-              h-14
-              rounded-2xl
-              bg-white/5
-              border
-              border-white/10
+  useEffect(() => {
+    const handleScroll = () => {
+      setShowNavbar(window.scrollY > 400);
+    };
+
+    window.addEventListener("scroll", handleScroll);
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
+
+  return (
+    <AnimatePresence>
+      {showNavbar && (
+        <motion.div
+          initial={{
+            opacity: 0,
+            y: 80,
+            scale: 0.9,
+          }}
+          animate={{
+            opacity: 1,
+            y: 0,
+            scale: 1,
+          }}
+          exit={{
+            opacity: 0,
+            y: 80,
+            scale: 0.9,
+          }}
+          transition={{
+            duration: 0.4,
+            ease: "easeOut",
+          }}
+          className="
+            fixed
+            bottom-4
+            left-1/2
+            -translate-x-1/2
+            z-50
+          "
+        >
+          <div
+            className="
               flex
               items-center
-              justify-center
-              text-white
-              transition-all
-              duration-300
-              "
-            >
-              <Icon size={20} />
+              gap-2
+              px-3
+              py-2
+              rounded-3xl
+              backdrop-blur-2xl
+              bg-white/[0.04]
+              border
+              border-white/10
+              shadow-[0_0_30px_rgba(0,255,255,0.08)]
+            "
+          >
+            {links.map((item, index) => {
+              const Icon = item.icon;
 
-              {/* Tooltip */}
-              <span
-                className="
-                absolute
-                -top-10
-                opacity-0
-                group-hover:opacity-100
-                transition-all
-                duration-300
-                text-xs
-                whitespace-nowrap
-                px-3
-                py-1
-                rounded-full
-                bg-black/80
-                border
-                border-cyan-500/20
-                "
-              >
-                {item.label}
-              </span>
+              return (
+                <motion.a
+                  key={index}
+                  href={`#${item.label.toLowerCase()}`}
+                  whileHover={{
+                    scale: 1.15,
+                    y: -5,
+                  }}
+                  whileTap={{
+                    scale: 0.95,
+                  }}
+                  className="
+                    relative
+                    group
+                    w-10
+                    h-10
+                    md:w-11
+                    md:h-11
+                    rounded-xl
+                    bg-white/5
+                    border
+                    border-white/10
+                    flex
+                    items-center
+                    justify-center
+                    text-white
+                    transition-all
+                    duration-300
+                    hover:border-cyan-400/30
+                  "
+                >
+                  <Icon
+                    size={16}
+                    className="
+                      transition-all
+                      duration-300
+                      group-hover:text-cyan-400
+                    "
+                  />
 
-              {/* Glow */}
-              <div
-                className="
-                absolute
-                inset-0
-                rounded-2xl
-                bg-cyan-500/10
-                opacity-0
-                group-hover:opacity-100
-                blur-xl
-                transition-all
-                duration-300
-                "
-              />
-            </motion.a>
-          );
-        })}
-      </div>
-    </div>
+                  {/* Tooltip */}
+                  <span
+                    className="
+                      absolute
+                      -top-9
+                      opacity-0
+                      group-hover:opacity-100
+                      group-hover:-translate-y-1
+                      transition-all
+                      duration-300
+                      text-[10px]
+                      whitespace-nowrap
+                      px-2.5
+                      py-1
+                      rounded-full
+                      bg-black/80
+                      border
+                      border-cyan-500/20
+                      pointer-events-none
+                    "
+                  >
+                    {item.label}
+                  </span>
+
+                  {/* Glow */}
+                  <div
+                    className="
+                      absolute
+                      inset-0
+                      rounded-xl
+                      bg-cyan-500/20
+                      opacity-0
+                      group-hover:opacity-100
+                      blur-lg
+                      transition-all
+                      duration-300
+                      -z-10
+                    "
+                  />
+                </motion.a>
+              );
+            })}
+          </div>
+        </motion.div>
+      )}
+    </AnimatePresence>
   );
 }
