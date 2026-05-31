@@ -186,9 +186,9 @@ export default function Hero() {
 
                                 <div className="text-center lg:text-left">
                                     <h3 className="text-3xl md:text-4xl font-bold text-cyan-400">
-                                        1+
+                                        3+
                                     </h3>
-                                    <p className="text-gray-500">Years Exp.</p>
+                                    <p className="text-gray-500">Production ready projcts</p>
                                 </div>
 
                                 <div className="text-center lg:text-left">
