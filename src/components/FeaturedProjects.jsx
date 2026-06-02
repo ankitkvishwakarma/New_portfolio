@@ -32,11 +32,20 @@ const projects = [
   },
 ];
 
-export default function FeaturedProjects() {
+export default function FeaturedProjects({ darkMode }) {
   return (
     <section
       id="projects"
-      className="min-h-screen py-20 px-4 sm:px-6 lg:px-8"
+      className={`
+        min-h-screen
+        py-20
+        px-4
+        sm:px-6
+        lg:px-8
+        transition-all
+        duration-500
+        ${darkMode ? "text-white" : "text-black"}
+      `}
     >
       <div className="max-w-5xl mx-auto">
         {/* Heading */}
@@ -46,7 +55,7 @@ export default function FeaturedProjects() {
           </h2>
 
           <button className="group flex items-center gap-2 text-cyan-400 hover:text-cyan-300 transition-all">
-            View all
+            View All
             <span className="group-hover:translate-x-1 transition-transform">
               →
             </span>
@@ -61,49 +70,86 @@ export default function FeaturedProjects() {
             return (
               <motion.div
                 key={index}
-                initial={{ opacity: 0, y: 40 }}
-                whileInView={{ opacity: 1, y: 0 }}
+                initial={{
+                  opacity: 0,
+                  y: 40,
+                }}
+                whileInView={{
+                  opacity: 1,
+                  y: 0,
+                }}
                 transition={{
                   duration: 0.5,
                   delay: index * 0.15,
                 }}
                 viewport={{ once: true }}
                 whileHover={{
-                  y: -6,
+                  y: -8,
+                  scale: 1.01,
                 }}
-                className="
+                className={`
                   group
                   relative
                   overflow-hidden
                   rounded-3xl
-                  border
-                  border-cyan-500/10
-                  bg-white/[0.03]
                   backdrop-blur-xl
                   p-6
-                  hover:border-cyan-400/30
                   transition-all
                   duration-500
-                "
+                  ${
+                    darkMode
+                      ? "border border-cyan-500/10 bg-white/[0.03] hover:border-cyan-400/30"
+                      : "border border-gray-300 bg-white shadow-xl hover:shadow-2xl"
+                  }
+                `}
               >
                 {/* Hover Glow */}
-                <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition duration-500">
-                  <div className="absolute inset-0 bg-cyan-500/[0.03]" />
-                </div>
+                {darkMode && (
+                  <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition duration-500">
+                    <div className="absolute inset-0 bg-cyan-500/[0.03]" />
+                  </div>
+                )}
 
                 <div className="relative flex flex-col sm:flex-row gap-5">
                   {/* Icon */}
-                  <div className="h-14 w-14 rounded-xl bg-cyan-500/10 flex items-center justify-center shrink-0">
+                  <div
+                    className={`
+                      h-14
+                      w-14
+                      rounded-xl
+                      flex
+                      items-center
+                      justify-center
+                      shrink-0
+                      ${
+                        darkMode
+                          ? "bg-cyan-500/10"
+                          : "bg-cyan-100"
+                      }
+                    `}
+                  >
                     <Icon className="w-6 h-6 text-cyan-400" />
                   </div>
 
                   {/* Content */}
                   <div>
-                    <h3 className="text-2xl font-semibold text-white mb-3">
+                    <h3
+                      className={`text-2xl font-semibold mb-3 ${
+                        darkMode
+                          ? "text-white"
+                          : "text-black"
+                      }`}
+                    >
                       {project.title}
                     </h3>
 
-                    <p className="text-gray-400 leading-relaxed mb-5">
+                    <p
+                      className={`leading-relaxed mb-5 ${
+                        darkMode
+                          ? "text-gray-400"
+                          : "text-gray-700"
+                      }`}
+                    >
                       {project.description}
                     </p>
 
@@ -112,17 +158,19 @@ export default function FeaturedProjects() {
                       {project.tech.map((item, i) => (
                         <span
                           key={i}
-                          className="
+                          className={`
                             px-3
                             py-1
                             rounded-full
                             text-xs
                             font-medium
-                            bg-cyan-500/10
-                            text-cyan-300
                             border
-                            border-cyan-500/10
-                          "
+                            ${
+                              darkMode
+                                ? "bg-cyan-500/10 text-cyan-300 border-cyan-500/10"
+                                : "bg-cyan-50 text-cyan-700 border-cyan-200"
+                            }
+                          `}
                         >
                           {item}
                         </span>
