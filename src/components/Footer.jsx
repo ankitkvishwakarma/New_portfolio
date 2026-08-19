@@ -1,165 +1,56 @@
 import { motion } from "framer-motion";
-import {
-  FaGithub,
-  FaLinkedin,
-  FaTwitter,
-  FaInstagram,
-} from "react-icons/fa";
+import { FaGithub, FaLinkedin, FaTwitter, FaArrowUp } from "react-icons/fa";
 
-export default function Footer({ darkMode }) {
-  const socialLinks = [
-    {
-      icon: FaGithub,
-      href: "https://github.com/yourusername",
-    },
-    {
-      icon: FaLinkedin,
-      href: "https://linkedin.com/in/yourusername",
-    },
-    {
-      icon: FaTwitter,
-      href: "https://twitter.com/yourusername",
-    },
-    {
-      icon: FaInstagram,
-      href: "https://instagram.com/yourusername",
-    },
-  ];
+export default function Footer() {
+  const scrollToTop = () => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  };
 
   return (
-    <footer
-      className={`
-        relative
-        py-12
-        px-4
-        sm:px-6
-        lg:px-8
-        transition-all
-        duration-500
-        ${
-          darkMode
-            ? "border-t border-white/10"
-            : "border-t border-gray-300"
-        }
-      `}
-    >
-      <div className="max-w-6xl mx-auto">
-        {/* Top */}
-        <div className="flex flex-col md:flex-row items-center justify-between gap-8">
-          {/* Logo */}
-          <div className="text-center md:text-left">
-            <h2
-              className={`text-2xl font-bold ${
-                darkMode ? "text-white" : "text-black"
-              }`}
-            >
-              Ankit
-              <span className="text-cyan-400">.dev</span>
-            </h2>
-
-            <p
-              className={`mt-2 ${
-                darkMode
-                  ? "text-gray-400"
-                  : "text-gray-600"
-              }`}
-            >
-              Full Stack Developer • React • Next.js • Node.js
+    <footer className="relative border-t border-white/5 bg-gradient-to-b from-transparent to-black/50 w-full mt-12">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 md:py-16">
+        
+        <div className="flex flex-col md:flex-row justify-between items-center gap-8 md:gap-0">
+          
+          {/* Brand & Copyright */}
+          <div className="flex flex-col items-center md:items-start gap-4">
+            <a href="#home" className="flex items-center gap-2 group">
+              <div className="w-8 h-8 rounded-lg bg-gradient-to-tr from-cyan-500 to-blue-600 flex items-center justify-center text-white font-bold text-lg shadow-[0_0_15px_rgba(6,182,212,0.3)]">
+                A
+              </div>
+              <span className="font-display font-bold text-xl tracking-tight text-white">
+                Ankit.
+              </span>
+            </a>
+            <p className="text-sm text-gray-500 font-medium">
+              &copy; {new Date().getFullYear()} Ankit Vishwakarma. All rights reserved.
             </p>
           </div>
 
           {/* Social Links */}
-          <div className="flex gap-4">
-            {socialLinks.map((item, index) => {
-              const Icon = item.icon;
-
-              return (
-                <motion.a
-                  key={index}
-                  href={item.href}
-                  target="_blank"
-                  rel="noreferrer"
-                  whileHover={{
-                    y: -4,
-                    scale: 1.1,
-                  }}
-                  whileTap={{
-                    scale: 0.95,
-                  }}
-                  className={`
-                    w-11
-                    h-11
-                    rounded-xl
-                    flex
-                    items-center
-                    justify-center
-                    backdrop-blur-xl
-                    transition-all
-                    duration-300
-                    ${
-                      darkMode
-                        ? "bg-white/[0.03] border border-white/10 text-white hover:text-cyan-400 hover:border-cyan-400/30"
-                        : "bg-white border border-gray-300 text-black hover:text-cyan-400 hover:border-cyan-400"
-                    }
-                  `}
-                >
-                  <Icon size={18} />
-                </motion.a>
-              );
-            })}
-          </div>
-        </div>
-
-        {/* Divider */}
-        <div
-          className={`h-px my-8 ${
-            darkMode
-              ? "bg-white/10"
-              : "bg-gray-300"
-          }`}
-        />
-
-        {/* Bottom */}
-        <div className="flex flex-col md:flex-row items-center justify-between gap-4 text-sm">
-          <p
-            className={`text-center md:text-left ${
-              darkMode
-                ? "text-gray-500"
-                : "text-gray-600"
-            }`}
-          >
-            © {new Date().getFullYear()} Ankit Vishwakarma.
-            All rights reserved.
-          </p>
-
-          <div
-            className={`flex gap-6 ${
-              darkMode
-                ? "text-gray-500"
-                : "text-gray-600"
-            }`}
-          >
-            <a
-              href="#about"
-              className="hover:text-cyan-400 transition"
-            >
-              About
+          <div className="flex items-center gap-6">
+            <a href="https://github.com" target="_blank" rel="noreferrer" className="w-10 h-10 rounded-full flex items-center justify-center bg-white/5 border border-white/10 text-gray-400 hover:text-white hover:border-cyan-500/50 hover:bg-cyan-500/10 transition-all duration-300">
+              <FaGithub size={18} />
             </a>
-
-            <a
-              href="#projects"
-              className="hover:text-cyan-400 transition"
-            >
-              Projects
+            <a href="https://linkedin.com" target="_blank" rel="noreferrer" className="w-10 h-10 rounded-full flex items-center justify-center bg-white/5 border border-white/10 text-gray-400 hover:text-white hover:border-cyan-500/50 hover:bg-cyan-500/10 transition-all duration-300">
+              <FaLinkedin size={18} />
             </a>
-
-            <a
-              href="#contact"
-              className="hover:text-cyan-400 transition"
-            >
-              Contact
+            <a href="https://twitter.com" target="_blank" rel="noreferrer" className="w-10 h-10 rounded-full flex items-center justify-center bg-white/5 border border-white/10 text-gray-400 hover:text-white hover:border-cyan-500/50 hover:bg-cyan-500/10 transition-all duration-300">
+              <FaTwitter size={18} />
             </a>
           </div>
+
+          {/* Back to top */}
+          <button 
+            onClick={scrollToTop}
+            className="group flex flex-col items-center gap-2 text-gray-500 hover:text-cyan-400 transition-colors"
+          >
+            <div className="w-10 h-10 rounded-full flex items-center justify-center bg-white/5 border border-white/10 group-hover:border-cyan-400/50 transition-all">
+              <FaArrowUp size={16} className="group-hover:-translate-y-1 transition-transform" />
+            </div>
+            <span className="text-xs font-semibold uppercase tracking-widest">Top</span>
+          </button>
+          
         </div>
       </div>
     </footer>
