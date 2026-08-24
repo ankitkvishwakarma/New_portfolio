@@ -1,49 +1,45 @@
 import { motion } from "framer-motion";
-import {
-  FaArrowRight,
-  FaCode,
-  FaCoffee,
-  FaProjectDiagram,
-} from "react-icons/fa";
 
 export default function AboutSection() {
   return (
     <section
       id="about"
-      className="relative w-full overflow-hidden px-4 py-24 sm:px-6 lg:px-8"
+      className="
+        relative
+        w-full
+        min-h-[calc(100vh-70px)]
+        flex
+        items-center
+        overflow-hidden
+        px-4
+        sm:px-6
+        lg:px-8
+        py-10
+        lg:py-12
+      "
     >
-      <div className="relative z-10 mx-auto max-w-7xl">
+      <div className="relative z-10 w-full max-w-7xl mx-auto">
 
-        {/* ==================================================
-            SECTION HEADER
-        ================================================== */}
-
+        {/* Header */}
         <motion.div
-          initial={{
-            opacity: 0,
-            y: 20,
-          }}
-          whileInView={{
-            opacity: 1,
-            y: 0,
-          }}
-          viewport={{
-            once: true,
-          }}
+          initial={{ opacity: 0, y: 15 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.2 }}
           transition={{
-            duration: 0.6,
+            duration: 0.5,
+            ease: "easeOut",
           }}
-          className="mb-16 md:mb-24"
+          className="mb-8"
         >
-          <div className="mb-4 flex items-center gap-4">
-            <div className="h-px w-12 bg-cyan-500" />
+          <div className="mb-3 flex items-center gap-3">
+            <div className="h-px w-10 bg-cyan-500" />
 
-            <p className="font-mono text-sm uppercase tracking-widest text-cyan-400">
+            <p className="font-mono text-xs uppercase tracking-[0.18em] text-cyan-400">
               About Me
             </p>
           </div>
 
-          <h2 className="font-display text-4xl font-bold text-white md:text-5xl">
+          <h2 className="font-display text-3xl sm:text-4xl lg:text-5xl font-bold leading-tight text-white">
             Engineering the{" "}
             <span className="bg-gradient-to-r from-blue-400 to-cyan-300 bg-clip-text text-transparent">
               future
@@ -52,36 +48,27 @@ export default function AboutSection() {
           </h2>
         </motion.div>
 
+        {/* Main Content */}
+        <div className="grid grid-cols-1 lg:grid-cols-2 items-center gap-8 lg:gap-10">
 
-        {/* ==================================================
-            MAIN CONTENT
-        ================================================== */}
-
-        <div className="grid grid-cols-1 items-center gap-16 lg:grid-cols-2">
-
-
-          {/* ==================================================
-              LEFT CONTENT
-          ================================================== */}
-
+          {/* Left */}
           <motion.div
-            initial={{
-              opacity: 0,
-              x: -30,
-            }}
-            whileInView={{
-              opacity: 1,
-              x: 0,
-            }}
+            initial={{ opacity: 0, x: -25 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true, amount: 0.2 }}
             transition={{
-              duration: 0.7,
+              duration: 0.6,
+              ease: "easeOut",
             }}
-            viewport={{
-              once: true,
-            }}
-            className="flex flex-col gap-6 text-lg leading-relaxed text-gray-300"
+            className="
+              flex
+              flex-col
+              gap-4
+              text-base
+              leading-7
+              text-gray-300
+            "
           >
-
             <p>
               I am a{" "}
               <strong className="font-semibold text-white">
@@ -93,7 +80,6 @@ export default function AboutSection() {
               into a professional pursuit of engineering excellence.
             </p>
 
-
             <p>
               I specialize in creating modern web applications using{" "}
               <strong className="font-semibold text-white">
@@ -102,7 +88,6 @@ export default function AboutSection() {
               . I believe that great software is a combination of clean
               architecture, performant code, and an intuitive user experience.
             </p>
-
 
             <p>
               Currently, I'm deeply interested in the intersection of{" "}
@@ -113,451 +98,319 @@ export default function AboutSection() {
               applications to solve real-world problems effectively.
             </p>
 
+            {/* Stats */}
+            <div className="mt-3 grid grid-cols-3 gap-3">
+              {[
+                {
+                  value: "3+",
+                  label: "Years Experience",
+                },
+                {
+                  value: "10+",
+                  label: "Projects Built",
+                },
+                {
+                  value: "99%",
+                  label: "Client Satisfaction",
+                },
+              ].map((stat, i) => (
+                <div
+                  key={i}
+                  className="
+                    group
+                    rounded-xl
+                    border
+                    border-white/[0.06]
+                    bg-white/[0.025]
+                    px-3
+                    py-3
+                    text-center
+                    transition-all
+                    duration-300
+                    hover:border-cyan-500/20
+                    hover:bg-white/[0.04]
+                  "
+                >
+                  <p
+                    className="
+                      mb-0.5
+                      font-display
+                      text-xl
+                      sm:text-2xl
+                      font-bold
+                      text-white
+                      group-hover:text-cyan-300
+                      transition-colors
+                    "
+                  >
+                    {stat.value}
+                  </p>
 
-            {/* ==================================================
-                STATS
-            ================================================== */}
-
-            <div className="mt-8 grid grid-cols-3 gap-6 border-t border-white/10 pt-8">
-
-              <div>
-                <p className="mb-1 font-display text-3xl font-bold text-white">
-                  3+
-                </p>
-
-                <p className="text-sm font-medium text-gray-500">
-                  Years Experience
-                </p>
-              </div>
-
-
-              <div>
-                <p className="mb-1 font-display text-3xl font-bold text-white">
-                  10+
-                </p>
-
-                <p className="text-sm font-medium text-gray-500">
-                  Projects Built
-                </p>
-              </div>
-
-
-              <div>
-                <p className="mb-1 font-display text-3xl font-bold text-white">
-                  99%
-                </p>
-
-                <p className="text-sm font-medium text-gray-500">
-                  Client Satisfaction
-                </p>
-              </div>
-
+                  <p className="text-[10px] sm:text-xs font-medium text-gray-500">
+                    {stat.label}
+                  </p>
+                </div>
+              ))}
             </div>
-
           </motion.div>
 
-
-          {/* ==================================================
-              RIGHT CODE CARD
-          ================================================== */}
-
+          {/* Right Code Card */}
           <motion.div
-            initial={{
-              opacity: 0,
-              x: 30,
-            }}
-            whileInView={{
-              opacity: 1,
-              x: 0,
-            }}
+            initial={{ opacity: 0, x: 25 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true, amount: 0.2 }}
             transition={{
-              duration: 0.7,
-            }}
-            viewport={{
-              once: true,
+              duration: 0.6,
+              ease: "easeOut",
             }}
             className="group relative w-full"
           >
-
             {/* Glow */}
-
-            <div className="absolute -inset-1 rounded-2xl bg-gradient-to-r from-blue-600 to-cyan-500 opacity-20 blur-2xl transition duration-700 group-hover:opacity-40" />
-
+            <div
+              className="
+                absolute
+                -inset-1
+                rounded-2xl
+                bg-gradient-to-r
+                from-blue-600
+                to-cyan-500
+                opacity-15
+                blur-2xl
+                transition
+                duration-700
+                group-hover:opacity-25
+              "
+            />
 
             {/* Code Window */}
-
-            <div className="relative overflow-hidden rounded-xl border border-[#333] bg-[#1e1e1e] shadow-2xl">
-
-
-              {/* ==================================================
-                  EDITOR HEADER
-              ================================================== */}
-
-              <div className="flex items-center justify-between border-b border-[#1e1e1e] bg-[#2d2d2d] px-4 py-2">
-
-                <div className="flex gap-2">
-
-                  <div className="h-3 w-3 rounded-full bg-[#ff5f56]" />
-
-                  <div className="h-3 w-3 rounded-full bg-[#ffbd2e]" />
-
-                  <div className="h-3 w-3 rounded-full bg-[#27c93f]" />
-
+            <div
+              className="
+                relative
+                overflow-hidden
+                rounded-xl
+                border
+                border-white/[0.08]
+                bg-[#1e1e1e]
+                shadow-[0_20px_50px_-25px_rgba(0,0,0,0.8)]
+              "
+            >
+              {/* Header */}
+              <div
+                className="
+                  flex
+                  items-center
+                  justify-between
+                  border-b
+                  border-white/5
+                  bg-[#2d2d2d]
+                  px-4
+                  py-2
+                "
+              >
+                <div className="flex gap-1.5">
+                  <div className="h-2.5 w-2.5 rounded-full bg-[#ff5f56]" />
+                  <div className="h-2.5 w-2.5 rounded-full bg-[#ffbd2e]" />
+                  <div className="h-2.5 w-2.5 rounded-full bg-[#27c93f]" />
                 </div>
 
-
-                <div className="font-mono text-xs text-[#cccccc]">
+                <div className="font-mono text-[10px] text-[#cccccc]">
                   developer.ts
                 </div>
 
-
-                <div className="w-12" />
-
+                <div className="w-10" />
               </div>
 
-
-              {/* ==================================================
-                  EDITOR TAB
-              ================================================== */}
-
-              <div className="flex bg-[#252526] font-mono text-xs">
-
-                <div className="flex items-center gap-2 border-t border-cyan-400 bg-[#1e1e1e] px-4 py-2 text-cyan-400">
-
+              {/* Tab */}
+              <div className="flex bg-[#252526] font-mono text-[10px]">
+                <div
+                  className="
+                    flex
+                    items-center
+                    gap-2
+                    border-t
+                    border-cyan-400
+                    bg-[#1e1e1e]
+                    px-4
+                    py-1.5
+                    text-cyan-400
+                  "
+                >
                   <span className="text-[#519aba]">
                     TS
                   </span>
 
                   developer.ts
-
                 </div>
-
               </div>
 
-
-              {/* ==================================================
-                  CODE AREA
-              ================================================== */}
-
-              <div className="overflow-x-auto p-4 font-mono text-sm leading-relaxed sm:p-6 sm:text-base">
-
+              {/* Code */}
+              <div
+                className="
+                  overflow-x-auto
+                  p-4
+                  font-mono
+                  text-[11px]
+                  sm:text-xs
+                  leading-[1.65]
+                "
+              >
                 <div className="flex">
 
-
-                  {/* ==================================================
-                      LINE NUMBERS
-                  ================================================== */}
-
-                  <div className="flex select-none flex-col pr-4 text-right text-[#858585]">
-
+                  {/* Line Numbers */}
+                  <div
+                    className="
+                      flex
+                      select-none
+                      flex-col
+                      pr-4
+                      text-right
+                      text-[#666]
+                    "
+                  >
                     {Array.from(
-                      {
-                        length: 14,
-                      },
+                      { length: 14 },
                       (_, index) => (
                         <span key={index}>
                           {index + 1}
                         </span>
                       )
                     )}
-
                   </div>
 
-
-                  {/* ==================================================
-                      CODE
-                  ================================================== */}
-
-                  <div className="text-[#d4d4d4]">
-
-
-                    {/* Line 1 */}
+                  {/* Code */}
+                  <div className="text-[#d4d4d4] whitespace-nowrap">
 
                     <div>
                       <span className="text-[#c586c0]">
                         const
                       </span>{" "}
-
                       <span className="text-[#4fc1ff]">
                         developer
                       </span>{" "}
-
-                      <span className="text-[#d4d4d4]">
-                        =
-                      </span>{" "}
-
-                      <span className="text-[#d4d4d4]">
-                        {"{"}
-                      </span>
+                      =
+                      {" {"}
                     </div>
-
-
-                    {/* Line 2 */}
 
                     <div className="pl-4">
                       <span className="text-[#9cdcfe]">
                         name
                       </span>
-
-                      <span className="text-[#d4d4d4]">
-                        :
-                      </span>{" "}
-
+                      :{" "}
                       <span className="text-[#ce9178]">
                         'Ankit Vishwakarma'
-                      </span>
-
-                      <span className="text-[#d4d4d4]">
-                        ,
-                      </span>
+                      </span>,
                     </div>
-
-
-                    {/* Line 3 */}
 
                     <div className="pl-4">
                       <span className="text-[#9cdcfe]">
                         role
                       </span>
-
-                      <span className="text-[#d4d4d4]">
-                        :
-                      </span>{" "}
-
+                      :{" "}
                       <span className="text-[#ce9178]">
                         'Full Stack Developer'
-                      </span>
-
-                      <span className="text-[#d4d4d4]">
-                        ,
-                      </span>
+                      </span>,
                     </div>
-
-
-                    {/* Line 4 */}
 
                     <div className="pl-4">
                       <span className="text-[#9cdcfe]">
                         location
                       </span>
-
-                      <span className="text-[#d4d4d4]">
-                        :
-                      </span>{" "}
-
+                      :{" "}
                       <span className="text-[#ce9178]">
                         'Jamshedpur, India'
-                      </span>
-
-                      <span className="text-[#d4d4d4]">
-                        ,
-                      </span>
+                      </span>,
                     </div>
-
-
-                    {/* Line 5 */}
 
                     <div className="pl-4">
                       <span className="text-[#9cdcfe]">
                         skills
                       </span>
-
-                      <span className="text-[#d4d4d4]">
-                        :
-                      </span>{" "}
-
-                      <span className="text-[#d4d4d4]">
-                        [
-                      </span>
+                      : [
                     </div>
 
-
-                    {/* Line 6 */}
-
                     <div className="pl-8">
-
                       <span className="text-[#ce9178]">
                         'React'
                       </span>
-
-                      <span className="text-[#d4d4d4]">
-                        ,
-                      </span>{" "}
-
+                      ,{" "}
                       <span className="text-[#ce9178]">
                         'Next.js'
                       </span>
-
-                      <span className="text-[#d4d4d4]">
-                        ,
-                      </span>{" "}
-
+                      ,{" "}
                       <span className="text-[#ce9178]">
                         'TypeScript'
                       </span>
-
-                      <span className="text-[#d4d4d4]">
-                        ,
-                      </span>
-
+                      ,
                     </div>
 
-
-                    {/* Line 7 */}
-
                     <div className="pl-8">
-
                       <span className="text-[#ce9178]">
                         'Node.js'
                       </span>
-
-                      <span className="text-[#d4d4d4]">
-                        ,
-                      </span>{" "}
-
+                      ,{" "}
                       <span className="text-[#ce9178]">
                         'MongoDB'
                       </span>
-
-                      <span className="text-[#d4d4d4]">
-                        ,
-                      </span>{" "}
-
+                      ,{" "}
                       <span className="text-[#ce9178]">
                         'PostgreSQL'
                       </span>
-
                     </div>
 
-
-                    {/* Line 8 */}
-
                     <div className="pl-4">
-
-                      <span className="text-[#d4d4d4]">
-                        ],
-                      </span>
-
+                      ],
                     </div>
 
-
-                    {/* Line 9 */}
-
                     <div className="pl-4">
-
                       <span className="text-[#9cdcfe]">
                         learning
                       </span>
-
-                      <span className="text-[#d4d4d4]">
-                        :
-                      </span>{" "}
-
-                      <span className="text-[#d4d4d4]">
-                        [
-                      </span>
-
+                      : [
                       <span className="text-[#ce9178]">
                         'AI'
                       </span>
-
-                      <span className="text-[#d4d4d4]">
-                        ,
-                      </span>{" "}
-
+                      ,{" "}
                       <span className="text-[#ce9178]">
                         'System Design'
                       </span>
-
-                      <span className="text-[#d4d4d4]">
-                        ],
-                      </span>
-
+                      ],
                     </div>
 
-
-                    {/* Line 10 */}
-
                     <div className="pl-4">
-
                       <span className="text-[#dcdcaa]">
                         buildAwesomeThings
                       </span>
-
-                      <span className="text-[#d4d4d4]">
-                        ()
-                      </span>{" "}
-
-                      <span className="text-[#d4d4d4]">
-                        {"{"}
-                      </span>
-
+                      () {"{"}
                     </div>
 
-
-                    {/* Line 11 */}
-
                     <div className="pl-8">
-
                       <span className="text-[#c586c0]">
                         return
                       </span>{" "}
-
                       <span className="text-[#569cd6]">
                         true
                       </span>
-
-                      <span className="text-[#d4d4d4]">
-                        ;
-                      </span>
-
+                      ;
                     </div>
-
-
-                    {/* Line 12 */}
 
                     <div className="pl-4">
-
-                      <span className="text-[#d4d4d4]">
-                        {"}"}
-                      </span>
-
+                      {"}"}
                     </div>
-
-
-                    {/* Line 13 */}
 
                     <div>
-
-                      <span className="text-[#d4d4d4]">
-                        {"}"}
-                      </span>
-
-                      <span className="text-[#d4d4d4]">
-                        ;
-                      </span>
-
+                      {"}"};
                     </div>
 
-
-                    {/* Line 14 */}
-
                     <div className="text-[#858585]">
-                      {/* Developer profile */}
+                      // Developer profile
                     </div>
 
                   </div>
-
                 </div>
-
               </div>
-
             </div>
-
           </motion.div>
-
         </div>
-
       </div>
     </section>
   );

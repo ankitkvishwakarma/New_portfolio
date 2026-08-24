@@ -1,10 +1,16 @@
 import { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { FaGithub, FaLinkedin, FaBars, FaTimes } from "react-icons/fa";
+import {
+  FaGithub,
+  FaLinkedin,
+  FaBars,
+  FaTimes,
+} from "react-icons/fa";
 
 const links = [
   { label: "Home", href: "#home" },
   { label: "About", href: "#about" },
+  { label: "Education", href: "#education" },
   { label: "Skills", href: "#skills" },
   { label: "Projects", href: "#projects" },
   { label: "Contact", href: "#contact" },
@@ -20,120 +26,506 @@ export default function Navbar() {
     };
 
     window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
   }, []);
+
+  // Close mobile menu with Escape
+  useEffect(() => {
+    const handleEscape = (e) => {
+      if (e.key === "Escape") {
+        setMobileMenuOpen(false);
+      }
+    };
+
+    window.addEventListener("keydown", handleEscape);
+
+    return () => {
+      window.removeEventListener("keydown", handleEscape);
+    };
+  }, []);
+
+  // Prevent background scrolling when mobile menu is open
+  useEffect(() => {
+    document.body.style.overflow = mobileMenuOpen ? "hidden" : "";
+
+    return () => {
+      document.body.style.overflow = "";
+    };
+  }, [mobileMenuOpen]);
+
+  const closeMobileMenu = () => {
+    setMobileMenuOpen(false);
+  };
 
   return (
     <>
+      {/* =====================================================
+          NAVBAR
+      ===================================================== */}
       <motion.nav
-        initial={{ y: -100 }}
-        animate={{ y: 0 }}
-        transition={{ duration: 0.6, ease: "easeOut" }}
-        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-          scrolled ? "py-4" : "py-6"
-        }`}
+        initial={{ y: -100, opacity: 0 }}
+        animate={{ y: 0, opacity: 1 }}
+        transition={{
+          duration: 0.6,
+          ease: "easeOut",
+        }}
+        className={`
+          fixed
+          top-0
+          left-0
+          right-0
+          z-50
+          transition-all
+          duration-300
+          ${scrolled ? "py-4" : "py-6"}
+        `}
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div
-            className={`flex items-center justify-between rounded-2xl px-6 py-3 transition-all duration-500 ${
-              scrolled
-                ? "bg-[#030712]/70 backdrop-blur-xl border border-white/5 shadow-[0_0_30px_rgba(0,0,0,0.5)]"
-                : "bg-transparent border border-transparent"
-            }`}
+            className={`
+              flex
+              items-center
+              justify-between
+              rounded-2xl
+              px-5
+              sm:px-6
+              py-3
+              transition-all
+              duration-500
+              ${
+                scrolled
+                  ? "bg-[#030712]/80 backdrop-blur-xl border border-white/10 shadow-[0_0_30px_rgba(0,0,0,0.5)]"
+                  : "bg-transparent border border-transparent"
+              }
+            `}
           >
-            {/* Logo */}
-            <a href="#home" className="relative group flex items-center gap-2">
-              <div className="w-8 h-8 rounded-lg bg-gradient-to-tr from-cyan-500 to-blue-600 flex items-center justify-center text-white font-bold text-lg shadow-[0_0_15px_rgba(6,182,212,0.5)] group-hover:shadow-[0_0_25px_rgba(6,182,212,0.7)] transition-all">
-                A
-              </div>
-              <span className="font-display font-bold text-xl tracking-tight text-white group-hover:text-cyan-400 transition-colors">
-                Ankit.
+            {/* =================================================
+                BRAND
+            ================================================= */}
+            <a
+              href="#home"
+              className="
+                group
+                flex
+                items-center
+                gap-2.5
+                shrink-0
+              "
+              aria-label="Ankit Vishwakarma - Home"
+            >
+              {/* Animated Logo */}
+              <video
+                src="/animation.webm"
+                autoPlay
+                muted
+                loop
+                playsInline
+                aria-hidden="true"
+                className="
+                  h-11
+                  w-11
+                  sm:h-12
+                  sm:w-12
+                  object-contain
+                  rounded-lg
+                  transition-all
+                  duration-300
+                  group-hover:scale-105
+                  group-hover:drop-shadow-[0_0_14px_rgba(6,182,212,0.55)]
+                "
+              />
+
+              {/* Cursive Gradient Name */}
+              <span
+                className="
+                  text-[23px]
+                  sm:text-[25px]
+                  font-bold
+                  leading-none
+                  bg-gradient-to-r
+                  from-cyan-400
+                  via-blue-500
+                  to-purple-500
+                  bg-clip-text
+                  text-transparent
+                  transition-all
+                  duration-300
+                  group-hover:from-cyan-300
+                  group-hover:via-blue-400
+                  group-hover:to-purple-400
+                "
+                style={{
+                  fontFamily:
+                    "'Brush Script MT', 'Segoe Script', 'Lucida Handwriting', cursive",
+                }}
+              >
+                Ankit
               </span>
             </a>
 
-            {/* Desktop Links */}
-            <div className="hidden md:flex items-center gap-8">
-              {links.map((link, i) => (
+            {/* =================================================
+                DESKTOP NAV LINKS
+            ================================================= */}
+            <div className="hidden md:flex items-center gap-7 lg:gap-8">
+              {links.map((link) => (
                 <a
-                  key={i}
+                  key={link.label}
                   href={link.href}
-                  className="text-sm font-medium text-gray-300 hover:text-white relative group py-2"
+                  className="
+                    relative
+                    py-2
+                    text-sm
+                    font-medium
+                    text-gray-300
+                    hover:text-white
+                    transition-colors
+                    duration-300
+                    group
+                  "
                 >
                   {link.label}
-                  <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-cyan-400 transition-all duration-300 group-hover:w-full rounded-full"></span>
+
+                  <span
+                    className="
+                      absolute
+                      bottom-0
+                      left-0
+                      h-[2px]
+                      w-0
+                      rounded-full
+                      bg-gradient-to-r
+                      from-cyan-400
+                      to-blue-500
+                      transition-all
+                      duration-300
+                      group-hover:w-full
+                    "
+                  />
                 </a>
               ))}
             </div>
 
-            {/* Desktop Actions */}
+            {/* =================================================
+                DESKTOP ACTIONS
+            ================================================= */}
             <div className="hidden md:flex items-center gap-4">
-              <a href="https://github.com" target="_blank" rel="noreferrer" className="text-gray-400 hover:text-white transition-colors">
-                <FaGithub size={20} />
+              {/* GitHub */}
+              <a
+                href="https://github.com"
+                target="_blank"
+                rel="noreferrer"
+                aria-label="GitHub"
+                className="
+                  text-gray-400
+                  hover:text-white
+                  hover:-translate-y-0.5
+                  transition-all
+                  duration-300
+                "
+              >
+                <FaGithub size={19} />
               </a>
-              <a href="https://linkedin.com" target="_blank" rel="noreferrer" className="text-gray-400 hover:text-white transition-colors">
-                <FaLinkedin size={20} />
+
+              {/* LinkedIn */}
+              <a
+                href="https://linkedin.com"
+                target="_blank"
+                rel="noreferrer"
+                aria-label="LinkedIn"
+                className="
+                  text-gray-400
+                  hover:text-white
+                  hover:-translate-y-0.5
+                  transition-all
+                  duration-300
+                "
+              >
+                <FaLinkedin size={19} />
               </a>
+
+              {/* Hire Me */}
               <a
                 href="#contact"
-                className="px-5 py-2 rounded-full text-sm font-semibold bg-white text-black hover:bg-gray-200 transition-colors shadow-[0_0_15px_rgba(255,255,255,0.2)] hover:shadow-[0_0_25px_rgba(255,255,255,0.4)]"
+                className="
+                  group
+                  relative
+                  overflow-hidden
+                  rounded-full
+                  px-5
+                  py-2.5
+                  text-sm
+                  font-semibold
+                  text-black
+                  bg-white
+                  shadow-[0_0_15px_rgba(255,255,255,0.18)]
+                  hover:-translate-y-0.5
+                  hover:shadow-[0_0_28px_rgba(6,182,212,0.45)]
+                  transition-all
+                  duration-300
+                "
               >
-                Hire Me
+                <span className="relative z-10">
+                  Hire Me
+                </span>
+
+                <span
+                  className="
+                    absolute
+                    inset-0
+                    -translate-x-full
+                    bg-gradient-to-r
+                    from-transparent
+                    via-cyan-200/70
+                    to-transparent
+                    transition-transform
+                    duration-700
+                    ease-out
+                    group-hover:translate-x-full
+                  "
+                />
               </a>
             </div>
 
-            {/* Mobile Menu Button */}
+            {/* =================================================
+                MOBILE MENU BUTTON
+            ================================================= */}
             <button
-              className="md:hidden text-gray-300 hover:text-white p-2"
+              type="button"
+              aria-label="Open menu"
+              aria-expanded={mobileMenuOpen}
               onClick={() => setMobileMenuOpen(true)}
+              className="
+                md:hidden
+                p-2
+                text-gray-300
+                hover:text-white
+                transition-colors
+              "
             >
-              <FaBars size={24} />
+              <FaBars size={23} />
             </button>
           </div>
         </div>
       </motion.nav>
 
-      {/* Mobile Menu Overlay */}
+      {/* =====================================================
+          MOBILE MENU
+      ===================================================== */}
       <AnimatePresence>
         {mobileMenuOpen && (
           <motion.div
-            initial={{ opacity: 0, backdropFilter: "blur(0px)" }}
-            animate={{ opacity: 1, backdropFilter: "blur(16px)" }}
-            exit={{ opacity: 0, backdropFilter: "blur(0px)" }}
-            className="fixed inset-0 z-[60] bg-[#030712]/90 flex flex-col justify-center items-center"
+            initial={{
+              opacity: 0,
+              backdropFilter: "blur(0px)",
+            }}
+            animate={{
+              opacity: 1,
+              backdropFilter: "blur(18px)",
+            }}
+            exit={{
+              opacity: 0,
+              backdropFilter: "blur(0px)",
+            }}
+            transition={{ duration: 0.3 }}
+            className="
+              fixed
+              inset-0
+              z-[60]
+              bg-[#030712]/95
+              flex
+              flex-col
+              items-center
+              justify-center
+            "
           >
+            {/* Close Button */}
             <button
-              className="absolute top-8 right-8 text-gray-400 hover:text-white p-2"
-              onClick={() => setMobileMenuOpen(false)}
+              type="button"
+              aria-label="Close menu"
+              onClick={closeMobileMenu}
+              className="
+                absolute
+                top-7
+                right-7
+                p-2
+                text-gray-400
+                hover:text-white
+                transition-colors
+              "
             >
-              <FaTimes size={32} />
+              <FaTimes size={28} />
             </button>
-            
-            <div className="flex flex-col items-center gap-8">
-              {links.map((link, i) => (
+
+            {/* =================================================
+                MOBILE BRAND
+            ================================================= */}
+            <motion.a
+              href="#home"
+              onClick={closeMobileMenu}
+              initial={{
+                opacity: 0,
+                scale: 0.8,
+              }}
+              animate={{
+                opacity: 1,
+                scale: 1,
+              }}
+              transition={{
+                duration: 0.4,
+              }}
+              className="
+                absolute
+                top-7
+                left-7
+                flex
+                items-center
+                gap-2
+              "
+            >
+              <video
+                src="/animation.webm"
+                autoPlay
+                muted
+                loop
+                playsInline
+                aria-hidden="true"
+                className="
+                  h-9
+                  w-9
+                  object-contain
+                  rounded-lg
+                "
+              />
+
+              <span
+                className="
+                  text-[21px]
+                  font-bold
+                  leading-none
+                  bg-gradient-to-r
+                  from-cyan-400
+                  via-blue-500
+                  to-purple-500
+                  bg-clip-text
+                  text-transparent
+                "
+                style={{
+                  fontFamily:
+                    "'Brush Script MT', 'Segoe Script', 'Lucida Handwriting', cursive",
+                }}
+              >
+                Ankit
+              </span>
+            </motion.a>
+
+            {/* =================================================
+                MOBILE LINKS
+            ================================================= */}
+            <div className="flex flex-col items-center gap-7">
+              {links.map((link, index) => (
                 <motion.a
-                  key={i}
+                  key={link.label}
                   href={link.href}
-                  initial={{ y: 20, opacity: 0 }}
-                  animate={{ y: 0, opacity: 1 }}
-                  transition={{ delay: i * 0.1 }}
-                  onClick={() => setMobileMenuOpen(false)}
-                  className="text-3xl font-display font-bold text-gray-300 hover:text-white hover:text-gradient-cyan transition-all"
+                  initial={{
+                    y: 20,
+                    opacity: 0,
+                  }}
+                  animate={{
+                    y: 0,
+                    opacity: 1,
+                  }}
+                  transition={{
+                    delay: index * 0.07,
+                    duration: 0.35,
+                  }}
+                  onClick={closeMobileMenu}
+                  className="
+                    text-2xl
+                    sm:text-3xl
+                    font-display
+                    font-bold
+                    text-gray-300
+                    hover:text-cyan-400
+                    transition-colors
+                    duration-300
+                  "
                 >
                   {link.label}
                 </motion.a>
               ))}
-              
+
+              {/* =================================================
+                  MOBILE SOCIALS
+              ================================================= */}
               <motion.div
-                initial={{ y: 20, opacity: 0 }}
-                animate={{ y: 0, opacity: 1 }}
-                transition={{ delay: 0.5 }}
-                className="mt-8 flex gap-6"
+                initial={{
+                  y: 20,
+                  opacity: 0,
+                }}
+                animate={{
+                  y: 0,
+                  opacity: 1,
+                }}
+                transition={{
+                  delay: 0.5,
+                }}
+                className="mt-5 flex gap-5"
               >
-                <a href="https://github.com" className="p-4 rounded-full bg-white/5 border border-white/10 text-white">
-                  <FaGithub size={24} />
+                {/* GitHub */}
+                <a
+                  href="https://github.com"
+                  target="_blank"
+                  rel="noreferrer"
+                  aria-label="GitHub"
+                  className="
+                    w-12
+                    h-12
+                    rounded-full
+                    flex
+                    items-center
+                    justify-center
+                    bg-white/5
+                    border
+                    border-white/10
+                    text-white
+                    hover:border-cyan-400/40
+                    hover:bg-cyan-400/10
+                    hover:-translate-y-1
+                    transition-all
+                    duration-300
+                  "
+                >
+                  <FaGithub size={21} />
                 </a>
-                <a href="https://linkedin.com" className="p-4 rounded-full bg-white/5 border border-white/10 text-white">
-                  <FaLinkedin size={24} />
+
+                {/* LinkedIn */}
+                <a
+                  href="https://linkedin.com"
+                  target="_blank"
+                  rel="noreferrer"
+                  aria-label="LinkedIn"
+                  className="
+                    w-12
+                    h-12
+                    rounded-full
+                    flex
+                    items-center
+                    justify-center
+                    bg-white/5
+                    border
+                    border-white/10
+                    text-white
+                    hover:border-cyan-400/40
+                    hover:bg-cyan-400/10
+                    hover:-translate-y-1
+                    transition-all
+                    duration-300
+                  "
+                >
+                  <FaLinkedin size={21} />
                 </a>
               </motion.div>
             </div>

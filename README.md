@@ -1,18 +1,52 @@
-# React + Vite
+# Ankit Portfolio
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+This is the supplied React portfolio with project navigation added.
 
-Currently, two official plugins are available:
+## Project flow
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+Home:
+`/`
 
-## React Compiler
+Featured Projects:
+- **View all projects** opens `/projects`
+- Clicking any featured card opens `/projects/:slug`
 
-The React Compiler is enabled on this template. See [this documentation](https://react.dev/learn/react-compiler) for more information.
+All projects:
+`/projects`
 
-Note: This will impact Vite dev & build performances.
+Individual detail pages:
+- `/projects/greenbasket`
+- `/projects/college-placement-system`
+- `/projects/tradescape-risk-dashboard`
+- `/projects/crm-platform`
+- `/projects/inventory-management-system`
 
-## Expanding the ESLint configuration
+## Current project data
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+Project data lives in:
+`src/data/projects.js`
+
+Update each project's:
+- `github`
+- `demo`
+- description
+- tech stack
+- highlights
+
+## Install and run
+
+```bash
+npm install
+npm run dev
+```
+
+## Production
+
+```bash
+npm run build
+npm run preview
+```
+
+## Important
+
+The project uses React Router for client-side navigation. If deploying to a static host, configure SPA fallback/rewrites so direct URLs such as `/projects/greenbasket` resolve to `index.html`.
