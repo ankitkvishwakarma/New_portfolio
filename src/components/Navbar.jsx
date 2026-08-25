@@ -16,26 +16,45 @@ const links = [
   { label: "Contact", href: "#contact" },
 ];
 
+// Premium easing curve — slower start, crisp settle
+const EASE = [0.22, 1, 0.36, 1];
+
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
+  const [showNavbar, setShowNavbar] = useState(true);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   useEffect(() => {
+    let lastScrollY = window.scrollY;
+
     const handleScroll = () => {
-      setScrolled(window.scrollY > 50);
+      const currentScrollY = window.scrollY;
+
+      setScrolled(currentScrollY > 50);
+
+      if (currentScrollY <= 20) {
+        setShowNavbar(true);
+      } else if (currentScrollY > lastScrollY) {
+        setShowNavbar(false);
+      } else if (currentScrollY < lastScrollY) {
+        setShowNavbar(true);
+      }
+
+      lastScrollY = currentScrollY;
     };
 
-    window.addEventListener("scroll", handleScroll);
+    window.addEventListener("scroll", handleScroll, {
+      passive: true,
+    });
 
     return () => {
       window.removeEventListener("scroll", handleScroll);
     };
   }, []);
 
-  // Close mobile menu with Escape
   useEffect(() => {
-    const handleEscape = (e) => {
-      if (e.key === "Escape") {
+    const handleEscape = (event) => {
+      if (event.key === "Escape") {
         setMobileMenuOpen(false);
       }
     };
@@ -47,7 +66,6 @@ export default function Navbar() {
     };
   }, []);
 
-  // Prevent background scrolling when mobile menu is open
   useEffect(() => {
     document.body.style.overflow = mobileMenuOpen ? "hidden" : "";
 
@@ -62,15 +80,15 @@ export default function Navbar() {
 
   return (
     <>
-      {/* =====================================================
-          NAVBAR
-      ===================================================== */}
       <motion.nav
-        initial={{ y: -100, opacity: 0 }}
-        animate={{ y: 0, opacity: 1 }}
+        initial={{ y: 0, opacity: 1 }}
+        animate={{
+          y: showNavbar ? 0 : -120,
+          opacity: showNavbar ? 1 : 0,
+        }}
         transition={{
           duration: 0.6,
-          ease: "easeOut",
+          ease: EASE,
         }}
         className={`
           fixed
@@ -79,13 +97,20 @@ export default function Navbar() {
           right-0
           z-50
           transition-all
-          duration-300
+          duration-500
           ${scrolled ? "py-4" : "py-6"}
         `}
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div
+          <motion.div
+            animate={{
+              boxShadow: scrolled
+                ? "0 8px 40px rgba(0,0,0,0.55), 0 0 0 1px rgba(255,255,255,0.06)"
+                : "0 0px 0px rgba(0,0,0,0), 0 0 0 1px rgba(255,255,255,0)",
+            }}
+            transition={{ duration: 0.6, ease: EASE }}
             className={`
+              relative
               flex
               items-center
               justify-between
@@ -93,30 +118,38 @@ export default function Navbar() {
               px-5
               sm:px-6
               py-3
-              transition-all
+              overflow-hidden
+              transition-colors
               duration-500
               ${
                 scrolled
-                  ? "bg-[#030712]/80 backdrop-blur-xl border border-white/10 shadow-[0_0_30px_rgba(0,0,0,0.5)]"
+                  ? "bg-[#030712]/70 backdrop-blur-2xl border border-white/10"
                   : "bg-transparent border border-transparent"
               }
             `}
           >
-            {/* =================================================
-                BRAND
-            ================================================= */}
+            {/* subtle premium sheen across the bar */}
+            <div
+              aria-hidden="true"
+              className={`
+                pointer-events-none
+                absolute
+                inset-0
+                bg-gradient-to-r
+                from-cyan-500/[0.04]
+                via-transparent
+                to-purple-500/[0.04]
+                transition-opacity
+                duration-500
+                ${scrolled ? "opacity-100" : "opacity-0"}
+              `}
+            />
+
             <a
               href="#home"
-              className="
-                group
-                flex
-                items-center
-                gap-2.5
-                shrink-0
-              "
+              className="group relative z-10 flex items-center gap-2.5 shrink-0"
               aria-label="Ankit Vishwakarma - Home"
             >
-              {/* Animated Logo */}
               <video
                 src="/animation.webm"
                 autoPlay
@@ -132,13 +165,13 @@ export default function Navbar() {
                   object-contain
                   rounded-lg
                   transition-all
-                  duration-300
-                  group-hover:scale-105
-                  group-hover:drop-shadow-[0_0_14px_rgba(6,182,212,0.55)]
+                  duration-500
+                  ease-out
+                  group-hover:scale-110
+                  group-hover:drop-shadow-[0_0_18px_rgba(6,182,212,0.6)]
                 "
               />
 
-              {/* Cursive Gradient Name */}
               <span
                 className="
                   text-[23px]
@@ -152,7 +185,7 @@ export default function Navbar() {
                   bg-clip-text
                   text-transparent
                   transition-all
-                  duration-300
+                  duration-500
                   group-hover:from-cyan-300
                   group-hover:via-blue-400
                   group-hover:to-purple-400
@@ -166,10 +199,7 @@ export default function Navbar() {
               </span>
             </a>
 
-            {/* =================================================
-                DESKTOP NAV LINKS
-            ================================================= */}
-            <div className="hidden md:flex items-center gap-7 lg:gap-8">
+            <div className="relative z-10 hidden md:flex items-center gap-7 lg:gap-8">
               {links.map((link) => (
                 <a
                   key={link.label}
@@ -186,21 +216,26 @@ export default function Navbar() {
                     group
                   "
                 >
-                  {link.label}
+                  <span className="relative inline-block transition-transform duration-300 ease-out group-hover:-translate-y-[1px]">
+                    {link.label}
+                  </span>
 
                   <span
                     className="
                       absolute
-                      bottom-0
-                      left-0
+                      -bottom-0.5
+                      left-1/2
                       h-[2px]
                       w-0
+                      -translate-x-1/2
                       rounded-full
                       bg-gradient-to-r
                       from-cyan-400
-                      to-blue-500
+                      to-purple-500
+                      shadow-[0_0_8px_rgba(6,182,212,0.6)]
                       transition-all
-                      duration-300
+                      duration-400
+                      ease-out
                       group-hover:w-full
                     "
                   />
@@ -208,11 +243,7 @@ export default function Navbar() {
               ))}
             </div>
 
-            {/* =================================================
-                DESKTOP ACTIONS
-            ================================================= */}
-            <div className="hidden md:flex items-center gap-4">
-              {/* GitHub */}
+            <div className="relative z-10 hidden md:flex items-center gap-4">
               <a
                 href="https://github.com"
                 target="_blank"
@@ -222,14 +253,15 @@ export default function Navbar() {
                   text-gray-400
                   hover:text-white
                   hover:-translate-y-0.5
+                  hover:drop-shadow-[0_0_8px_rgba(255,255,255,0.35)]
                   transition-all
                   duration-300
+                  ease-out
                 "
               >
                 <FaGithub size={19} />
               </a>
 
-              {/* LinkedIn */}
               <a
                 href="https://linkedin.com"
                 target="_blank"
@@ -239,81 +271,130 @@ export default function Navbar() {
                   text-gray-400
                   hover:text-white
                   hover:-translate-y-0.5
+                  hover:drop-shadow-[0_0_8px_rgba(255,255,255,0.35)]
                   transition-all
                   duration-300
+                  ease-out
                 "
               >
                 <FaLinkedin size={19} />
               </a>
 
-              {/* Hire Me */}
+              {/* Premium CTA button */}
               <a
                 href="#contact"
                 className="
-                  group
+                  group/cta
                   relative
+                  isolate
                   overflow-hidden
                   rounded-full
-                  px-5
-                  py-2.5
-                  text-sm
-                  font-semibold
-                  text-black
-                  bg-white
-                  shadow-[0_0_15px_rgba(255,255,255,0.18)]
-                  hover:-translate-y-0.5
-                  hover:shadow-[0_0_28px_rgba(6,182,212,0.45)]
-                  transition-all
+                  p-[1.5px]
+                  transition-transform
                   duration-300
+                  ease-out
+                  hover:-translate-y-0.5
+                  active:translate-y-0
+                  active:scale-[0.97]
                 "
               >
-                <span className="relative z-10">
-                  Hire Me
-                </span>
-
+                {/* rotating gradient border */}
                 <span
+                  aria-hidden="true"
                   className="
                     absolute
-                    inset-0
-                    -translate-x-full
-                    bg-gradient-to-r
-                    from-transparent
-                    via-cyan-200/70
-                    to-transparent
-                    transition-transform
-                    duration-700
-                    ease-out
-                    group-hover:translate-x-full
+                    inset-[-40%]
+                    animate-[spin_4s_linear_infinite]
+                    bg-[conic-gradient(from_0deg,_#22d3ee,_#a855f7,_#22d3ee)]
+                    opacity-70
+                    group-hover/cta:opacity-100
+                    transition-opacity
+                    duration-300
                   "
                 />
+
+                {/* button body */}
+                <span
+                  className="
+                    relative
+                    z-10
+                    flex
+                    items-center
+                    gap-1.5
+                    rounded-full
+                    bg-white
+                    px-5
+                    py-2.5
+                    text-sm
+                    font-semibold
+                    text-black
+                    shadow-[0_0_20px_rgba(255,255,255,0.15)]
+                    transition-all
+                    duration-300
+                    group-hover/cta:shadow-[0_0_32px_rgba(6,182,212,0.55)]
+                  "
+                >
+                  <span className="relative z-10">Hire Me</span>
+
+                  <span
+                    aria-hidden="true"
+                    className="
+                      relative
+                      z-10
+                      inline-block
+                      transition-transform
+                      duration-300
+                      ease-out
+                      group-hover/cta:translate-x-0.5
+                      group-hover/cta:-translate-y-0.5
+                    "
+                  >
+                    ↗
+                  </span>
+
+                  {/* shine sweep */}
+                  <span
+                    aria-hidden="true"
+                    className="
+                      absolute
+                      inset-0
+                      -translate-x-full
+                      bg-gradient-to-r
+                      from-transparent
+                      via-cyan-200/80
+                      to-transparent
+                      transition-transform
+                      duration-700
+                      ease-out
+                      group-hover/cta:translate-x-full
+                    "
+                  />
+                </span>
               </a>
             </div>
 
-            {/* =================================================
-                MOBILE MENU BUTTON
-            ================================================= */}
             <button
               type="button"
               aria-label="Open menu"
               aria-expanded={mobileMenuOpen}
               onClick={() => setMobileMenuOpen(true)}
               className="
+                relative
+                z-10
                 md:hidden
                 p-2
                 text-gray-300
                 hover:text-white
                 transition-colors
+                duration-300
               "
             >
               <FaBars size={23} />
             </button>
-          </div>
+          </motion.div>
         </div>
       </motion.nav>
 
-      {/* =====================================================
-          MOBILE MENU
-      ===================================================== */}
       <AnimatePresence>
         {mobileMenuOpen && (
           <motion.div
@@ -329,7 +410,7 @@ export default function Navbar() {
               opacity: 0,
               backdropFilter: "blur(0px)",
             }}
-            transition={{ duration: 0.3 }}
+            transition={{ duration: 0.4, ease: EASE }}
             className="
               fixed
               inset-0
@@ -341,7 +422,6 @@ export default function Navbar() {
               justify-center
             "
           >
-            {/* Close Button */}
             <button
               type="button"
               aria-label="Close menu"
@@ -353,28 +433,29 @@ export default function Navbar() {
                 p-2
                 text-gray-400
                 hover:text-white
-                transition-colors
+                hover:rotate-90
+                transition-all
+                duration-300
+                ease-out
               "
             >
               <FaTimes size={28} />
             </button>
 
-            {/* =================================================
-                MOBILE BRAND
-            ================================================= */}
             <motion.a
               href="#home"
               onClick={closeMobileMenu}
               initial={{
                 opacity: 0,
-                scale: 0.8,
+                scale: 0.85,
               }}
               animate={{
                 opacity: 1,
                 scale: 1,
               }}
               transition={{
-                duration: 0.4,
+                duration: 0.5,
+                ease: EASE,
               }}
               className="
                 absolute
@@ -421,16 +502,13 @@ export default function Navbar() {
               </span>
             </motion.a>
 
-            {/* =================================================
-                MOBILE LINKS
-            ================================================= */}
             <div className="flex flex-col items-center gap-7">
               {links.map((link, index) => (
                 <motion.a
                   key={link.label}
                   href={link.href}
                   initial={{
-                    y: 20,
+                    y: 24,
                     opacity: 0,
                   }}
                   animate={{
@@ -438,8 +516,9 @@ export default function Navbar() {
                     opacity: 1,
                   }}
                   transition={{
-                    delay: index * 0.07,
-                    duration: 0.35,
+                    delay: index * 0.06,
+                    duration: 0.45,
+                    ease: EASE,
                   }}
                   onClick={closeMobileMenu}
                   className="
@@ -449,17 +528,69 @@ export default function Navbar() {
                     font-bold
                     text-gray-300
                     hover:text-cyan-400
-                    transition-colors
+                    hover:tracking-wide
+                    transition-all
                     duration-300
+                    ease-out
                   "
                 >
                   {link.label}
                 </motion.a>
               ))}
 
-              {/* =================================================
-                  MOBILE SOCIALS
-              ================================================= */}
+              {/* Premium CTA — mobile */}
+              <motion.a
+                href="#contact"
+                onClick={closeMobileMenu}
+                initial={{ y: 24, opacity: 0 }}
+                animate={{ y: 0, opacity: 1 }}
+                transition={{
+                  delay: links.length * 0.06,
+                  duration: 0.45,
+                  ease: EASE,
+                }}
+                className="
+                  group/ctam
+                  relative
+                  mt-2
+                  overflow-hidden
+                  rounded-full
+                  p-[1.5px]
+                  active:scale-[0.96]
+                  transition-transform
+                  duration-300
+                "
+              >
+                <span
+                  aria-hidden="true"
+                  className="
+                    absolute
+                    inset-[-40%]
+                    animate-[spin_4s_linear_infinite]
+                    bg-[conic-gradient(from_0deg,_#22d3ee,_#a855f7,_#22d3ee)]
+                  "
+                />
+                <span
+                  className="
+                    relative
+                    z-10
+                    flex
+                    items-center
+                    gap-1.5
+                    rounded-full
+                    bg-white
+                    px-6
+                    py-2.5
+                    text-base
+                    font-semibold
+                    text-black
+                    shadow-[0_0_20px_rgba(255,255,255,0.2)]
+                  "
+                >
+                  Hire Me <span aria-hidden="true">↗</span>
+                </span>
+              </motion.a>
+
               <motion.div
                 initial={{
                   y: 20,
@@ -471,10 +602,10 @@ export default function Navbar() {
                 }}
                 transition={{
                   delay: 0.5,
+                  ease: EASE,
                 }}
                 className="mt-5 flex gap-5"
               >
-                {/* GitHub */}
                 <a
                   href="https://github.com"
                   target="_blank"
@@ -496,12 +627,12 @@ export default function Navbar() {
                     hover:-translate-y-1
                     transition-all
                     duration-300
+                    ease-out
                   "
                 >
                   <FaGithub size={21} />
                 </a>
 
-                {/* LinkedIn */}
                 <a
                   href="https://linkedin.com"
                   target="_blank"
@@ -523,6 +654,7 @@ export default function Navbar() {
                     hover:-translate-y-1
                     transition-all
                     duration-300
+                    ease-out
                   "
                 >
                   <FaLinkedin size={21} />

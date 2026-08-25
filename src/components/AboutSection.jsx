@@ -1,6 +1,21 @@
 import { motion } from "framer-motion";
 
 export default function AboutSection() {
+  const stats = [
+    {
+      value: "5+",
+      label: "Projects Built",
+    },
+    {
+      value: "10+",
+      label: "Technologies",
+    },
+    {
+      value: "100%",
+      label: "Learning Mindset",
+    },
+  ];
+
   return (
     <section
       id="about"
@@ -19,7 +34,6 @@ export default function AboutSection() {
       "
     >
       <div className="relative z-10 w-full max-w-7xl mx-auto">
-
         {/* Header */}
         <motion.div
           initial={{ opacity: 0, y: 15 }}
@@ -40,18 +54,17 @@ export default function AboutSection() {
           </div>
 
           <h2 className="font-display text-3xl sm:text-4xl lg:text-5xl font-bold leading-tight text-white">
-            Engineering the{" "}
+            Building modern{" "}
             <span className="bg-gradient-to-r from-blue-400 to-cyan-300 bg-clip-text text-transparent">
-              future
-            </span>{" "}
-            of web.
+              web experiences
+            </span>
+            .
           </h2>
         </motion.div>
 
         {/* Main Content */}
         <div className="grid grid-cols-1 lg:grid-cols-2 items-center gap-8 lg:gap-10">
-
-          {/* Left */}
+          {/* Left Content */}
           <motion.div
             initial={{ opacity: 0, x: -25 }}
             whileInView={{ opacity: 1, x: 0 }}
@@ -70,50 +83,48 @@ export default function AboutSection() {
             "
           >
             <p>
-              I am a{" "}
+              I’m an{" "}
               <strong className="font-semibold text-white">
-                Full Stack Engineer
+                aspiring Full Stack Developer
               </strong>{" "}
-              with a deep passion for building robust, scalable, and
-              beautifully designed digital experiences. My journey started
-              with a curiosity about how the web works, which quickly evolved
-              into a professional pursuit of engineering excellence.
+              with a strong interest in building modern, responsive, and
+              user-focused web applications. I enjoy turning ideas into
+              practical products and continuously improving my development
+              skills through hands-on projects.
             </p>
 
             <p>
-              I specialize in creating modern web applications using{" "}
+              I work primarily with{" "}
               <strong className="font-semibold text-white">
-                React, Next.js, Node.js, and TypeScript
+                React, JavaScript, Node.js, Express.js, and MongoDB
               </strong>
-              . I believe that great software is a combination of clean
-              architecture, performant code, and an intuitive user experience.
+              . I focus on writing clean, maintainable code and creating
+              interfaces that are functional, responsive, and easy to use.
             </p>
 
             <p>
-              Currently, I'm deeply interested in the intersection of{" "}
+              As a{" "}
               <strong className="font-semibold text-cyan-400">
-                AI and Web Development
+                fresher
               </strong>
-              , exploring how to integrate intelligent features into everyday
-              applications to solve real-world problems effectively.
+              , I’m actively strengthening my understanding of full-stack
+              development, REST APIs, databases, authentication, backend
+              architecture, and software development best practices.
+            </p>
+
+            <p>
+              I believe the best way to become a better developer is to{" "}
+              <strong className="font-semibold text-white">
+                learn, build, solve problems, and keep improving
+              </strong>
+              . I’m looking for an opportunity where I can contribute to a
+              development team, learn from experienced engineers, and grow as a
+              professional developer.
             </p>
 
             {/* Stats */}
             <div className="mt-3 grid grid-cols-3 gap-3">
-              {[
-                {
-                  value: "3+",
-                  label: "Years Experience",
-                },
-                {
-                  value: "10+",
-                  label: "Projects Built",
-                },
-                {
-                  value: "99%",
-                  label: "Client Satisfaction",
-                },
-              ].map((stat, i) => (
+              {stats.map((stat, i) => (
                 <div
                   key={i}
                   className="
@@ -214,7 +225,7 @@ export default function AboutSection() {
                 </div>
 
                 <div className="font-mono text-[10px] text-[#cccccc]">
-                  developer.ts
+                  developer.js
                 </div>
 
                 <div className="w-10" />
@@ -235,11 +246,9 @@ export default function AboutSection() {
                     text-cyan-400
                   "
                 >
-                  <span className="text-[#519aba]">
-                    TS
-                  </span>
+                  <span className="text-[#f7df1e]">JS</span>
 
-                  developer.ts
+                  developer.js
                 </div>
               </div>
 
@@ -255,7 +264,6 @@ export default function AboutSection() {
                 "
               >
                 <div className="flex">
-
                   {/* Line Numbers */}
                   <div
                     className="
@@ -267,144 +275,104 @@ export default function AboutSection() {
                       text-[#666]
                     "
                   >
-                    {Array.from(
-                      { length: 14 },
-                      (_, index) => (
-                        <span key={index}>
-                          {index + 1}
-                        </span>
-                      )
-                    )}
+                    {Array.from({ length: 20 }, (_, index) => (
+                      <span key={index}>{index + 1}</span>
+                    ))}
                   </div>
 
                   {/* Code */}
                   <div className="text-[#d4d4d4] whitespace-nowrap">
-
                     <div>
-                      <span className="text-[#c586c0]">
-                        const
-                      </span>{" "}
-                      <span className="text-[#4fc1ff]">
-                        developer
-                      </span>{" "}
-                      =
-                      {" {"}
+                      <span className="text-[#c586c0]">const</span>{" "}
+                      <span className="text-[#4fc1ff]">developer</span> = {"{"}
                     </div>
 
                     <div className="pl-4">
-                      <span className="text-[#9cdcfe]">
-                        name
-                      </span>
-                      :{" "}
+                      <span className="text-[#9cdcfe]">name</span>:{" "}
                       <span className="text-[#ce9178]">
-                        'Ankit Vishwakarma'
-                      </span>,
-                    </div>
-
-                    <div className="pl-4">
-                      <span className="text-[#9cdcfe]">
-                        role
-                      </span>
-                      :{" "}
-                      <span className="text-[#ce9178]">
-                        'Full Stack Developer'
-                      </span>,
-                    </div>
-
-                    <div className="pl-4">
-                      <span className="text-[#9cdcfe]">
-                        location
-                      </span>
-                      :{" "}
-                      <span className="text-[#ce9178]">
-                        'Jamshedpur, India'
-                      </span>,
-                    </div>
-
-                    <div className="pl-4">
-                      <span className="text-[#9cdcfe]">
-                        skills
-                      </span>
-                      : [
-                    </div>
-
-                    <div className="pl-8">
-                      <span className="text-[#ce9178]">
-                        'React'
-                      </span>
-                      ,{" "}
-                      <span className="text-[#ce9178]">
-                        'Next.js'
-                      </span>
-                      ,{" "}
-                      <span className="text-[#ce9178]">
-                        'TypeScript'
+                        "Ankit Vishwakarma"
                       </span>
                       ,
                     </div>
 
-                    <div className="pl-8">
+                    <div className="pl-4">
+                      <span className="text-[#9cdcfe]">role</span>:{" "}
                       <span className="text-[#ce9178]">
-                        'Node.js'
+                        "Aspiring Full Stack Developer"
                       </span>
-                      ,{" "}
-                      <span className="text-[#ce9178]">
-                        'MongoDB'
-                      </span>
-                      ,{" "}
-                      <span className="text-[#ce9178]">
-                        'PostgreSQL'
-                      </span>
+                      ,
                     </div>
 
                     <div className="pl-4">
-                      ],
+                      <span className="text-[#9cdcfe]">experience</span>:{" "}
+                      <span className="text-[#ce9178]">"Fresher"</span>,
                     </div>
 
                     <div className="pl-4">
-                      <span className="text-[#9cdcfe]">
-                        learning
-                      </span>
-                      : [
-                      <span className="text-[#ce9178]">
-                        'AI'
-                      </span>
-                      ,{" "}
-                      <span className="text-[#ce9178]">
-                        'System Design'
-                      </span>
-                      ],
+                      <span className="text-[#9cdcfe]">location</span>:{" "}
+                      <span className="text-[#ce9178]">"India"</span>,
                     </div>
 
                     <div className="pl-4">
-                      <span className="text-[#dcdcaa]">
-                        buildAwesomeThings
-                      </span>
-                      () {"{"}
+                      <span className="text-[#9cdcfe]">skills</span>: [
                     </div>
 
                     <div className="pl-8">
-                      <span className="text-[#c586c0]">
-                        return
-                      </span>{" "}
-                      <span className="text-[#569cd6]">
-                        true
+                      <span className="text-[#ce9178]">"React"</span>,{" "}
+                      <span className="text-[#ce9178]">"JavaScript"</span>,
+                    </div>
+
+                    <div className="pl-8">
+                      <span className="text-[#ce9178]">"Node.js"</span>,{" "}
+                      <span className="text-[#ce9178]">"Express.js"</span>,
+                    </div>
+
+                    <div className="pl-8">
+                      <span className="text-[#ce9178]">"MongoDB"</span>,{" "}
+                      <span className="text-[#ce9178]">"Git"</span>
+                    </div>
+
+                    <div className="pl-4">],</div>
+
+                    <div className="pl-4">
+                      <span className="text-[#9cdcfe]">learning</span>: [
+                    </div>
+
+                    <div className="pl-8">
+                      <span className="text-[#ce9178]">"TypeScript"</span>,{" "}
+                      <span className="text-[#ce9178]">"AI"</span>,
+                    </div>
+
+                    <div className="pl-8">
+                      <span className="text-[#ce9178]">"System Design"</span>
+                    </div>
+
+                    <div className="pl-4">],</div>
+
+                    <div className="pl-4">
+                      <span className="text-[#9cdcfe]">mindset</span>:{" "}
+                      <span className="text-[#ce9178]">
+                        "Learn • Build • Improve"
                       </span>
-                      ;
+                      ,
                     </div>
 
                     <div className="pl-4">
-                      {"}"}
+                      <span className="text-[#dcdcaa]">buildProjects</span>() {"{"}
                     </div>
 
-                    <div>
-                      {"}"};
+                    <div className="pl-8">
+                      <span className="text-[#c586c0]">return</span>{" "}
+                      <span className="text-[#569cd6]">true</span>;
                     </div>
+
+                    <div className="pl-4">{"}"}</div>
+
+                    <div>{"};"}</div>
 
                     <div className="text-[#858585]">
-                      // Developer profile
+                      // Always learning. Always building.
                     </div>
-
                   </div>
                 </div>
               </div>
