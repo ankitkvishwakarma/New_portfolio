@@ -1,78 +1,561 @@
 @import "tailwindcss";
 
+/* =========================================================
+   TAILWIND THEME
+========================================================= */
+
 @theme {
-  --font-sans: 'Inter', sans-serif;
-  --font-display: 'Space Grotesk', sans-serif;
+  /* Fonts */
+  --font-sans: "Inter", sans-serif;
+  --font-display: "Space Grotesk", sans-serif;
+
+  /* =======================================================
+     BRAND COLORS
+  ======================================================= */
+
+  --color-primary: #22c55e;
+  --color-primary-hover: #16a34a;
+  --color-primary-light: #4ade80;
+  --color-primary-dark: #15803d;
+
+  /* =======================================================
+     ACCENT COLORS
+  ======================================================= */
+
+  --color-accent-green: #22c55e;
+  --color-accent-purple: #8b5cf6;
+  --color-accent-pink: #ec4899;
+  --color-accent-blue: #38bdf8;
+  --color-accent-cyan: #22d3ee;
+
+  /* =======================================================
+     BACKGROUND COLORS
+  ======================================================= */
+
+  --color-background: #070b0a;
+  --color-background-soft: #0a0f0d;
+
+  --color-surface: #0d1210;
+  --color-surface-soft: #111713;
+  --color-surface-hover: #151c18;
+
+  /* =======================================================
+     TEXT COLORS
+  ======================================================= */
+
+  --color-text: #f9fafb;
+  --color-text-secondary: #a7ada9;
+  --color-text-muted: #737a76;
+
+  /* =======================================================
+     BORDER COLORS
+  ======================================================= */
+
+  --color-border: rgba(255, 255, 255, 0.08);
+  --color-border-light: rgba(255, 255, 255, 0.05);
+  --color-border-hover: rgba(34, 197, 94, 0.35);
 }
+
+
+/* =========================================================
+   ROOT
+========================================================= */
 
 :root {
   color-scheme: dark;
+
+  --primary: #22c55e;
+  --primary-hover: #16a34a;
+
+  --background: #070b0a;
+
+  --text-primary: #f9fafb;
+  --text-secondary: #a7ada9;
+  --text-muted: #737a76;
 }
+
+
+/* =========================================================
+   HTML
+========================================================= */
 
 html {
   scroll-behavior: smooth;
-  font-family: 'Inter', sans-serif;
+  font-family: "Inter", sans-serif;
+
+  background: #070b0a;
 }
+
+
+/* =========================================================
+   BODY
+========================================================= */
 
 body {
-  background-color: #030712;
-  color: #f9fafb;
+  position: relative;
+
+  min-height: 100vh;
+  margin: 0;
+
+  color: var(--text-primary);
+
   overflow-x: hidden;
+
+  /*
+    Main background:
+    - Bottom left  = Pink
+    - Top right    = Green
+    - Bottom right = Purple
+    - Center       = Dark
+  */
+
+  background:
+    radial-gradient(
+      ellipse 65% 70% at 0% 100%,
+      rgba(236, 72, 153, 0.18) 0%,
+      rgba(236, 72, 153, 0.08) 30%,
+      transparent 70%
+    ),
+
+    radial-gradient(
+      ellipse 65% 70% at 100% 0%,
+      rgba(34, 197, 94, 0.16) 0%,
+      rgba(34, 197, 94, 0.06) 30%,
+      transparent 70%
+    ),
+
+    radial-gradient(
+      ellipse 60% 65% at 100% 100%,
+      rgba(139, 92, 246, 0.20) 0%,
+      rgba(139, 92, 246, 0.08) 30%,
+      transparent 70%
+    ),
+
+    radial-gradient(
+      ellipse 80% 60% at 50% 45%,
+      rgba(8, 13, 11, 0.85) 0%,
+      rgba(7, 11, 10, 0.95) 55%,
+      transparent 100%
+    ),
+
+    #070b0a;
 }
 
-/* Custom Scrollbar */
+
+/* =========================================================
+   GLOBAL AMBIENT LIGHT
+========================================================= */
+
+body::before {
+  content: "";
+
+  position: fixed;
+  inset: 0;
+
+  z-index: -1;
+
+  pointer-events: none;
+
+  background:
+    radial-gradient(
+      circle at 0% 100%,
+      rgba(236, 72, 153, 0.08),
+      transparent 32%
+    ),
+
+    radial-gradient(
+      circle at 100% 0%,
+      rgba(34, 197, 94, 0.08),
+      transparent 32%
+    ),
+
+    radial-gradient(
+      circle at 100% 100%,
+      rgba(139, 92, 246, 0.10),
+      transparent 35%
+    );
+
+  filter: blur(35px);
+
+  transform: scale(1.05);
+}
+
+
+/* =========================================================
+   OPTIONAL GRID / TEXTURE
+========================================================= */
+
+body::after {
+  content: "";
+
+  position: fixed;
+  inset: 0;
+
+  z-index: -1;
+
+  pointer-events: none;
+
+  background-image:
+    linear-gradient(
+      rgba(255, 255, 255, 0.015) 1px,
+      transparent 1px
+    ),
+    linear-gradient(
+      90deg,
+      rgba(255, 255, 255, 0.015) 1px,
+      transparent 1px
+    );
+
+  background-size: 80px 80px;
+
+  mask-image: linear-gradient(
+    to bottom,
+    black,
+    transparent 80%
+  );
+
+  -webkit-mask-image: linear-gradient(
+    to bottom,
+    black,
+    transparent 80%
+  );
+
+  opacity: 0.35;
+}
+
+
+/* =========================================================
+   CUSTOM SCROLLBAR
+========================================================= */
+
 ::-webkit-scrollbar {
   width: 8px;
 }
 
 ::-webkit-scrollbar-track {
-  background: #030712;
+  background: #070b0a;
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #1f2937;
-  border-radius: 4px;
+  background: #1f2924;
+
+  border-radius: 999px;
+
+  border: 2px solid #070b0a;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #374151;
+  background: #2f3d35;
 }
 
-/* Glassmorphism Utilities */
+
+/* =========================================================
+   GLASSMORPHISM
+========================================================= */
+
 .glass {
   background: rgba(255, 255, 255, 0.03);
+
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
+
   border: 1px solid rgba(255, 255, 255, 0.05);
 }
 
+
+/* =========================================================
+   GLASS CARD
+========================================================= */
+
 .glass-card {
-  background: linear-gradient(
-    145deg,
-    rgba(255, 255, 255, 0.05) 0%,
-    rgba(255, 255, 255, 0.01) 100%
-  );
+  background:
+    linear-gradient(
+      145deg,
+      rgba(255, 255, 255, 0.055) 0%,
+      rgba(255, 255, 255, 0.018) 100%
+    );
+
   backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+
   border: 1px solid rgba(255, 255, 255, 0.08);
-  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3);
+
+  box-shadow:
+    0 8px 32px rgba(0, 0, 0, 0.30);
+
+  transition:
+    border-color 0.25s ease,
+    box-shadow 0.25s ease,
+    background 0.25s ease;
 }
 
-/* Text Gradients */
+.glass-card:hover {
+  border-color: rgba(34, 197, 94, 0.18);
+
+  box-shadow:
+    0 15px 45px rgba(0, 0, 0, 0.35);
+}
+
+
+/* =========================================================
+   PRIMARY BUTTON
+========================================================= */
+
+.btn-primary {
+  background: var(--primary);
+
+  color: #041008;
+
+  box-shadow:
+    0 0 0 rgba(34, 197, 94, 0);
+
+  transition:
+    background 0.2s ease,
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.btn-primary:hover {
+  background: var(--primary-hover);
+
+  transform: translateY(-1px);
+
+  box-shadow:
+    0 10px 30px rgba(34, 197, 94, 0.20);
+}
+
+
+/* =========================================================
+   PRIMARY GLOW
+========================================================= */
+
+.primary-glow {
+  box-shadow:
+    0 0 30px rgba(34, 197, 94, 0.15);
+}
+
+.primary-glow-strong {
+  box-shadow:
+    0 0 45px rgba(34, 197, 94, 0.25);
+}
+
+
+/* =========================================================
+   TEXT GRADIENT
+========================================================= */
+
 .text-gradient {
-  background: linear-gradient(to right, #38bdf8, #818cf8, #c084fc);
+  background:
+    linear-gradient(
+      to right,
+      #38bdf8,
+      #818cf8,
+      #c084fc
+    );
+
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
+
   background-clip: text;
 }
+
+
+/* =========================================================
+   GREEN GRADIENT
+========================================================= */
+
+.text-gradient-green {
+  background:
+    linear-gradient(
+      90deg,
+      #22c55e,
+      #4ade80
+    );
+
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+
+  background-clip: text;
+}
+
+
+/* =========================================================
+   CYAN GRADIENT
+========================================================= */
 
 .text-gradient-cyan {
-  background: linear-gradient(to right, #22d3ee, #3b82f6);
+  background:
+    linear-gradient(
+      to right,
+      #22d3ee,
+      #3b82f6
+    );
+
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
+
   background-clip: text;
 }
+
+
+/* =========================================================
+   PURPLE GRADIENT
+========================================================= */
+
+.text-gradient-purple {
+  background:
+    linear-gradient(
+      90deg,
+      #8b5cf6,
+      #ec4899
+    );
+
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+
+  background-clip: text;
+}
+
+
+/* =========================================================
+   GLOBAL LINKS
+========================================================= */
+
+a {
+  color: inherit;
+
+  text-decoration: none;
+
+  transition:
+    color 0.2s ease,
+    opacity 0.2s ease;
+}
+
+a:hover {
+  color: var(--primary);
+}
+
+
+/* =========================================================
+   GLOBAL BUTTON
+========================================================= */
+
+button {
+  font-family: inherit;
+
+  cursor: pointer;
+
+  transition:
+    color 0.2s ease,
+    background-color 0.2s ease,
+    border-color 0.2s ease,
+    box-shadow 0.2s ease,
+    transform 0.2s ease;
+}
+
+
+/* =========================================================
+   SELECTION
+========================================================= */
+
+::selection {
+  background: rgba(34, 197, 94, 0.25);
+
+  color: #ffffff;
+}
+
+
+/* =========================================================
+   FOCUS
+========================================================= */
 
 a:focus:not(:focus-visible),
 button:focus:not(:focus-visible) {
   outline: none;
+}
+
+a:focus-visible,
+button:focus-visible {
+  outline: 2px solid var(--primary);
+
+  outline-offset: 3px;
+}
+
+
+/* =========================================================
+   COMMON UTILITY CLASSES
+========================================================= */
+
+.text-primary {
+  color: var(--primary);
+}
+
+.text-secondary {
+  color: var(--text-secondary);
+}
+
+.text-muted {
+  color: var(--text-muted);
+}
+
+.bg-main {
+  background: var(--background);
+}
+
+.border-global {
+  border-color: rgba(255, 255, 255, 0.08);
+}
+
+
+/* =========================================================
+   GREEN STATUS DOT
+========================================================= */
+
+.status-dot {
+  width: 8px;
+  height: 8px;
+
+  border-radius: 999px;
+
+  background: #22c55e;
+
+  box-shadow:
+    0 0 12px rgba(34, 197, 94, 0.7);
+}
+
+
+/* =========================================================
+   SUBTLE HOVER GLOW
+========================================================= */
+
+.hover-green {
+  transition:
+    border-color 0.25s ease,
+    box-shadow 0.25s ease;
+}
+
+.hover-green:hover {
+  border-color: rgba(34, 197, 94, 0.30);
+
+  box-shadow:
+    0 0 25px rgba(34, 197, 94, 0.08);
+}
+
+
+/* =========================================================
+   REDUCED MOTION
+========================================================= */
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
 }

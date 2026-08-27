@@ -1,530 +1,477 @@
-import { useState } from "react";
 import { motion } from "framer-motion";
 import {
   Mail,
+  MapPin,
+  Zap,
   ArrowUpRight,
-  CheckCircle,
-  AlertCircle,
-  Loader2,
+  Send,
+  Sparkles,
 } from "lucide-react";
 
+import { FaGithub, FaLinkedin, FaWhatsapp } from "react-icons/fa";
+
+/* =========================================================
+   CONTACT LINKS
+========================================================= */
+
+const contactLinks = [
+  {
+    title: "Email",
+    value: "ankit789.en@gmail.com",
+    description: "Drop me an email anytime",
+    href: "mailto:ankit789.en@gmail.com",
+    icon: Mail,
+    color: "cyan",
+  },
+  {
+    title: "WhatsApp",
+    value: "Chat directly on WhatsApp",
+    description: "Quick and easy",
+    href: "https://wa.me/919999999999",
+    icon: FaWhatsapp,
+    color: "green",
+  },
+  {
+    title: "GitHub",
+    value: "github.com/ankit789",
+    description: "Check out my repositories",
+    href: "https://github.com/ankit789",
+    icon: FaGithub,
+    color: "purple",
+  },
+  {
+    title: "LinkedIn",
+    value: "linkedin.com/in/ankitkumar",
+    description: "Let's connect professionally",
+    href: "https://www.linkedin.com/in/ankitkumar",
+    icon: FaLinkedin,
+    color: "blue",
+  },
+];
+
+/* =========================================================
+   CONTACT CARD
+========================================================= */
+
+function ContactCard({ item, index }) {
+  const Icon = item.icon;
+
+  const colors = {
+    cyan: {
+      icon: "text-cyan-400",
+      iconBg: "bg-cyan-400/10",
+      border: "hover:border-cyan-400/30",
+      glow: "group-hover:bg-cyan-400/[0.04]",
+      value: "group-hover:text-cyan-400",
+    },
+    green: {
+      icon: "text-green-400",
+      iconBg: "bg-green-400/10",
+      border: "hover:border-green-400/30",
+      glow: "group-hover:bg-green-400/[0.04]",
+      value: "group-hover:text-green-400",
+    },
+    purple: {
+      icon: "text-purple-400",
+      iconBg: "bg-purple-400/10",
+      border: "hover:border-purple-400/30",
+      glow: "group-hover:bg-purple-400/[0.04]",
+      value: "group-hover:text-purple-400",
+    },
+    blue: {
+      icon: "text-blue-400",
+      iconBg: "bg-blue-400/10",
+      border: "hover:border-blue-400/30",
+      glow: "group-hover:bg-blue-400/[0.04]",
+      value: "group-hover:text-blue-400",
+    },
+  };
+
+  const theme = colors[item.color];
+
+  return (
+    <motion.a
+      href={item.href}
+      target={item.href.startsWith("http") ? "_blank" : undefined}
+      rel={item.href.startsWith("http") ? "noreferrer" : undefined}
+      initial={{ opacity: 0, x: 30 }}
+      whileInView={{ opacity: 1, x: 0 }}
+      viewport={{ once: true, amount: 0.2 }}
+      transition={{
+        delay: index * 0.06,
+        duration: 0.45,
+        ease: [0.22, 1, 0.36, 1],
+      }}
+      whileHover={{ y: -2 }}
+      className={`
+        group relative flex items-center gap-3 sm:gap-4
+        overflow-hidden rounded-xl sm:rounded-2xl
+        border border-white/[0.07] bg-white/[0.025]
+        p-3 sm:p-4
+        transition-all duration-300
+        ${theme.border}
+      `}
+    >
+      {/* Hover glow */}
+      <div
+        className={`absolute inset-0 opacity-0 transition-opacity duration-300 ${theme.glow}`}
+      />
+
+      {/* Icon */}
+      <div
+        className={`
+          relative z-10 flex h-10 w-10 sm:h-11 sm:w-11 shrink-0
+          items-center justify-center rounded-xl
+          ${theme.iconBg} ${theme.icon}
+          transition-transform duration-300 group-hover:scale-105
+        `}
+      >
+        <Icon size={18} />
+      </div>
+
+      {/* Content */}
+      <div className="relative z-10 min-w-0 flex-1">
+        <h3 className="text-sm sm:text-base font-semibold text-white">
+          {item.title}
+        </h3>
+        <p
+          className={`mt-0.5 truncate text-xs sm:text-sm font-medium text-gray-400 transition-colors duration-300 ${theme.value}`}
+        >
+          {item.value}
+        </p>
+        <p className="mt-0.5 text-[10px] sm:text-[11px] text-gray-600">
+          {item.description}
+        </p>
+      </div>
+
+      {/* Arrow */}
+      <ArrowUpRight
+        size={18}
+        className="
+          relative z-10 shrink-0 text-gray-600
+          transition-all duration-300
+          group-hover:-translate-y-1 group-hover:translate-x-1 group-hover:text-white
+        "
+      />
+    </motion.a>
+  );
+}
+
+/* =========================================================
+   DEVELOPER VISUAL
+========================================================= */
+
+function DeveloperVisual() {
+  return (
+    <motion.div
+      initial={{ opacity: 0, y: 25 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, amount: 0.2 }}
+      transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+      className="
+        relative mt-6 h-[150px] sm:h-[180px] lg:h-[200px]
+        overflow-hidden rounded-2xl sm:rounded-3xl
+        border border-white/[0.06]
+        bg-gradient-to-br from-cyan-500/[0.04] via-transparent to-purple-500/[0.04]
+      "
+    >
+      {/* Glow */}
+      <div
+        className="
+          absolute left-1/2 top-1/2 h-32 w-32 -translate-x-1/2 -translate-y-1/2
+          rounded-full bg-cyan-400/[0.06] blur-[60px]
+        "
+      />
+
+      {/* Code panel */}
+      <motion.div
+        animate={{ y: [0, -4, 0] }}
+        transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
+        className="
+          absolute left-3 sm:left-5 top-4 sm:top-6 w-28 sm:w-32
+          rounded-lg sm:rounded-xl border border-cyan-400/20
+          bg-[#071014]/90 p-3 shadow-2xl hidden xs:block
+        "
+      >
+        <div className="mb-2 flex gap-1">
+          <span className="h-1.5 w-1.5 rounded-full bg-red-400/70" />
+          <span className="h-1.5 w-1.5 rounded-full bg-yellow-400/70" />
+          <span className="h-1.5 w-1.5 rounded-full bg-green-400/70" />
+        </div>
+        <div className="space-y-1.5 font-mono text-[7px] sm:text-[8px]">
+          <div className="text-purple-400">
+            const <span className="text-cyan-400">developer</span>
+          </div>
+          <div className="text-gray-600">{"{"}</div>
+          <div className="pl-3 text-green-400">
+            stack:
+            <span className="text-gray-500">{' ["React", "Node"]'}</span>
+          </div>
+          <div className="pl-3 text-blue-400">
+            passion:
+            <span className="text-gray-500">{' "building"'}</span>
+          </div>
+          <div className="text-gray-600">{"}"}</div>
+        </div>
+      </motion.div>
+
+      {/* Center code icon */}
+      <motion.div
+        animate={{ scale: [1, 1.04, 1] }}
+        transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
+        className="
+          absolute left-1/2 top-1/2 flex h-20 w-20 sm:h-24 sm:w-24 -translate-x-1/2 -translate-y-1/2
+          items-center justify-center rounded-full
+          border border-green-400/30 bg-[#07100b]
+          shadow-[0_0_50px_rgba(34,197,94,0.12)]
+        "
+      >
+        <div className="text-center">
+          <div className="font-mono text-xl sm:text-2xl font-bold text-green-400">
+            &lt;/&gt;
+          </div>
+          <div className="mt-1 flex items-center justify-center gap-1.5">
+            <span className="h-1.5 w-1.5 rounded-full bg-green-400" />
+            <span className="text-[6px] sm:text-[7px] uppercase tracking-[0.2em] text-gray-600">
+              building
+            </span>
+          </div>
+        </div>
+      </motion.div>
+
+      {/* Floating lines */}
+      <div
+        className="
+          absolute right-3 sm:right-5 top-4 sm:top-6 h-20 w-24
+          rounded-lg sm:rounded-xl border border-purple-400/10
+          bg-purple-400/[0.02] p-3 hidden xs:block
+        "
+      >
+        <div className="space-y-1.5">
+          <div className="h-1 w-14 rounded-full bg-purple-400/30" />
+          <div className="h-1 w-16 rounded-full bg-cyan-400/20" />
+          <div className="h-1 w-10 rounded-full bg-green-400/20" />
+          <div className="h-1 w-14 rounded-full bg-blue-400/20" />
+        </div>
+      </div>
+
+      {/* Bottom dots */}
+      <div className="absolute bottom-4 left-1/2 flex -translate-x-1/2 gap-2">
+        {[1, 2, 3, 4, 5, 6].map((dot) => (
+          <motion.span
+            key={dot}
+            animate={{ opacity: [0.2, 1, 0.2] }}
+            transition={{ duration: 1.8, delay: dot * 0.12, repeat: Infinity }}
+            className="h-1 w-1 rounded-full bg-cyan-400"
+          />
+        ))}
+      </div>
+    </motion.div>
+  );
+}
+
+/* =========================================================
+   MAIN COMPONENT
+========================================================= */
+
 export default function ContactSection() {
-  const [formState, setFormState] = useState("idle");
-  const [formData, setFormData] = useState({
-    name: "",
-    email: "",
-    subject: "",
-    message: "",
-  });
-  const [errors, setErrors] = useState({});
-
-  const validate = () => {
-    const newErrors = {};
-
-    if (!formData.name.trim()) {
-      newErrors.name = "Name is required";
-    }
-
-    if (!formData.email.trim()) {
-      newErrors.email = "Email is required";
-    } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email)) {
-      newErrors.email = "Invalid email format";
-    }
-
-    if (!formData.message.trim()) {
-      newErrors.message = "Message is required";
-    }
-
-    return newErrors;
-  };
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-
-    const newErrors = validate();
-
-    if (Object.keys(newErrors).length > 0) {
-      setErrors(newErrors);
-      return;
-    }
-
-    setErrors({});
-    setFormState("loading");
-
-    setTimeout(() => {
-      setFormState("success");
-
-      setFormData({
-        name: "",
-        email: "",
-        subject: "",
-        message: "",
-      });
-
-      setTimeout(() => {
-        setFormState("idle");
-      }, 5000);
-    }, 1500);
-  };
-
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-
-    setFormData((prev) => ({
-      ...prev,
-      [name]: value,
-    }));
-
-    if (errors[name]) {
-      setErrors((prev) => ({
-        ...prev,
-        [name]: "",
-      }));
-    }
-  };
-
   return (
     <section
       id="contact"
-      className="
-        relative
-        w-full
-        px-4
-        sm:px-6
-        lg:px-8
-        py-10
-        lg:py-12
-      "
+      className="relative w-full overflow-hidden px-4 py-12 sm:px-6 sm:py-16 lg:px-8 lg:py-20"
     >
-      <div className="w-full max-w-6xl mx-auto">
+      {/* Background ambience */}
+      <div className="pointer-events-none absolute inset-0">
+        <div className="absolute left-[5%] top-[15%] h-[260px] w-[260px] rounded-full bg-cyan-500/[0.025] blur-[110px]" />
+        <div className="absolute bottom-[5%] right-[5%] h-[300px] w-[300px] rounded-full bg-purple-500/[0.025] blur-[120px]" />
+      </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center">
+      <div className="relative z-10 mx-auto w-full max-w-7xl">
+        {/* HEADER */}
+        <motion.div
+          initial={{ opacity: 0, y: 16 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.3 }}
+          transition={{ duration: 0.5 }}
+          className="mx-auto mb-7 sm:mb-9 max-w-3xl text-center"
+        >
+          <div className="mb-3 sm:mb-4 flex items-center justify-center gap-3">
+            <span className="h-px w-9 sm:w-10 bg-cyan-400/50" />
+            <span className="font-mono text-[10px] uppercase tracking-[0.28em] text-cyan-400">
+              Contact
+            </span>
+            <span className="h-px w-9 sm:w-10 bg-cyan-400/50" />
+          </div>
 
-          {/* Left */}
-          <motion.div
-            initial={{
-              opacity: 0,
-              x: -30,
-            }}
-            whileInView={{
-              opacity: 1,
-              x: 0,
-            }}
-            viewport={{
-              once: true,
-              amount: 0.2,
-            }}
-            transition={{
-              duration: 0.55,
-              ease: [0.22, 1, 0.36, 1],
-            }}
-            className="flex flex-col"
-          >
-            <div className="flex items-center gap-3 mb-4">
-              <div className="h-px w-9 bg-cyan-500" />
+          <h2 className="text-3xl font-bold leading-tight tracking-tight text-white sm:text-4xl lg:text-5xl">
+            Let's build something{" "}
+            <span className="bg-gradient-to-r from-cyan-400 via-blue-400 to-purple-400 bg-clip-text text-transparent">
+              great
+            </span>{" "}
+            together.
+          </h2>
 
-              <p className="text-cyan-400 font-mono text-xs tracking-[0.18em] uppercase">
-                Contact
+          <p className="mx-auto mt-3 sm:mt-4 max-w-2xl text-sm leading-6 sm:leading-7 text-gray-500">
+            Have a project in mind or want to collaborate? I'd love to hear
+            about it and bring your ideas to life.
+          </p>
+        </motion.div>
+
+        {/* MAIN CONTENT */}
+        <div className="grid grid-cols-1 gap-6 lg:grid-cols-[0.95fr_1.05fr] lg:gap-10">
+          {/* LEFT SIDE */}
+          <div>
+            <motion.div
+              initial={{ opacity: 0, x: -20 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true, amount: 0.2 }}
+              transition={{ duration: 0.5 }}
+            >
+              <div className="mb-4 flex items-center gap-2 font-mono text-xs">
+                <span className="text-green-400">$</span>
+                <span className="text-gray-500">./start-a-conversation</span>
+              </div>
+
+              <h3 className="text-2xl sm:text-3xl font-bold leading-tight text-white">
+                Have a project
+                <br />
+                <span className="text-gray-500">worth building?</span>
+              </h3>
+
+              <p className="mt-3 max-w-xl text-sm leading-6 sm:leading-7 text-gray-500">
+                I'm open to full-stack projects, freelance work,
+                collaborations and new opportunities. Let's turn your idea
+                into something useful, scalable and beautifully built.
               </p>
+            </motion.div>
+
+            {/* STATUS ROW */}
+            <motion.div
+              initial={{ opacity: 0, y: 12 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.1, duration: 0.45 }}
+              className="mt-5 grid grid-cols-1 gap-2.5 sm:grid-cols-3"
+            >
+              <div className="rounded-xl sm:rounded-2xl border border-white/[0.06] bg-white/[0.02] p-3">
+                <div className="mb-2 flex h-7 w-7 items-center justify-center rounded-lg bg-green-400/10 text-green-400">
+                  <span className="h-2 w-2 rounded-full bg-green-400 shadow-[0_0_10px_rgba(74,222,128,0.8)]" />
+                </div>
+                <p className="text-xs font-semibold text-white">
+                  Available for work
+                </p>
+                <p className="mt-0.5 text-[10px] text-gray-600">
+                  Open to opportunities
+                </p>
+              </div>
+
+              <div className="rounded-xl sm:rounded-2xl border border-white/[0.06] bg-white/[0.02] p-3">
+                <div className="mb-2 flex h-7 w-7 items-center justify-center rounded-lg bg-cyan-400/10 text-cyan-400">
+                  <MapPin size={14} />
+                </div>
+                <p className="text-xs font-semibold text-white">
+                  Based in India
+                </p>
+                <p className="mt-0.5 text-[10px] text-gray-600">
+                  Remote friendly
+                </p>
+              </div>
+
+              <div className="rounded-xl sm:rounded-2xl border border-white/[0.06] bg-white/[0.02] p-3">
+                <div className="mb-2 flex h-7 w-7 items-center justify-center rounded-lg bg-purple-400/10 text-purple-400">
+                  <Zap size={14} />
+                </div>
+                <p className="text-xs font-semibold text-white">
+                  Quick response
+                </p>
+                <p className="mt-0.5 text-[10px] text-gray-600">
+                  Usually within 24h
+                </p>
+              </div>
+            </motion.div>
+
+            {/* Developer illustration */}
+            <DeveloperVisual />
+          </div>
+
+          {/* RIGHT SIDE */}
+          <motion.div
+            initial={{ opacity: 0, x: 20 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true, amount: 0.2 }}
+            transition={{ duration: 0.5, delay: 0.06 }}
+            className="flex flex-col justify-center"
+          >
+            <div className="mb-3 sm:mb-4">
+              <p className="font-mono text-[10px] uppercase tracking-[0.2em] text-gray-600">
+                Choose a channel
+              </p>
+              <h3 className="mt-1.5 text-lg sm:text-xl font-semibold text-white">
+                Let's connect
+              </h3>
             </div>
 
-            <h2
-              className="
-                text-3xl
-                sm:text-4xl
-                lg:text-5xl
-                font-display
-                font-bold
-                text-white
-                leading-[1.08]
-                mb-5
-              "
-            >
-              Let's build something{" "}
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-cyan-300">
-                great together
-              </span>
-              .
-            </h2>
-
-            <p className="text-sm sm:text-base text-gray-400 leading-7 mb-7 max-w-lg">
-              I'm currently open to new opportunities. Whether you have a
-              question, a project idea, or just want to say hi, I'll try my
-              best to get back to you.
-            </p>
-
-            <a
-              href="mailto:hello@ankit.dev"
-              className="group inline-flex items-center gap-3 w-fit"
-            >
-              <div
-                className="
-                  w-11
-                  h-11
-                  rounded-full
-                  bg-white/[0.04]
-                  flex
-                  items-center
-                  justify-center
-                  text-cyan-400
-                  transition-all
-                  duration-300
-                  group-hover:bg-cyan-500/10
-                  group-hover:text-cyan-300
-                "
-              >
-                <Mail size={19} />
-              </div>
-
-              <div>
-                <p className="text-[10px] text-gray-500 font-medium uppercase tracking-[0.15em] mb-0.5">
-                  Email Me
-                </p>
-
-                <p
-                  className="
-                    text-sm
-                    sm:text-base
-                    text-white
-                    font-semibold
-                    group-hover:text-cyan-400
-                    transition-colors
-                    flex
-                    items-center
-                    gap-1.5
-                  "
-                >
-                  ankit789.en@gmail.com
-
-                  <ArrowUpRight
-                    size={14}
-                    className="
-                      opacity-0
-                      -translate-y-1
-                      translate-x-1
-                      group-hover:opacity-100
-                      group-hover:translate-y-0
-                      group-hover:translate-x-0
-                      transition-all
-                    "
-                  />
-                </p>
-              </div>
-            </a>
+            {/* Contact cards */}
+            <div className="space-y-2.5">
+              {contactLinks.map((item, index) => (
+                <ContactCard key={item.title} item={item} index={index} />
+              ))}
+            </div>
           </motion.div>
+        </div>
 
-          {/* Form */}
-          <motion.div
-            initial={{
-              opacity: 0,
-              x: 30,
-            }}
-            whileInView={{
-              opacity: 1,
-              x: 0,
-            }}
-            viewport={{
-              once: true,
-              amount: 0.2,
-            }}
-            transition={{
-              duration: 0.55,
-              ease: [0.22, 1, 0.36, 1],
-              delay: 0.08,
-            }}
+        {/* CTA */}
+        <motion.div
+          initial={{ opacity: 0, y: 16 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.2 }}
+          transition={{ duration: 0.5, delay: 0.1 }}
+          className="
+            mt-6 sm:mt-8 flex flex-col gap-5
+            rounded-2xl sm:rounded-3xl border border-white/[0.08] bg-white/[0.025]
+            p-5 sm:p-6 lg:p-7
+            md:flex-row md:items-center md:justify-between
+          "
+        >
+          <div className="flex items-center gap-3 sm:gap-4">
+            <div className="flex h-11 w-11 sm:h-12 sm:w-12 shrink-0 items-center justify-center rounded-full border border-cyan-400/30 bg-cyan-400/[0.05] text-cyan-400">
+              <Send size={20} />
+            </div>
+            <div>
+              <h3 className="text-base sm:text-lg font-bold text-white">
+                Ready to start a conversation?
+              </h3>
+              <p className="mt-0.5 text-xs sm:text-sm text-gray-500">
+                Let's discuss your project or just say hello!
+              </p>
+            </div>
+          </div>
+
+          <a
+            href="mailto:ankit789.en@gmail.com"
             className="
-              relative
-              overflow-hidden
-              rounded-2xl
-              bg-white/[0.025]
-              border
-              border-white/[0.06]
-              p-5
-              sm:p-6
+              group inline-flex items-center justify-center gap-2.5
+              rounded-xl bg-gradient-to-r from-cyan-400 to-green-400
+              px-5 py-3 text-sm font-bold text-black
+              transition-all duration-300
+              hover:-translate-y-1 hover:shadow-[0_15px_40px_rgba(34,211,238,0.15)]
             "
           >
-            <div
-              className="
-                absolute
-                -top-24
-                -right-24
-                w-56
-                h-56
-                bg-cyan-500/10
-                blur-[90px]
-                rounded-full
-                pointer-events-none
-              "
+            Start a Conversation
+            <ArrowUpRight
+              size={16}
+              className="transition-transform duration-300 group-hover:-translate-y-0.5 group-hover:translate-x-0.5"
             />
+          </a>
+        </motion.div>
 
-            <form
-              onSubmit={handleSubmit}
-              className="
-                relative
-                z-10
-                flex
-                flex-col
-                gap-4
-              "
-            >
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-
-                {/* Name */}
-                <div className="flex flex-col gap-1.5">
-                  <label
-                    htmlFor="name"
-                    className="text-xs font-medium text-gray-400 ml-1"
-                  >
-                    Name
-                  </label>
-
-                  <input
-                    type="text"
-                    id="name"
-                    name="name"
-                    value={formData.name}
-                    onChange={handleChange}
-                    className={`
-                      w-full
-                      bg-[#0a0a0a]
-                      border
-                      rounded-lg
-                      px-3.5
-                      py-3
-                      text-sm
-                      text-white
-                      placeholder-gray-600
-                      focus:outline-none
-                      focus:ring-1
-                      transition-all
-                      ${
-                        errors.name
-                          ? "border-red-500/50 focus:border-red-500 focus:ring-red-500/30"
-                          : "border-white/[0.08] focus:border-cyan-500 focus:ring-cyan-500/30"
-                      }
-                    `}
-                    placeholder="John Doe"
-                  />
-
-                  {errors.name && (
-                    <p className="text-red-400 text-[10px] ml-1">
-                      {errors.name}
-                    </p>
-                  )}
-                </div>
-
-                {/* Email */}
-                <div className="flex flex-col gap-1.5">
-                  <label
-                    htmlFor="email"
-                    className="text-xs font-medium text-gray-400 ml-1"
-                  >
-                    Email
-                  </label>
-
-                  <input
-                    type="email"
-                    id="email"
-                    name="email"
-                    value={formData.email}
-                    onChange={handleChange}
-                    className={`
-                      w-full
-                      bg-[#0a0a0a]
-                      border
-                      rounded-lg
-                      px-3.5
-                      py-3
-                      text-sm
-                      text-white
-                      placeholder-gray-600
-                      focus:outline-none
-                      focus:ring-1
-                      transition-all
-                      ${
-                        errors.email
-                          ? "border-red-500/50 focus:border-red-500 focus:ring-red-500/30"
-                          : "border-white/[0.08] focus:border-cyan-500 focus:ring-cyan-500/30"
-                      }
-                    `}
-                    placeholder="john@example.com"
-                  />
-
-                  {errors.email && (
-                    <p className="text-red-400 text-[10px] ml-1">
-                      {errors.email}
-                    </p>
-                  )}
-                </div>
-              </div>
-
-              {/* Subject */}
-              <div className="flex flex-col gap-1.5">
-                <label
-                  htmlFor="subject"
-                  className="text-xs font-medium text-gray-400 ml-1"
-                >
-                  Subject
-                  <span className="text-gray-600 ml-1">
-                    (Optional)
-                  </span>
-                </label>
-
-                <input
-                  type="text"
-                  id="subject"
-                  name="subject"
-                  value={formData.subject}
-                  onChange={handleChange}
-                  className="
-                    w-full
-                    bg-[#0a0a0a]
-                    border
-                    border-white/[0.08]
-                    rounded-lg
-                    px-3.5
-                    py-3
-                    text-sm
-                    text-white
-                    placeholder-gray-600
-                    focus:outline-none
-                    focus:border-cyan-500
-                    focus:ring-1
-                    focus:ring-cyan-500/30
-                    transition-all
-                  "
-                  placeholder="Project Inquiry"
-                />
-              </div>
-
-              {/* Message */}
-              <div className="flex flex-col gap-1.5">
-                <label
-                  htmlFor="message"
-                  className="text-xs font-medium text-gray-400 ml-1"
-                >
-                  Message
-                </label>
-
-                <textarea
-                  id="message"
-                  name="message"
-                  value={formData.message}
-                  onChange={handleChange}
-                  rows={4}
-                  className={`
-                    w-full
-                    bg-[#0a0a0a]
-                    border
-                    rounded-lg
-                    px-3.5
-                    py-3
-                    text-sm
-                    text-white
-                    placeholder-gray-600
-                    focus:outline-none
-                    focus:ring-1
-                    resize-none
-                    transition-all
-                    ${
-                      errors.message
-                        ? "border-red-500/50 focus:border-red-500 focus:ring-red-500/30"
-                        : "border-white/[0.08] focus:border-cyan-500 focus:ring-cyan-500/30"
-                    }
-                  `}
-                  placeholder="Tell me about your project..."
-                />
-
-                {errors.message && (
-                  <p className="text-red-400 text-[10px] ml-1">
-                    {errors.message}
-                  </p>
-                )}
-              </div>
-
-              {/* Submit */}
-              <button
-                type="submit"
-                disabled={
-                  formState === "loading" ||
-                  formState === "success"
-                }
-                className="
-                  group
-                  relative
-                  mt-1
-                  w-full
-                  overflow-hidden
-                  py-3
-                  rounded-lg
-                  bg-white
-                  text-black
-                  text-sm
-                  font-semibold
-                  flex
-                  items-center
-                  justify-center
-                  gap-2
-                  hover:bg-gray-200
-                  transition-colors
-                  disabled:opacity-70
-                  disabled:cursor-not-allowed
-                "
-              >
-                <span className="relative z-10 flex items-center gap-2">
-                  {formState === "idle" ||
-                  formState === "error" ? (
-                    <>
-                      Send Message
-                      <ArrowUpRight size={16} />
-                    </>
-                  ) : formState === "loading" ? (
-                    <>
-                      <Loader2
-                        size={16}
-                        className="animate-spin"
-                      />
-                      Sending...
-                    </>
-                  ) : (
-                    <>
-                      <CheckCircle
-                        size={16}
-                        className="text-green-600"
-                      />
-                      Message Sent!
-                    </>
-                  )}
-                </span>
-
-                {(formState === "idle" ||
-                  formState === "error") && (
-                  <span
-                    className="
-                      absolute
-                      inset-0
-                      -translate-x-full
-                      bg-gradient-to-r
-                      from-transparent
-                      via-cyan-100
-                      to-transparent
-                      transition-transform
-                      duration-700
-                      ease-out
-                      group-hover:translate-x-full
-                    "
-                  />
-                )}
-              </button>
-
-              {formState === "error" && (
-                <div className="flex items-center justify-center gap-2 text-red-400 text-xs">
-                  <AlertCircle size={14} />
-                  Failed to send message. Try again later.
-                </div>
-              )}
-            </form>
-          </motion.div>
+        {/* BOTTOM DECORATION */}
+        <div className="mt-6 sm:mt-8 flex items-center justify-center gap-4">
+          <div className="h-px flex-1 bg-gradient-to-r from-transparent to-cyan-400/20" />
+          <div className="flex h-7 w-7 items-center justify-center rounded-full border border-cyan-400/20 text-cyan-400">
+            <Sparkles size={12} />
+          </div>
+          <div className="h-px flex-1 bg-gradient-to-l from-transparent to-cyan-400/20" />
         </div>
       </div>
     </section>

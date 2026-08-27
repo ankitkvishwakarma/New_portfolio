@@ -1,5 +1,6 @@
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
+
 import {
   ArrowRight,
   Download,
@@ -8,6 +9,7 @@ import {
   Lightbulb,
   Target,
   GraduationCap,
+  Sparkles,
 } from "lucide-react";
 
 import {
@@ -15,6 +17,10 @@ import {
   FaLinkedin,
   FaEnvelope,
 } from "react-icons/fa";
+
+/* =========================================================
+   TECH STACK
+========================================================= */
 
 const techStack = [
   {
@@ -59,10 +65,14 @@ const techStack = [
   },
 ];
 
+/* =========================================================
+   STATS
+========================================================= */
+
 const stats = [
   {
     icon: Code2,
-    value: "Fresher",
+    value: "Freelancer",
     label: "Experience",
     color: "text-cyan-400",
   },
@@ -80,11 +90,15 @@ const stats = [
   },
   {
     icon: Target,
-    value: "100%",
-    label: "Learning",
-    color: "text-pink-400",
+    value: "Growing",
+    label: "Every Day",
+    color: "text-emerald-400",
   },
 ];
+
+/* =========================================================
+   HERO SECTION
+========================================================= */
 
 export default function HeroSection() {
   return (
@@ -95,70 +109,105 @@ export default function HeroSection() {
         w-full
         overflow-hidden
         px-5
-        sm:px-8
-        lg:px-10
-        xl:px-12
         pt-24
+        pb-16
+        sm:px-8
         sm:pt-28
-        lg:pt-24
-        pb-14
-        lg:pb-16
+        lg:px-10
+        lg:pt-28
+        lg:pb-20
+        xl:px-12
       "
     >
-      {/* Background */}
-      <div className="absolute inset-0 pointer-events-none overflow-hidden">
-        <div
-          className="
-            absolute
-            top-[-5%]
-            left-[-8%]
-            w-[300px]
-            h-[300px]
-            rounded-full
-            bg-blue-600/[0.07]
-            blur-[110px]
-          "
-        />
+      {/* =================================================
+          BACKGROUND
+          Very subtle — keeps your dark portfolio clean.
+      ================================================= */}
+
+      <div
+        className="
+          pointer-events-none
+          absolute
+          inset-0
+          overflow-hidden
+        "
+      >
+        {/* top left */}
 
         <div
           className="
             absolute
-            bottom-[-5%]
-            right-[-5%]
-            w-[320px]
-            h-[320px]
+            -left-24
+            -top-24
+            h-[360px]
+            w-[360px]
             rounded-full
-            bg-purple-600/[0.07]
+            bg-cyan-500/[0.035]
             blur-[120px]
           "
         />
 
+        {/* bottom right */}
+
         <div
           className="
             absolute
-            top-[35%]
-            right-[30%]
-            w-[220px]
-            h-[220px]
+            -bottom-32
+            -right-24
+            h-[380px]
+            w-[380px]
             rounded-full
-            bg-cyan-500/[0.025]
-            blur-[110px]
+            bg-blue-600/[0.035]
+            blur-[130px]
+          "
+        />
+
+        {/* center */}
+
+        <div
+          className="
+            absolute
+            left-1/2
+            top-1/2
+            h-[260px]
+            w-[260px]
+            -translate-x-1/2
+            -translate-y-1/2
+            rounded-full
+            bg-purple-500/[0.018]
+            blur-[120px]
           "
         />
       </div>
 
-      <div className="relative z-10 w-full max-w-[1280px] mx-auto">
+      {/* =================================================
+          MAIN CONTAINER
+      ================================================= */}
+
+      <div
+        className="
+          relative
+          z-10
+          mx-auto
+          w-full
+          max-w-[1280px]
+        "
+      >
         <div
           className="
             grid
             grid-cols-1
+            items-center
+            gap-12
             lg:grid-cols-[0.92fr_1.08fr]
-            gap-10
-            xl:gap-14
-            items-start
+            lg:gap-14
+            xl:gap-20
           "
         >
-          {/* LEFT */}
+          {/* =================================================
+              LEFT CONTENT
+          ================================================= */}
+
           <motion.div
             initial={{
               opacity: 0,
@@ -169,16 +218,21 @@ export default function HeroSection() {
               x: 0,
             }}
             transition={{
-              duration: 0.65,
+              duration: 0.7,
               ease: "easeOut",
             }}
-            className="max-w-[550px]"
+            className="
+              max-w-[590px]
+            "
           >
-            {/* Availability */}
+            {/* =================================================
+                AVAILABILITY BADGE
+            ================================================= */}
+
             <motion.div
               initial={{
                 opacity: 0,
-                y: 8,
+                y: 10,
               }}
               animate={{
                 opacity: 1,
@@ -189,32 +243,39 @@ export default function HeroSection() {
                 duration: 0.45,
               }}
               className="
+                mb-5
                 inline-flex
                 items-center
                 gap-2
-                px-3
-                py-1.5
                 rounded-full
                 border
-                border-cyan-500/20
-                bg-cyan-500/[0.06]
-                text-cyan-400
+                border-emerald-400/20
+                bg-emerald-400/[0.045]
+                px-3.5
+                py-1.5
                 text-[11px]
                 font-medium
-                mb-4
+                text-emerald-400
               "
             >
-              <span className="relative flex h-1.5 w-1.5">
+              <span
+                className="
+                  relative
+                  flex
+                  h-1.5
+                  w-1.5
+                "
+              >
                 <span
                   className="
                     absolute
                     inline-flex
                     h-full
                     w-full
-                    rounded-full
-                    bg-cyan-400
-                    opacity-60
                     animate-ping
+                    rounded-full
+                    bg-emerald-400
+                    opacity-50
                   "
                 />
 
@@ -225,21 +286,24 @@ export default function HeroSection() {
                     h-1.5
                     w-1.5
                     rounded-full
-                    bg-cyan-400
+                    bg-emerald-400
                   "
                 />
               </span>
 
-              Available for new opportunities
+              Open to Full-Stack Opportunities
             </motion.div>
 
-            {/* Heading */}
+            {/* =================================================
+                MAIN HEADING
+            ================================================= */}
+
             <h1
               className="
                 font-display
                 font-bold
+                leading-[0.95]
                 tracking-tight
-                leading-[0.94]
                 text-white
               "
             >
@@ -248,8 +312,8 @@ export default function HeroSection() {
                   block
                   text-4xl
                   sm:text-5xl
-                  lg:text-[54px]
-                  xl:text-[60px]
+                  lg:text-[56px]
+                  xl:text-[64px]
                 "
               >
                 Hi, I'm
@@ -257,61 +321,87 @@ export default function HeroSection() {
 
               <span
                 className="
+                  mt-1
                   block
                   text-4xl
                   sm:text-5xl
-                  lg:text-[54px]
-                  xl:text-[60px]
-                  mt-1
+                  lg:text-[56px]
+                  xl:text-[64px]
                   bg-gradient-to-r
                   from-cyan-400
-                  via-blue-500
+                  via-blue-400
                   to-purple-500
                   bg-clip-text
                   text-transparent
                 "
               >
-                Ankit
+                Ankit Vishwakarma
               </span>
 
               <span
                 className="
+                  mt-3
                   block
-                  text-4xl
-                  sm:text-5xl
-                  lg:text-[54px]
-                  xl:text-[60px]
-                  mt-1
-                  bg-gradient-to-r
-                  from-blue-500
-                  via-indigo-500
-                  to-purple-500
-                  bg-clip-text
-                  text-transparent
+                  text-2xl
+                  font-semibold
+                  text-gray-300
+                  sm:text-3xl
+                  lg:text-[34px]
                 "
               >
-                Vishwakarma
+                Full Stack Developer
               </span>
             </h1>
 
-            {/* Description */}
+            {/* =================================================
+                DESCRIPTION
+            ================================================= */}
+
             <p
               className="
-                mt-4
-                max-w-[520px]
-                text-gray-400
+                mt-6
+                max-w-[550px]
                 text-sm
+                leading-7
+                text-gray-400
                 sm:text-base
-                leading-6
               "
             >
-              Passionate Full Stack Developer and problem solver. I build
-              clean, scalable and user-friendly web applications using
-              modern technologies.
+              I build modern web applications across the frontend,
+              backend, and database layer — with a focus on clean
+              architecture, reliable APIs, and thoughtful user
+              experiences.
             </p>
 
-            {/* Buttons */}
-            <div className="flex flex-wrap items-center gap-3 mt-5">
+            <p
+              className="
+                mt-3
+                max-w-[540px]
+                text-sm
+                leading-6
+                text-gray-500
+              "
+            >
+              Currently strengthening my fundamentals through
+              real-world projects, backend systems, databases,
+              DSA, and software engineering.
+            </p>
+
+            {/* =================================================
+                ACTION BUTTONS
+            ================================================= */}
+
+            <div
+              className="
+                mt-7
+                flex
+                flex-wrap
+                items-center
+                gap-3
+              "
+            >
+              {/* View projects */}
+
               <a
                 href="#projects"
                 className="
@@ -319,75 +409,95 @@ export default function HeroSection() {
                   inline-flex
                   items-center
                   gap-2
-                  px-4
-                  py-2.5
                   rounded-lg
                   bg-gradient-to-r
-                  from-blue-500
-                  to-purple-500
-                  text-white
+                  from-cyan-500
+                  to-blue-500
+                  px-5
+                  py-3
                   text-sm
                   font-semibold
-                  shadow-[0_8px_25px_-10px_rgba(59,130,246,0.7)]
-                  hover:-translate-y-0.5
-                  hover:shadow-[0_12px_30px_-10px_rgba(59,130,246,0.8)]
+                  text-white
+                  shadow-[0_10px_30px_-12px_rgba(6,182,212,0.65)]
                   transition-all
                   duration-300
+                  hover:-translate-y-0.5
+                  hover:shadow-[0_15px_35px_-12px_rgba(6,182,212,0.8)]
                 "
               >
-                View My Work
+                Explore My Work
 
                 <ArrowRight
                   size={15}
                   className="
-                    group-hover:translate-x-1
                     transition-transform
                     duration-300
+                    group-hover:translate-x-1
                   "
                 />
               </a>
 
-              <Link
-  to="/resume"
-  className="
-    group
-    inline-flex
-    items-center
-    gap-2
-    px-4
-    py-2.5
-    rounded-lg
-    border
-    border-white/15
-    bg-white/[0.02]
-    text-gray-200
-    text-sm
-    font-semibold
-    hover:bg-white/[0.06]
-    hover:border-white/25
-    hover:-translate-y-0.5
-    transition-all
-    duration-300
-  "
->
-  Download Resume
+              {/* Resume */}
 
-  <Download
-    size={15}
-    className="
-      group-hover:translate-y-0.5
-      transition-transform
-      duration-300
-    "
-  />
-</Link>
+              <Link
+                to="/resume"
+                className="
+                  group
+                  inline-flex
+                  items-center
+                  gap-2
+                  rounded-lg
+                  border
+                  border-white/10
+                  bg-white/[0.025]
+                  px-5
+                  py-3
+                  text-sm
+                  font-semibold
+                  text-gray-200
+                  transition-all
+                  duration-300
+                  hover:-translate-y-0.5
+                  hover:border-white/20
+                  hover:bg-white/[0.05]
+                "
+              >
+                View Resume
+
+                <Download
+                  size={15}
+                  className="
+                    transition-transform
+                    duration-300
+                    group-hover:translate-y-0.5
+                  "
+                />
+              </Link>
             </div>
 
-            {/* Social */}
-            <div className="flex items-center gap-2.5 mt-4">
-              <span className="text-xs text-gray-500 mr-1">
+            {/* =================================================
+                SOCIAL LINKS
+            ================================================= */}
+
+            <div
+              className="
+                mt-6
+                flex
+                items-center
+                gap-2.5
+              "
+            >
+              <span
+                className="
+                  mr-1
+                  text-xs
+                  text-gray-600
+                "
+              >
                 Let's connect
               </span>
+
+              {/* GitHub */}
 
               <a
                 href="https://github.com"
@@ -395,26 +505,28 @@ export default function HeroSection() {
                 rel="noreferrer"
                 aria-label="GitHub"
                 className="
-                  w-8
-                  h-8
-                  rounded-full
-                  bg-white/[0.04]
-                  border
-                  border-white/10
                   flex
+                  h-9
+                  w-9
                   items-center
                   justify-center
+                  rounded-full
+                  border
+                  border-white/10
+                  bg-white/[0.025]
                   text-gray-400
-                  hover:text-white
-                  hover:border-cyan-400/40
-                  hover:bg-cyan-400/10
-                  hover:-translate-y-1
                   transition-all
                   duration-300
+                  hover:-translate-y-1
+                  hover:border-cyan-400/30
+                  hover:bg-cyan-400/[0.07]
+                  hover:text-white
                 "
               >
-                <FaGithub size={14} />
+                <FaGithub size={15} />
               </a>
+
+              {/* LinkedIn */}
 
               <a
                 href="https://linkedin.com"
@@ -422,47 +534,49 @@ export default function HeroSection() {
                 rel="noreferrer"
                 aria-label="LinkedIn"
                 className="
-                  w-8
-                  h-8
-                  rounded-full
-                  bg-white/[0.04]
-                  border
-                  border-white/10
                   flex
+                  h-9
+                  w-9
                   items-center
                   justify-center
+                  rounded-full
+                  border
+                  border-white/10
+                  bg-white/[0.025]
                   text-gray-400
-                  hover:text-white
-                  hover:border-cyan-400/40
-                  hover:bg-cyan-400/10
-                  hover:-translate-y-1
                   transition-all
                   duration-300
+                  hover:-translate-y-1
+                  hover:border-cyan-400/30
+                  hover:bg-cyan-400/[0.07]
+                  hover:text-white
                 "
               >
-                <FaLinkedin size={14} />
+                <FaLinkedin size={15} />
               </a>
+
+              {/* Email */}
 
               <a
                 href="mailto:hello@ankit.dev"
                 aria-label="Email"
                 className="
-                  w-8
-                  h-8
-                  rounded-full
-                  bg-white/[0.04]
-                  border
-                  border-white/10
                   flex
+                  h-9
+                  w-9
                   items-center
                   justify-center
+                  rounded-full
+                  border
+                  border-white/10
+                  bg-white/[0.025]
                   text-gray-400
-                  hover:text-white
-                  hover:border-cyan-400/40
-                  hover:bg-cyan-400/10
-                  hover:-translate-y-1
                   transition-all
                   duration-300
+                  hover:-translate-y-1
+                  hover:border-cyan-400/30
+                  hover:bg-cyan-400/[0.07]
+                  hover:text-white
                 "
               >
                 <FaEnvelope size={14} />
@@ -470,7 +584,10 @@ export default function HeroSection() {
             </div>
           </motion.div>
 
-          {/* RIGHT PROFILE CARD */}
+          {/* =================================================
+              RIGHT PROFILE CARD
+          ================================================= */}
+
           <motion.div
             initial={{
               opacity: 0,
@@ -481,71 +598,97 @@ export default function HeroSection() {
               x: 0,
             }}
             transition={{
-              duration: 0.65,
+              duration: 0.7,
               delay: 0.1,
               ease: "easeOut",
             }}
             className="
               relative
               w-full
-              max-w-[560px]
-              ml-auto
-              self-start
-              lg:mt-8
+              max-w-[570px]
+              justify-self-end
             "
           >
-            {/* Glow */}
+            {/* =================================================
+                VERY SUBTLE CARD GLOW
+            ================================================= */}
+
             <div
               className="
-                absolute
-                -inset-3
-                bg-gradient-to-r
-                from-blue-500/8
-                via-purple-500/8
-                to-cyan-500/8
-                blur-3xl
-                rounded-[35px]
                 pointer-events-none
+                absolute
+                -inset-4
+                rounded-[32px]
+                bg-cyan-500/[0.025]
+                blur-3xl
               "
             />
 
-            {/* Card */}
+            {/* =================================================
+                PROFILE CARD
+            ================================================= */}
+
             <div
               className="
                 relative
+                overflow-hidden
                 rounded-2xl
                 border
-                border-white/[0.09]
-                bg-[#080d18]/90
-                backdrop-blur-xl
-                overflow-hidden
-                shadow-[0_20px_60px_-30px_rgba(0,0,0,0.9)]
+                border-white/[0.08]
+                bg-[#080d14]/95
+                shadow-[0_25px_70px_-40px_rgba(0,0,0,0.95)]
               "
             >
-              {/* Profile Header */}
-              <div className="p-5 sm:p-6">
-                <div className="flex items-start justify-between gap-4">
-                  <div className="flex items-center gap-3">
+              {/* =================================================
+                  CARD HEADER
+              ================================================= */}
+
+              <div
+                className="
+                  p-5
+                  sm:p-6
+                "
+              >
+                <div
+                  className="
+                    flex
+                    items-start
+                    justify-between
+                    gap-4
+                  "
+                >
+                  {/* Profile identity */}
+
+                  <div
+                    className="
+                      flex
+                      items-center
+                      gap-3
+                    "
+                  >
                     {/* Avatar */}
-                    <div className="relative shrink-0">
+
+                    <div
+                      className="
+                        relative
+                        shrink-0
+                      "
+                    >
                       <div
                         className="
-                          w-12
-                          h-12
-                          sm:w-13
-                          sm:h-13
+                          flex
+                          h-13
+                          w-13
+                          items-center
+                          justify-center
                           rounded-full
                           bg-gradient-to-br
                           from-cyan-400
                           via-blue-500
-                          to-purple-600
-                          flex
-                          items-center
-                          justify-center
-                          text-white
+                          to-purple-500
                           text-lg
                           font-bold
-                          shadow-[0_0_25px_rgba(59,130,246,0.25)]
+                          text-white
                         "
                       >
                         A
@@ -554,14 +697,14 @@ export default function HeroSection() {
                       <span
                         className="
                           absolute
-                          right-0
                           bottom-0
-                          w-3
+                          right-0
                           h-3
+                          w-3
                           rounded-full
-                          bg-green-400
                           border-2
-                          border-[#080d18]
+                          border-[#080d14]
+                          bg-emerald-400
                         "
                       />
                     </div>
@@ -570,89 +713,119 @@ export default function HeroSection() {
                       <h2
                         className="
                           text-lg
-                          sm:text-xl
                           font-bold
                           text-white
+                          sm:text-xl
                         "
                       >
                         Ankit Vishwakarma
                       </h2>
 
-                      <p className="text-cyan-400 text-xs sm:text-sm mt-0.5">
+                      <p
+                        className="
+                          mt-0.5
+                          text-xs
+                          text-cyan-400
+                          sm:text-sm
+                        "
+                      >
                         Full Stack Developer
                       </p>
 
                       <span
                         className="
+                          mt-1.5
                           inline-flex
                           items-center
                           gap-1
-                          mt-1
+                          rounded-full
+                          border
+                          border-blue-400/15
+                          bg-blue-400/[0.05]
                           px-2
                           py-0.5
-                          rounded-full
-                          bg-blue-500/10
-                          border
-                          border-blue-500/20
+                          text-[9px]
                           text-blue-300
-                          text-[10px]
                         "
                       >
                         <GraduationCap size={11} />
-                        Fresher
+                        Early Career Developer
                       </span>
                     </div>
                   </div>
 
                   {/* Availability */}
+
                   <div
                     className="
                       hidden
-                      sm:flex
                       items-center
                       gap-2
-                      px-2.5
-                      py-1.5
                       rounded-lg
                       border
-                      border-green-400/20
-                      bg-green-400/[0.05]
+                      border-emerald-400/15
+                      bg-emerald-400/[0.04]
+                      px-2.5
+                      py-1.5
+                      sm:flex
                     "
                   >
-                    <span className="text-green-400 text-sm">
-                      ↗
-                    </span>
+                    <Sparkles
+                      size={13}
+                      className="text-emerald-400"
+                    />
 
                     <div>
-                      <p className="text-[9px] text-gray-500">
+                      <p className="text-[8px] text-gray-600">
                         Open to
                       </p>
 
-                      <p className="text-[10px] font-semibold text-green-400">
+                      <p className="text-[10px] font-semibold text-emerald-400">
                         Opportunities
                       </p>
                     </div>
                   </div>
                 </div>
 
-                {/* Description */}
+                {/* =================================================
+                    CARD DESCRIPTION
+                ================================================= */}
+
                 <p
                   className="
-                    text-gray-400
+                    mt-4
+                    max-w-[500px]
                     text-xs
-                    sm:text-sm
                     leading-5
-                    mt-3
+                    text-gray-400
+                    sm:text-sm
                   "
                 >
-                  A motivated fresher eager to contribute, learn and grow
-                  while building impactful digital solutions.
+                  I enjoy turning ideas into practical products —
+                  from responsive interfaces and REST APIs to
+                  databases, authentication, and deployment.
                 </p>
 
-                <div className="h-px bg-white/[0.07] my-3.5" />
+                <div
+                  className="
+                    my-4
+                    h-px
+                    bg-white/[0.06]
+                  "
+                />
 
-                {/* Stats */}
-                <div className="grid grid-cols-2 sm:grid-cols-4 gap-1.5">
+                {/* =================================================
+                    STATS
+                ================================================= */}
+
+                <div
+                  className="
+                    grid
+                    grid-cols-2
+                    gap-2
+                    sm:grid-cols-4
+                  "
+                >
                   {stats.map((stat, index) => {
                     const Icon = stat.icon;
 
@@ -661,28 +834,30 @@ export default function HeroSection() {
                         key={stat.label}
                         initial={{
                           opacity: 0,
-                          y: 12,
+                          y: 10,
                         }}
                         animate={{
                           opacity: 1,
                           y: 0,
                         }}
                         transition={{
-                          delay: 0.4 + index * 0.07,
+                          delay:
+                            0.4 +
+                            index * 0.07,
                           duration: 0.35,
                         }}
                         className="
                           group
-                          rounded-lg
-                          bg-white/[0.025]
+                          rounded-xl
                           border
                           border-white/[0.06]
-                          p-2
+                          bg-white/[0.02]
+                          p-2.5
                           text-center
-                          hover:bg-white/[0.05]
-                          hover:border-white/10
                           transition-all
                           duration-300
+                          hover:border-white/[0.1]
+                          hover:bg-white/[0.04]
                         "
                       >
                         <Icon
@@ -691,17 +866,29 @@ export default function HeroSection() {
                             ${stat.color}
                             mx-auto
                             mb-1
-                            group-hover:scale-110
                             transition-transform
                             duration-300
+                            group-hover:scale-110
                           `}
                         />
 
-                        <p className="text-sm font-bold text-white">
+                        <p
+                          className="
+                            text-sm
+                            font-bold
+                            text-white
+                          "
+                        >
                           {stat.value}
                         </p>
 
-                        <p className="text-[9px] text-gray-500 mt-0.5">
+                        <p
+                          className="
+                            mt-0.5
+                            text-[9px]
+                            text-gray-600
+                          "
+                        >
                           {stat.label}
                         </p>
                       </motion.div>
@@ -710,31 +897,60 @@ export default function HeroSection() {
                 </div>
               </div>
 
-              {/* Tech Stack */}
-              <div className="px-5 sm:px-6 pt-4 pb-5">
-                <div className="flex items-center justify-between mb-2.5">
-                  <h3 className="text-xs font-semibold text-white">
-                    Tech Stack I Work With
+              {/* =================================================
+                  TECH STACK
+              ================================================= */}
+
+              <div
+                className="
+                  px-5
+                  pb-5
+                  sm:px-6
+                "
+              >
+                <div
+                  className="
+                    mb-3
+                    flex
+                    items-center
+                    justify-between
+                  "
+                >
+                  <h3
+                    className="
+                      text-xs
+                      font-semibold
+                      text-white
+                    "
+                  >
+                    Technologies I Work With
                   </h3>
 
                   <a
                     href="#skills"
                     className="
-                      text-[10px]
-                      text-cyan-400
-                      hover:text-cyan-300
                       flex
                       items-center
                       gap-1
+                      text-[10px]
+                      text-cyan-400
                       transition-colors
+                      hover:text-cyan-300
                     "
                   >
-                    View all
+                    Explore stack
                     <ArrowRight size={10} />
                   </a>
                 </div>
 
-                <div className="grid grid-cols-2 sm:grid-cols-4 gap-1.5">
+                <div
+                  className="
+                    grid
+                    grid-cols-2
+                    gap-1.5
+                    sm:grid-cols-4
+                  "
+                >
                   {techStack.map((tech) => (
                     <div
                       key={tech.name}
@@ -742,16 +958,16 @@ export default function HeroSection() {
                         flex
                         items-center
                         gap-1.5
-                        px-2
-                        py-1.5
                         rounded-lg
-                        bg-white/[0.025]
                         border
                         border-white/[0.06]
-                        hover:bg-white/[0.06]
-                        hover:border-white/10
+                        bg-white/[0.02]
+                        px-2
+                        py-1.5
                         transition-all
                         duration-300
+                        hover:border-white/[0.11]
+                        hover:bg-white/[0.045]
                       "
                     >
                       <span
@@ -766,7 +982,13 @@ export default function HeroSection() {
                         {tech.icon}
                       </span>
 
-                      <span className="text-[10px] text-gray-300 truncate">
+                      <span
+                        className="
+                          truncate
+                          text-[10px]
+                          text-gray-300
+                        "
+                      >
                         {tech.name}
                       </span>
                     </div>
@@ -774,48 +996,106 @@ export default function HeroSection() {
                 </div>
               </div>
 
-              {/* Focus */}
+              {/* =================================================
+                  CURRENT FOCUS
+              ================================================= */}
+
               <div
                 className="
-                  px-5
-                  sm:px-6
-                  py-4
                   border-t
-                  border-white/[0.07]
-                  bg-white/[0.015]
+                  border-white/[0.06]
+                  bg-white/[0.012]
+                  px-5
+                  py-4
+                  sm:px-6
                 "
               >
-                <div className="flex items-center gap-3">
+                <div
+                  className="
+                    flex
+                    items-center
+                    gap-3
+                  "
+                >
+                  {/* icon */}
+
                   <div
                     className="
-                      w-8
-                      h-8
-                      rounded-full
-                      bg-white/[0.06]
                       flex
+                      h-9
+                      w-9
+                      shrink-0
                       items-center
                       justify-center
-                      text-gray-300
-                      shrink-0
+                      rounded-full
+                      border
+                      border-cyan-400/10
+                      bg-cyan-400/[0.04]
+                      text-cyan-400
                     "
                   >
                     <GraduationCap size={15} />
                   </div>
 
-                  <div className="flex-1 min-w-0">
-                    <p className="text-xs font-semibold text-white">
-                      Currently Focused On
+                  {/* text */}
+
+                  <div
+                    className="
+                      min-w-0
+                      flex-1
+                    "
+                  >
+                    <p
+                      className="
+                        text-xs
+                        font-semibold
+                        text-white
+                      "
+                    >
+                      Currently Building
                     </p>
 
-                    <p className="text-[10px] text-gray-500 mt-0.5 truncate">
-                      DSA, System Design & real-world projects
+                    <p
+                      className="
+                        mt-0.5
+                        truncate
+                        text-[10px]
+                        text-gray-500
+                      "
+                    >
+                      Full-Stack Projects & Backend Systems
                     </p>
                   </div>
 
-                  <div className="flex gap-1">
-                    <span className="w-1.5 h-1.5 rounded-full bg-cyan-400 animate-pulse" />
-                    <span className="w-1.5 h-1.5 rounded-full bg-blue-400 animate-pulse" />
-                    <span className="w-1.5 h-1.5 rounded-full bg-purple-400 animate-pulse" />
+                  {/* status */}
+
+                  <div
+                    className="
+                      flex
+                      items-center
+                      gap-1
+                    "
+                  >
+                    <span
+                      className="
+                        h-1.5
+                        w-1.5
+                        animate-pulse
+                        rounded-full
+                        bg-cyan-400
+                      "
+                    />
+
+                    <span
+                      className="
+                        hidden
+                        text-[9px]
+                        text-gray-600
+                        sm:block
+                      "
+                    >
+                      Building
+                    </span>
                   </div>
                 </div>
               </div>
