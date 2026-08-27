@@ -1,18 +1,46 @@
 import { motion } from "framer-motion";
 
 export default function AboutSection() {
-  const stats = [
+  const capabilities = [
     {
-      value: "5+",
-      label: "Projects Built",
+      number: "01",
+      title: "Full Stack",
+      description: "UI to backend applications.",
     },
     {
-      value: "10+",
-      label: "Technologies",
+      number: "02",
+      title: "Backend",
+      description: "APIs, auth & databases.",
     },
     {
-      value: "100%",
-      label: "Learning Mindset",
+      number: "03",
+      title: "Problem Solver",
+      description: "Simple solutions to complex problems.",
+    },
+    {
+      number: "04",
+      title: "Always Learning",
+      description: "TypeScript, system design & AI.",
+    },
+  ];
+
+  const terminalLines = [
+    {
+      command: "whoami",
+      output: "Full Stack Developer",
+      highlight: true,
+    },
+    {
+      command: "focus",
+      output: "Backend Architecture",
+    },
+    {
+      command: "stack",
+      output: "React · Node · Express · MongoDB",
+    },
+    {
+      command: "learning",
+      output: "TypeScript · System Design · AI",
     },
   ];
 
@@ -22,178 +50,321 @@ export default function AboutSection() {
       className="
         relative
         w-full
-        min-h-[calc(100vh-70px)]
-        flex
-        items-center
         overflow-hidden
         px-4
+        py-16
         sm:px-6
+        sm:py-20
         lg:px-8
-        py-10
-        lg:py-12
+        lg:py-24
       "
     >
-      <div className="relative z-10 w-full max-w-7xl mx-auto">
-        {/* Header */}
+      {/* Background */}
+      <div className="pointer-events-none absolute inset-0 overflow-hidden">
+        <motion.div
+          animate={{
+            x: [0, 25, 0],
+            y: [0, -15, 0],
+          }}
+          transition={{
+            duration: 10,
+            repeat: Infinity,
+            ease: "easeInOut",
+          }}
+          className="
+            absolute
+            left-[5%]
+            top-[10%]
+            h-56
+            w-56
+            rounded-full
+            bg-cyan-500/[0.035]
+            blur-3xl
+          "
+        />
+
+        <motion.div
+          animate={{
+            x: [0, -20, 0],
+            y: [0, 15, 0],
+          }}
+          transition={{
+            duration: 12,
+            repeat: Infinity,
+            ease: "easeInOut",
+          }}
+          className="
+            absolute
+            right-[5%]
+            bottom-[10%]
+            h-64
+            w-64
+            rounded-full
+            bg-blue-500/[0.035]
+            blur-3xl
+          "
+        />
+
+        <div
+          className="
+            absolute
+            inset-0
+            opacity-[0.022]
+            [background-image:linear-gradient(rgba(255,255,255,0.7)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.7)_1px,transparent_1px)]
+            [background-size:60px_60px]
+          "
+        />
+      </div>
+
+      <div className="relative z-10 mx-auto w-full max-w-6xl">
+        {/* ================= HEADER ================= */}
         <motion.div
           initial={{ opacity: 0, y: 15 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.2 }}
-          transition={{
-            duration: 0.5,
-            ease: "easeOut",
-          }}
-          className="mb-8"
+          transition={{ duration: 0.5 }}
+          className="mb-9"
         >
+          {/* Label */}
           <div className="mb-3 flex items-center gap-3">
-            <div className="h-px w-10 bg-cyan-500" />
+            <div className="h-px w-10 bg-cyan-400" />
 
-            <p className="font-mono text-xs uppercase tracking-[0.18em] text-cyan-400">
-              About Me
-            </p>
+            <span
+              className="
+                font-mono
+                text-[10px]
+                font-semibold
+                uppercase
+                tracking-[0.24em]
+                text-cyan-400
+              "
+            >
+              About / Developer
+            </span>
           </div>
 
-          <h2 className="font-display text-3xl sm:text-4xl lg:text-5xl font-bold leading-tight text-white">
-            Building modern{" "}
-            <span className="bg-gradient-to-r from-blue-400 to-cyan-300 bg-clip-text text-transparent">
-              web experiences
-            </span>
-            .
-          </h2>
-        </motion.div>
-
-        {/* Main Content */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 items-center gap-8 lg:gap-10">
-          {/* Left Content */}
-          <motion.div
-            initial={{ opacity: 0, x: -25 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true, amount: 0.2 }}
-            transition={{
-              duration: 0.6,
-              ease: "easeOut",
-            }}
+          {/* Heading */}
+          <h2
             className="
-              flex
-              flex-col
-              gap-4
-              text-base
-              leading-7
-              text-gray-300
+              max-w-3xl
+              text-4xl
+              font-bold
+              leading-[1.05]
+              tracking-tight
+              text-white
+              sm:text-5xl
+              lg:text-[52px]
             "
           >
-            <p>
-              I’m an{" "}
-              <strong className="font-semibold text-white">
-                aspiring Full Stack Developer
-              </strong>{" "}
-              with a strong interest in building modern, responsive, and
-              user-focused web applications. I enjoy turning ideas into
-              practical products and continuously improving my development
-              skills through hands-on projects.
-            </p>
+            I build products,{" "}
+            <span
+              className="
+                bg-gradient-to-r
+                from-blue-400
+                via-cyan-300
+                to-white
+                bg-clip-text
+                text-transparent
+              "
+            >
+              not just pages.
+            </span>
+          </h2>
 
-            <p>
-              I work primarily with{" "}
-              <strong className="font-semibold text-white">
-                React, JavaScript, Node.js, Express.js, and MongoDB
-              </strong>
-              . I focus on writing clean, maintainable code and creating
-              interfaces that are functional, responsive, and easy to use.
-            </p>
+          <p
+            className="
+              mt-3
+              max-w-xl
+              text-sm
+              leading-6
+              text-gray-500
+              sm:text-[15px]
+            "
+          >
+            Full Stack Developer focused on building practical, reliable,
+            and user-focused digital products.
+          </p>
+        </motion.div>
 
-            <p>
-              As a{" "}
-              <strong className="font-semibold text-cyan-400">
-                fresher
-              </strong>
-              , I’m actively strengthening my understanding of full-stack
-              development, REST APIs, databases, authentication, backend
-              architecture, and software development best practices.
-            </p>
+        {/* ================= MAIN ================= */}
+        <div
+          className="
+            grid
+            grid-cols-1
+            gap-8
+            lg:grid-cols-[0.92fr_1.08fr]
+            lg:items-start
+            lg:gap-10
+          "
+        >
+          {/* ================= LEFT ================= */}
+          <motion.div
+            initial={{ opacity: 0, x: -20 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true, amount: 0.15 }}
+            transition={{ duration: 0.6 }}
+          >
+            {/* Short About */}
+            <div className="space-y-4 text-[14px] leading-6 text-gray-400">
+              <p>
+                I enjoy building applications where{" "}
+                <span className="font-medium text-white">
+                  design, functionality, and engineering
+                </span>{" "}
+                come together — from React interfaces to APIs, authentication,
+                databases, and backend systems.
+              </p>
 
-            <p>
-              I believe the best way to become a better developer is to{" "}
-              <strong className="font-semibold text-white">
-                learn, build, solve problems, and keep improving
-              </strong>
-              . I’m looking for an opportunity where I can contribute to a
-              development team, learn from experienced engineers, and grow as a
-              professional developer.
-            </p>
+              <p>
+                I focus on writing{" "}
+                <span className="font-medium text-cyan-300">
+                  clean, maintainable code
+                </span>{" "}
+                and solving problems through practical solutions. Currently,
+                I’m going deeper into TypeScript, system design, databases,
+                backend architecture, and AI.
+              </p>
+            </div>
 
-            {/* Stats */}
-            <div className="mt-3 grid grid-cols-3 gap-3">
-              {stats.map((stat, i) => (
-                <div
-                  key={i}
+            {/* ================= PHILOSOPHY ================= */}
+            <motion.div
+              whileHover={{ y: -2 }}
+              transition={{ duration: 0.2 }}
+              className="
+                mt-5
+                flex
+                flex-wrap
+                items-center
+                gap-x-5
+                gap-y-2
+                rounded-xl
+                border
+                border-white/[0.07]
+                bg-white/[0.025]
+                px-4
+                py-3
+              "
+            >
+              <div className="flex items-center gap-2">
+                <span
+                  className="
+                    h-1.5
+                    w-1.5
+                    rounded-full
+                    bg-cyan-400
+                    shadow-[0_0_8px_rgba(34,211,238,0.8)]
+                  "
+                />
+
+                <span
+                  className="
+                    font-mono
+                    text-[9px]
+                    uppercase
+                    tracking-[0.18em]
+                    text-gray-600
+                  "
+                >
+                  Philosophy
+                </span>
+              </div>
+
+              <div className="font-mono text-[11px]">
+                <span className="text-cyan-400">Build</span>
+                <span className="mx-1.5 text-gray-700">→</span>
+                <span className="text-blue-400">Break</span>
+                <span className="mx-1.5 text-gray-700">→</span>
+                <span className="text-purple-400">Understand</span>
+                <span className="mx-1.5 text-gray-700">→</span>
+                <span className="text-white">Improve</span>
+              </div>
+            </motion.div>
+
+            {/* ================= CAPABILITIES ================= */}
+            <div className="mt-5 grid grid-cols-2 gap-2.5">
+              {capabilities.map((item, index) => (
+                <motion.div
+                  key={item.number}
+                  initial={{ opacity: 0, y: 10 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{
+                    duration: 0.4,
+                    delay: index * 0.06,
+                  }}
+                  whileHover={{ y: -3 }}
                   className="
                     group
                     rounded-xl
                     border
                     border-white/[0.06]
-                    bg-white/[0.025]
-                    px-3
+                    bg-white/[0.018]
+                    px-3.5
                     py-3
-                    text-center
                     transition-all
                     duration-300
-                    hover:border-cyan-500/20
-                    hover:bg-white/[0.04]
+                    hover:border-cyan-400/20
+                    hover:bg-white/[0.03]
                   "
                 >
-                  <p
-                    className="
-                      mb-0.5
-                      font-display
-                      text-xl
-                      sm:text-2xl
-                      font-bold
-                      text-white
-                      group-hover:text-cyan-300
-                      transition-colors
-                    "
-                  >
-                    {stat.value}
-                  </p>
+                  <div className="mb-2 flex items-center justify-between">
+                    <span
+                      className="
+                        font-mono
+                        text-[9px]
+                        text-gray-600
+                      "
+                    >
+                      {item.number}
+                    </span>
 
-                  <p className="text-[10px] sm:text-xs font-medium text-gray-500">
-                    {stat.label}
+                    <span
+                      className="
+                        h-1
+                        w-1
+                        rounded-full
+                        bg-gray-700
+                        transition-all
+                        duration-300
+                        group-hover:bg-cyan-400
+                        group-hover:shadow-[0_0_7px_rgba(34,211,238,0.8)]
+                      "
+                    />
+                  </div>
+
+                  <h3 className="text-xs font-semibold text-white sm:text-sm">
+                    {item.title}
+                  </h3>
+
+                  <p className="mt-1 text-[10px] leading-4 text-gray-600 sm:text-[11px]">
+                    {item.description}
                   </p>
-                </div>
+                </motion.div>
               ))}
             </div>
           </motion.div>
 
-          {/* Right Code Card */}
+          {/* ================= TERMINAL ================= */}
           <motion.div
-            initial={{ opacity: 0, x: 25 }}
+            initial={{ opacity: 0, x: 20 }}
             whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true, amount: 0.2 }}
-            transition={{
-              duration: 0.6,
-              ease: "easeOut",
-            }}
-            className="group relative w-full"
+            viewport={{ once: true, amount: 0.15 }}
+            transition={{ duration: 0.6 }}
+            className="relative"
           >
             {/* Glow */}
             <div
               className="
+                pointer-events-none
                 absolute
-                -inset-1
-                rounded-2xl
-                bg-gradient-to-r
-                from-blue-600
-                to-cyan-500
-                opacity-15
-                blur-2xl
-                transition
-                duration-700
-                group-hover:opacity-25
+                -inset-4
+                rounded-3xl
+                bg-cyan-500/[0.045]
+                blur-3xl
               "
             />
 
-            {/* Code Window */}
+            {/* Terminal */}
             <div
               className="
                 relative
@@ -201,179 +372,208 @@ export default function AboutSection() {
                 rounded-xl
                 border
                 border-white/[0.08]
-                bg-[#1e1e1e]
-                shadow-[0_20px_50px_-25px_rgba(0,0,0,0.8)]
+                bg-[#0b0d10]
+                shadow-[0_25px_70px_-35px_rgba(0,0,0,0.95)]
               "
             >
               {/* Header */}
               <div
                 className="
                   flex
+                  h-10
                   items-center
                   justify-between
                   border-b
-                  border-white/5
-                  bg-[#2d2d2d]
-                  px-4
-                  py-2
+                  border-white/[0.06]
+                  bg-[#111318]
+                  px-3.5
                 "
               >
-                <div className="flex gap-1.5">
-                  <div className="h-2.5 w-2.5 rounded-full bg-[#ff5f56]" />
-                  <div className="h-2.5 w-2.5 rounded-full bg-[#ffbd2e]" />
-                  <div className="h-2.5 w-2.5 rounded-full bg-[#27c93f]" />
+                <div className="flex items-center gap-1.5">
+                  <span className="h-2.5 w-2.5 rounded-full bg-[#ff5f57]" />
+                  <span className="h-2.5 w-2.5 rounded-full bg-[#febc2e]" />
+                  <span className="h-2.5 w-2.5 rounded-full bg-[#28c840]" />
                 </div>
 
-                <div className="font-mono text-[10px] text-[#cccccc]">
-                  developer.js
-                </div>
-
-                <div className="w-10" />
-              </div>
-
-              {/* Tab */}
-              <div className="flex bg-[#252526] font-mono text-[10px]">
-                <div
+                <span
                   className="
-                    flex
-                    items-center
-                    gap-2
-                    border-t
-                    border-cyan-400
-                    bg-[#1e1e1e]
-                    px-4
-                    py-1.5
-                    text-cyan-400
+                    absolute
+                    left-1/2
+                    -translate-x-1/2
+                    font-mono
+                    text-[9px]
+                    text-gray-700
                   "
                 >
-                  <span className="text-[#f7df1e]">JS</span>
+                  ankit.dev
+                </span>
 
-                  developer.js
-                </div>
+                <span className="font-mono text-[8px] text-gray-700">
+                  terminal
+                </span>
               </div>
 
-              {/* Code */}
-              <div
-                className="
-                  overflow-x-auto
-                  p-4
-                  font-mono
-                  text-[11px]
-                  sm:text-xs
-                  leading-[1.65]
-                "
-              >
-                <div className="flex">
-                  {/* Line Numbers */}
+              {/* Terminal Content */}
+              <div className="p-5 sm:p-6">
+                {/* Identity */}
+                <div className="mb-6 flex items-center gap-3">
                   <div
                     className="
                       flex
-                      select-none
-                      flex-col
-                      pr-4
-                      text-right
-                      text-[#666]
+                      h-10
+                      w-10
+                      items-center
+                      justify-center
+                      rounded-lg
+                      border
+                      border-cyan-400/20
+                      bg-cyan-400/[0.05]
+                      font-mono
+                      text-sm
+                      font-bold
+                      text-cyan-300
                     "
                   >
-                    {Array.from({ length: 20 }, (_, index) => (
-                      <span key={index}>{index + 1}</span>
-                    ))}
+                    AK
                   </div>
 
-                  {/* Code */}
-                  <div className="text-[#d4d4d4] whitespace-nowrap">
-                    <div>
-                      <span className="text-[#c586c0]">const</span>{" "}
-                      <span className="text-[#4fc1ff]">developer</span> = {"{"}
-                    </div>
+                  <div>
+                    <p className="font-mono text-xs font-semibold text-white">
+                      ankit.dev
+                    </p>
 
-                    <div className="pl-4">
-                      <span className="text-[#9cdcfe]">name</span>:{" "}
-                      <span className="text-[#ce9178]">
-                        "Ankit Vishwakarma"
+                    <div className="mt-1 flex items-center gap-1.5">
+                      <span
+                        className="
+                          h-1.5
+                          w-1.5
+                          rounded-full
+                          bg-emerald-400
+                          shadow-[0_0_7px_rgba(52,211,153,0.8)]
+                        "
+                      />
+
+                      <span className="font-mono text-[9px] text-gray-600">
+                        available_for_opportunities
                       </span>
-                      ,
-                    </div>
-
-                    <div className="pl-4">
-                      <span className="text-[#9cdcfe]">role</span>:{" "}
-                      <span className="text-[#ce9178]">
-                        "Aspiring Full Stack Developer"
-                      </span>
-                      ,
-                    </div>
-
-                    <div className="pl-4">
-                      <span className="text-[#9cdcfe]">experience</span>:{" "}
-                      <span className="text-[#ce9178]">"Fresher"</span>,
-                    </div>
-
-                    <div className="pl-4">
-                      <span className="text-[#9cdcfe]">location</span>:{" "}
-                      <span className="text-[#ce9178]">"India"</span>,
-                    </div>
-
-                    <div className="pl-4">
-                      <span className="text-[#9cdcfe]">skills</span>: [
-                    </div>
-
-                    <div className="pl-8">
-                      <span className="text-[#ce9178]">"React"</span>,{" "}
-                      <span className="text-[#ce9178]">"JavaScript"</span>,
-                    </div>
-
-                    <div className="pl-8">
-                      <span className="text-[#ce9178]">"Node.js"</span>,{" "}
-                      <span className="text-[#ce9178]">"Express.js"</span>,
-                    </div>
-
-                    <div className="pl-8">
-                      <span className="text-[#ce9178]">"MongoDB"</span>,{" "}
-                      <span className="text-[#ce9178]">"Git"</span>
-                    </div>
-
-                    <div className="pl-4">],</div>
-
-                    <div className="pl-4">
-                      <span className="text-[#9cdcfe]">learning</span>: [
-                    </div>
-
-                    <div className="pl-8">
-                      <span className="text-[#ce9178]">"TypeScript"</span>,{" "}
-                      <span className="text-[#ce9178]">"AI"</span>,
-                    </div>
-
-                    <div className="pl-8">
-                      <span className="text-[#ce9178]">"System Design"</span>
-                    </div>
-
-                    <div className="pl-4">],</div>
-
-                    <div className="pl-4">
-                      <span className="text-[#9cdcfe]">mindset</span>:{" "}
-                      <span className="text-[#ce9178]">
-                        "Learn • Build • Improve"
-                      </span>
-                      ,
-                    </div>
-
-                    <div className="pl-4">
-                      <span className="text-[#dcdcaa]">buildProjects</span>() {"{"}
-                    </div>
-
-                    <div className="pl-8">
-                      <span className="text-[#c586c0]">return</span>{" "}
-                      <span className="text-[#569cd6]">true</span>;
-                    </div>
-
-                    <div className="pl-4">{"}"}</div>
-
-                    <div>{"};"}</div>
-
-                    <div className="text-[#858585]">
-                      // Always learning. Always building.
                     </div>
                   </div>
+                </div>
+
+                {/* Commands */}
+                <div className="space-y-4 font-mono text-[10px] sm:text-[11px]">
+                  {terminalLines.map((line, index) => (
+                    <motion.div
+                      key={line.command}
+                      initial={{ opacity: 0, x: 8 }}
+                      whileInView={{ opacity: 1, x: 0 }}
+                      viewport={{ once: true }}
+                      transition={{
+                        duration: 0.35,
+                        delay: 0.15 + index * 0.08,
+                      }}
+                    >
+                      <div className="flex gap-2">
+                        <span className="text-cyan-400">$</span>
+
+                        <span className="text-gray-300">
+                          {line.command}
+                        </span>
+                      </div>
+
+                      <div className="mt-1 pl-4 text-gray-600">
+                        <span className="mr-2 text-gray-800">→</span>
+
+                        <span
+                          className={
+                            line.highlight
+                              ? "text-cyan-300"
+                              : "text-gray-500"
+                          }
+                        >
+                          {line.output}
+                        </span>
+                      </div>
+                    </motion.div>
+                  ))}
+                </div>
+
+                {/* Bottom */}
+                <div
+                  className="
+                    mt-6
+                    flex
+                    items-center
+                    justify-between
+                    border-t
+                    border-white/[0.06]
+                    pt-4
+                  "
+                >
+                  <div>
+                    <p
+                      className="
+                        font-mono
+                        text-[8px]
+                        uppercase
+                        tracking-[0.18em]
+                        text-gray-700
+                      "
+                    >
+                      Status
+                    </p>
+
+                    <p className="mt-1 font-mono text-[10px] text-gray-400">
+                      Building & learning
+                    </p>
+                  </div>
+
+                  <div
+                    className="
+                      flex
+                      items-center
+                      gap-1.5
+                      rounded-full
+                      border
+                      border-emerald-400/10
+                      bg-emerald-400/[0.035]
+                      px-2.5
+                      py-1
+                    "
+                  >
+                    <motion.span
+                      animate={{
+                        opacity: [1, 0.3, 1],
+                      }}
+                      transition={{
+                        duration: 1.5,
+                        repeat: Infinity,
+                      }}
+                      className="h-1.5 w-1.5 rounded-full bg-emerald-400"
+                    />
+
+                    <span className="font-mono text-[8px] text-emerald-300">
+                      ONLINE
+                    </span>
+                  </div>
+                </div>
+
+                {/* Cursor */}
+                <div className="mt-4 flex items-center gap-1.5">
+                  <span className="font-mono text-[11px] text-cyan-400">
+                    ›
+                  </span>
+
+                  <motion.span
+                    animate={{
+                      opacity: [1, 0, 1],
+                    }}
+                    transition={{
+                      duration: 1,
+                      repeat: Infinity,
+                    }}
+                    className="h-3 w-[5px] bg-cyan-400"
+                  />
                 </div>
               </div>
             </div>
