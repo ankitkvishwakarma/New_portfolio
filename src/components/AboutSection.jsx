@@ -53,10 +53,11 @@ export default function AboutSection() {
         overflow-hidden
         px-4
         py-16
+        pb-6
         sm:px-6
         sm:py-20
         lg:px-8
-        lg:py-24
+        lg:pt-28
       "
     >
       {/* Background */}

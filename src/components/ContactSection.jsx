@@ -27,7 +27,7 @@ const contactLinks = [
     title: "WhatsApp",
     value: "Chat directly on WhatsApp",
     description: "Quick and easy",
-    href: "https://wa.me/919999999999",
+    href: "https://wa.me/917654418072",
     icon: FaWhatsapp,
     color: "green",
   },
@@ -35,7 +35,7 @@ const contactLinks = [
     title: "GitHub",
     value: "github.com/ankit789",
     description: "Check out my repositories",
-    href: "https://github.com/ankit789",
+    href: "https://github.com/ankitkvishwakarma",
     icon: FaGithub,
     color: "purple",
   },
@@ -43,7 +43,7 @@ const contactLinks = [
     title: "LinkedIn",
     value: "linkedin.com/in/ankitkumar",
     description: "Let's connect professionally",
-    href: "https://www.linkedin.com/in/ankitkumar",
+    href: "hwww.linkedin.com/in/ankit-kumar-vishwakarma-4a86561b1",
     icon: FaLinkedin,
     color: "blue",
   },
@@ -278,7 +278,19 @@ export default function ContactSection() {
   return (
     <section
       id="contact"
-      className="relative w-full overflow-hidden px-4 py-12 sm:px-6 sm:py-16 lg:px-8 lg:py-20"
+      className="
+        relative
+        w-full
+        overflow-hidden
+        px-4
+        pt-12
+        pb-6
+        sm:px-6
+        sm:pt-16
+        sm:pb-10
+        lg:px-8
+        lg:py-20
+      "
     >
       {/* Background ambience */}
       <div className="pointer-events-none absolute inset-0">

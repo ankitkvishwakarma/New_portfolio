@@ -607,7 +607,7 @@ export default function Navbar() {
                 className="mt-5 flex gap-5"
               >
                 <a
-                  href="https://github.com"
+                  href="https://github.com/ankitkvishwakarma"
                   target="_blank"
                   rel="noreferrer"
                   aria-label="GitHub"
@@ -634,7 +634,7 @@ export default function Navbar() {
                 </a>
 
                 <a
-                  href="https://linkedin.com"
+                  href="https://www.linkedin.com/in/ankit-kumar-vishwakarma-4a86561b1/"
                   target="_blank"
                   rel="noreferrer"
                   aria-label="LinkedIn"

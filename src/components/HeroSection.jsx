@@ -500,7 +500,7 @@ export default function HeroSection() {
               {/* GitHub */}
 
               <a
-                href="https://github.com"
+                href="https://github.com/ankitkvishwakarma"
                 target="_blank"
                 rel="noreferrer"
                 aria-label="GitHub"
@@ -529,7 +529,7 @@ export default function HeroSection() {
               {/* LinkedIn */}
 
               <a
-                href="https://linkedin.com"
+                href="https://www.linkedin.com/in/ankit-kumar-vishwakarma-4a86561b1/"
                 target="_blank"
                 rel="noreferrer"
                 aria-label="LinkedIn"
@@ -558,7 +558,7 @@ export default function HeroSection() {
               {/* Email */}
 
               <a
-                href="mailto:hello@ankit.dev"
+                href="ankit789.en@gmail.com"
                 aria-label="Email"
                 className="
                   flex

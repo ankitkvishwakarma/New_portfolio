@@ -1054,226 +1054,300 @@ function DesktopTree() {
 ========================================================= */
 
 function MobileTree() {
+  /*
+   * Mobile design:
+   * Full Stack → Frontend → Backend → Database → Tools & DevOps
+   *
+   * Each category behaves like a small solar system:
+   * - category stays in the center
+   * - technologies orbit around it
+   * - orbit continuously rotates
+   * - technology bubbles counter-rotate so their labels stay upright
+   */
+
+  const mobileOrbitData = {
+    frontend: {
+      size: "260px",
+      duration: 18,
+      radiusX: "112px",
+      radiusY: "92px",
+    },
+    backend: {
+      size: "235px",
+      duration: 16,
+      radiusX: "102px",
+      radiusY: "82px",
+    },
+    database: {
+      size: "235px",
+      duration: 17,
+      radiusX: "102px",
+      radiusY: "82px",
+    },
+    devops: {
+      size: "260px",
+      duration: 19,
+      radiusX: "112px",
+      radiusY: "92px",
+    },
+  };
+
   return (
-    <div
-      className="
-        mt-12
-        lg:hidden
-      "
-    >
-      {/* =================================================
-          MOBILE ROOT
-      ================================================= */}
+    <div className="mt-2 lg:hidden">
+      <div className="mx-auto w-full max-w-[520px]">
+        {/* =====================================================
+            FULL STACK ROOT
+        ====================================================== */}
+        <motion.div
+          initial={{ opacity: 0, scale: 0.88 }}
+          whileInView={{ opacity: 1, scale: 1 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.55, ease: "easeOut" }}
+          className="relative mx-auto mb-2 flex h-[150px] w-[150px] items-center justify-center"
+        >
+          <div className="absolute inset-[-12px] rounded-full border border-emerald-400/10" />
+          <div className="absolute inset-[-5px] rounded-full border border-emerald-400/20" />
 
-      <div
-        className="
-          relative
-          h-[175px]
-        "
-      >
-        <FullStackNode />
-      </div>
+          <div className="relative flex h-[132px] w-[132px] flex-col items-center justify-center rounded-full border border-emerald-400/45 bg-[#07100f] shadow-[0_0_45px_rgba(16,185,129,0.10)]">
+            <span className="text-3xl font-bold text-emerald-400">
+              &lt;/&gt;
+            </span>
 
-      {/* =================================================
-          MOBILE GROUPS
-      ================================================= */}
+            <span className="mt-1 text-lg font-bold text-white">
+              Full Stack
+            </span>
 
-      <div
-        className="
-          mt-8
-          space-y-7
-        "
-      >
-        {groups.map(
-          (group, groupIndex) => {
-            const GroupIcon =
-              group.icon;
+            <span className="text-xs font-medium text-emerald-400">
+              Developer
+            </span>
+
+            <div className="mt-2 flex items-center gap-1.5">
+              <span className="h-1.5 w-1.5 animate-pulse rounded-full bg-emerald-400" />
+              <span className="font-mono text-[7px] uppercase tracking-[0.22em] text-gray-500">
+                building
+              </span>
+            </div>
+          </div>
+        </motion.div>
+
+        {/* vertical spine */}
+        <div className="mx-auto h-8 w-px bg-gradient-to-b from-emerald-400/45 to-white/5" />
+
+        {/* =====================================================
+            MOBILE SOLAR SYSTEMS
+        ====================================================== */}
+        <div className="space-y-2">
+          {groups.map((group, groupIndex) => {
+            const GroupIcon = group.icon;
+            const orbit = mobileOrbitData[group.id];
+
+            const count = group.technologies.length;
 
             return (
               <motion.div
                 key={group.id}
-                initial={{
-                  opacity: 0,
-                  y: 14,
-                }}
-                whileInView={{
-                  opacity: 1,
-                  y: 0,
-                }}
-                viewport={{
-                  once: true,
-                  amount: 0.2,
-                }}
+                initial={{ opacity: 0, y: 24 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, amount: 0.08 }}
                 transition={{
-                  duration: 0.45,
-                  delay:
-                    groupIndex * 0.08,
+                  duration: 0.5,
+                  delay: groupIndex * 0.06,
+                  ease: "easeOut",
                 }}
-                className="
-                  rounded-2xl
-                  border
-                  bg-transparent
-                  p-4
-                "
-                style={{
-                  borderColor:
-                    `${group.color}22`,
-                }}
+                className="relative"
               >
-                {/* category header */}
+                {/* category → next category spine */}
+                {groupIndex < groups.length - 1 && (
+                  <div
+                    className="absolute left-1/2 top-[calc(100%-6px)] z-0 h-8 w-px -translate-x-1/2"
+                    style={{
+                      background: `linear-gradient(to bottom, ${group.color}55, transparent)`,
+                    }}
+                  />
+                )}
 
                 <div
-                  className="
-                    flex
-                    items-center
-                    gap-3
-                  "
+                  className="relative mx-auto flex items-center justify-center overflow-hidden rounded-[28px] border bg-[#05090d]/80"
+                  style={{
+                    height: "300px",
+                    borderColor: `${group.color}24`,
+                    boxShadow: `inset 0 0 45px ${group.color}05`,
+                  }}
                 >
+                  {/* ambient glow */}
                   <div
-                    className="
-                      flex
-                      h-10
-                      w-10
-                      shrink-0
-                      items-center
-                      justify-center
-                      rounded-full
-                      border
-                    "
+                    className="pointer-events-none absolute left-1/2 top-1/2 h-40 w-40 -translate-x-1/2 -translate-y-1/2 rounded-full blur-3xl"
+                    style={{ backgroundColor: `${group.color}0b` }}
+                  />
+
+                  {/* orbit rings */}
+                  <div
+                    className="absolute left-1/2 top-1/2 rounded-full border border-dashed"
                     style={{
-                      borderColor:
-                        `${group.color}35`,
-                      backgroundColor:
-                        `${group.color}0b`,
+                      width: orbit.size,
+                      height: "145px",
+                      transform: "translate(-50%, -50%) rotate(-8deg)",
+                      borderColor: `${group.color}1c`,
+                    }}
+                  />
+
+                  <div
+                    className="absolute left-1/2 top-1/2 rounded-full border"
+                    style={{
+                      width: `calc(${orbit.size} - 30px)`,
+                      height: "108px",
+                      transform: "translate(-50%, -50%) rotate(10deg)",
+                      borderColor: `${group.color}0e`,
+                    }}
+                  />
+
+                  {/* center category */}
+                  <motion.div
+                    whileTap={{ scale: 0.97 }}
+                    className="relative z-20 flex h-[118px] w-[118px] flex-col items-center justify-center rounded-full border bg-[#071018]/95 text-center"
+                    style={{
+                      borderColor: `${group.color}55`,
+                      boxShadow: `0 0 35px ${group.color}12`,
                     }}
                   >
-                    <GroupIcon
-                      size={19}
+                    <div
+                      className="mb-2 flex h-9 w-9 items-center justify-center rounded-full border"
                       style={{
-                        color:
-                          group.color,
+                        borderColor: `${group.color}40`,
+                        backgroundColor: `${group.color}0c`,
                       }}
-                    />
-                  </div>
-
-                  <div>
-                    <h3
-                      className="
-                        text-sm
-                        font-semibold
-                        text-white
-                      "
                     >
+                      <GroupIcon
+                        size={20}
+                        style={{ color: group.color }}
+                      />
+                    </div>
+
+                    <span className="text-[15px] font-bold text-white">
                       {group.title}
-                    </h3>
+                    </span>
 
-                    <p
-                      className="
-                        mt-0.5
-                        text-[9px]
-                        text-gray-500
-                      "
-                    >
+                    <span className="mt-1 max-w-[90px] text-[8px] leading-tight text-gray-500">
                       {group.description}
-                    </p>
-                  </div>
-                </div>
+                    </span>
+                  </motion.div>
 
-                {/* technologies */}
+                  {/* rotating technology orbit */}
+                  <motion.div
+                    className="absolute left-1/2 top-1/2 z-10 h-0 w-0"
+                    animate={{ rotate: 360 }}
+                    transition={{
+                      duration: orbit.duration,
+                      repeat: Infinity,
+                      ease: "linear",
+                    }}
+                  >
+                    {group.technologies.map((item, index) => {
+                      const TechIcon = item.icon;
 
-                <div
-                  className="
-                    mt-4
-                    grid
-                    grid-cols-3
-                    gap-3
-                    sm:grid-cols-4
-                  "
-                >
-                  {group.technologies.map(
-                    (item, index) => {
-                      const TechIcon =
-                        item.icon;
+                      /*
+                       * Place nodes evenly around an ellipse.
+                       * Using inline transforms keeps the layout
+                       * independent from viewport width.
+                       */
+                      const angle =
+                        (index / count) * Math.PI * 2 - Math.PI / 2;
 
-                      const isNeutral =
-                        item.name ===
-                          "Next.js" ||
-                        item.name ===
-                          "GitHub" ||
-                        item.name ===
-                          "Vercel";
+                      const x =
+                        Math.cos(angle) *
+                        parseFloat(orbit.radiusX);
 
-                      const background =
-                        isNeutral
-                          ? "rgba(255,255,255,0.035)"
-                          : `${item.color}0d`;
+                      const y =
+                        Math.sin(angle) *
+                        parseFloat(orbit.radiusY);
 
                       return (
                         <motion.div
                           key={item.name}
-                          initial={{
-                            opacity: 0,
-                            scale: 0.8,
-                          }}
-                          whileInView={{
-                            opacity: 1,
-                            scale: 1,
-                          }}
-                          viewport={{
-                            once: true,
-                          }}
-                          transition={{
-                            delay:
-                              index * 0.04,
-                          }}
-                          whileHover={{
-                            scale: 1.05,
-                            y: -3,
-                          }}
-                          className="
-                            flex
-                            min-h-[72px]
-                            flex-col
-                            items-center
-                            justify-center
-                            rounded-xl
-                            border
-                          "
+                          className="absolute left-0 top-0"
                           style={{
-                            borderColor:
-                              `${item.color}28`,
-                            backgroundColor:
-                              background,
+                            transform: `translate(${x}px, ${y}px)`,
                           }}
                         >
-                          <TechIcon
-                            size={19}
-                            style={{
-                              color:
-                                item.color,
+                          {/* counter rotation keeps the bubble upright */}
+                          <motion.div
+                            animate={{ rotate: -360 }}
+                            transition={{
+                              duration: orbit.duration,
+                              repeat: Infinity,
+                              ease: "linear",
                             }}
-                          />
-
-                          <span
-                            className="
-                              mt-1.5
-                              text-center
-                              text-[7px]
-                              font-medium
-                              text-gray-400
-                            "
+                            className="flex h-[62px] w-[62px] -translate-x-1/2 -translate-y-1/2 flex-col items-center justify-center rounded-full border bg-[#050a0f]/95"
+                            style={{
+                              borderColor: `${item.color}48`,
+                              boxShadow: `0 0 20px ${item.color}0c`,
+                            }}
                           >
-                            {item.name}
-                          </span>
+                            <div
+                              className="absolute inset-[4px] rounded-full border"
+                              style={{
+                                borderColor: `${item.color}10`,
+                              }}
+                            />
+
+                            <TechIcon
+                              size={19}
+                              style={{ color: item.color }}
+                            />
+
+                            <span className="mt-1 max-w-[50px] truncate text-center text-[7px] font-medium text-gray-400">
+                              {item.name}
+                            </span>
+                          </motion.div>
                         </motion.div>
                       );
-                    }
-                  )}
+                    })}
+                  </motion.div>
+
+                  {/* moving orbital dot */}
+                  <motion.div
+                    className="pointer-events-none absolute left-1/2 top-1/2 z-10 h-[145px] w-[260px] -translate-x-1/2 -translate-y-1/2"
+                    animate={{ rotate: -360 }}
+                    transition={{
+                      duration: orbit.duration,
+                      repeat: Infinity,
+                      ease: "linear",
+                    }}
+                  >
+                    <span
+                      className="absolute left-1/2 top-0 h-1.5 w-1.5 -translate-x-1/2 rounded-full"
+                      style={{
+                        backgroundColor: group.color,
+                        boxShadow: `0 0 10px ${group.color}`,
+                      }}
+                    />
+                  </motion.div>
+                </div>
+
+                {/* section label */}
+                <div className="mx-auto flex w-fit items-center gap-2 py-2">
+                  <span
+                    className="h-1 w-1 rounded-full"
+                    style={{ backgroundColor: group.color }}
+                  />
+
+                  <span
+                    className="font-mono text-[7px] uppercase tracking-[0.28em]"
+                    style={{ color: `${group.color}99` }}
+                  >
+                    {String(groupIndex + 1).padStart(2, "0")} /{" "}
+                    {group.title}
+                  </span>
+
+                  <span
+                    className="h-1 w-1 rounded-full"
+                    style={{ backgroundColor: `${group.color}55` }}
+                  />
                 </div>
               </motion.div>
             );
-          }
-        )}
+          })}
+        </div>
       </div>
     </div>
   );
@@ -1294,7 +1368,7 @@ export default function SkillsSection() {
         bg-transparent
         px-4
         pb-16
-        pt-20
+        pt-6
         sm:px-6
         sm:pt-24
         lg:px-8
@@ -1438,57 +1512,7 @@ export default function SkillsSection() {
 
         <MobileTree />
 
-        {/* =================================================
-            BOTTOM DIVIDER
-        ================================================= */}
 
-        <div
-          className="
-            mx-auto
-            mt-2
-            flex
-            max-w-[460px]
-            items-center
-            gap-4
-          "
-        >
-          <div
-            className="
-              h-px
-              flex-1
-              bg-gradient-to-r
-              from-transparent
-              to-emerald-500/15
-            "
-          />
-
-          <div
-            className="
-              flex
-              h-7
-              w-7
-              items-center
-              justify-center
-              rounded-full
-              border
-              border-emerald-500/15
-              text-xs
-              text-emerald-400
-            "
-          >
-            ✦
-          </div>
-
-          <div
-            className="
-              h-px
-              flex-1
-              bg-gradient-to-l
-              from-transparent
-              to-emerald-500/15
-            "
-          />
-        </div>
       </div>
     </section>
   );

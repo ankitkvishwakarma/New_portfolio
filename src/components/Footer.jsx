@@ -9,7 +9,7 @@ export default function Footer() {
   };
 
   return (
-    <footer className="relative w-full mt-8 overflow-hidden">
+    <footer className="relative w-full mt-0 overflow-hidden">
 
       {/* Top gradient line */}
       <div className="h-px w-full bg-gradient-to-r from-transparent via-cyan-400/30 to-transparent" />
@@ -20,66 +20,67 @@ export default function Footer() {
 
           {/* Brand */}
           <div className="flex items-center gap-3">
-           <a
-  href="#home"
-  className="group flex items-center gap-3"
->
-  {/* Animated Logo */}
-  <div
-    className="
-      relative
-      w-11
-      h-11
-      rounded-xl
-      overflow-hidden
-      flex
-      items-center
-      justify-center
-      transition-transform
-      duration-300
-      group-hover:scale-105
-    "
-  >
-    <video
-      src="/animation.webm"
-      autoPlay
-      muted
-      loop
-      playsInline
-      aria-hidden="true"
-      className="
-        w-full
-        h-full
-        object-contain
-        scale-125
-        transition-transform
-        duration-300
-        group-hover:scale-135
-      "
-    />
-  </div>
+            <a
+              href="#home"
+              className="group flex items-center gap-3"
+            >
+              {/* Animated Logo */}
+              <div
+                className="
+                  relative
+                  w-11
+                  h-11
+                  rounded-xl
+                  overflow-hidden
+                  flex
+                  items-center
+                  justify-center
+                  transition-transform
+                  duration-300
+                  group-hover:scale-105
+                "
+              >
+                <video
+                  src="/animation.webm"
+                  autoPlay
+                  muted
+                  loop
+                  playsInline
+                  aria-hidden="true"
+                  className="
+                    w-full
+                    h-full
+                    object-contain
+                    scale-125
+                    transition-transform
+                    duration-300
+                    group-hover:scale-135
+                  "
+                />
+              </div>
 
-  {/* Ankit */}
-  <span
-    className="
-      text-2xl
-      font-bold
-      italic
-      tracking-tight
-      bg-gradient-to-r
-      from-cyan-400
-      via-blue-400
-      to-purple-500
-      bg-clip-text
-      text-transparent
-    "
-    style={{
-      fontFamily: "'Brush Script MT', 'Segoe Script', cursive",
-    }}
-  >
-    Ankit
-  </span>
-</a>
+              {/* Ankit */}
+              <span
+                className="
+                  text-2xl
+                  font-bold
+                  italic
+                  tracking-tight
+                  bg-gradient-to-r
+                  from-cyan-400
+                  via-blue-400
+                  to-purple-500
+                  bg-clip-text
+                  text-transparent
+                "
+                style={{
+                  fontFamily: "'Brush Script MT', 'Segoe Script', cursive",
+                }}
+              >
+                Ankit
+              </span>
+            </a>
+
             <span className="hidden sm:block h-4 w-px bg-white/10" />
 
             <p className="text-[11px] text-gray-500">
@@ -230,13 +231,14 @@ export default function Footer() {
           </p>
 
           <p
-  className="text-[12px] text-gray-500 tracking-wide"
-  style={{
-    fontFamily: "'Brush Script MT', 'Segoe Script', 'Lucida Handwriting', cursive",
-  }}
->
-  Designed & built with Ankit
-</p>
+            className="text-[12px] text-gray-500 tracking-wide"
+            style={{
+              fontFamily:
+                "'Brush Script MT', 'Segoe Script', 'Lucida Handwriting', cursive",
+            }}
+          >
+            Designed & built with Ankit
+          </p>
         </div>
 
       </div>
