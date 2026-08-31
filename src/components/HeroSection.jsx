@@ -6,7 +6,6 @@ import {
   Download,
   Code2,
   FolderKanban,
-  Lightbulb,
   Target,
   GraduationCap,
   Sparkles,
@@ -66,123 +65,102 @@ const techStack = [
 ];
 
 /* =========================================================
-   STATS
-========================================================= */
-
-const stats = [
-  {
-    icon: Code2,
-    value: "Freelancer",
-    label: "Experience",
-    color: "text-cyan-400",
-  },
-  {
-    icon: FolderKanban,
-    value: "5+",
-    label: "Projects",
-    color: "text-blue-400",
-  },
-  {
-    icon: Lightbulb,
-    value: "10+",
-    label: "Technologies",
-    color: "text-yellow-400",
-  },
-  {
-    icon: Target,
-    value: "Growing",
-    label: "Every Day",
-    color: "text-emerald-400",
-  },
-];
-
-/* =========================================================
    HERO SECTION
 ========================================================= */
 
 export default function HeroSection() {
+  const highlights = [
+    {
+      value: "5+",
+      label: "Projects",
+      icon: FolderKanban,
+    },
+    {
+      value: "10+",
+      label: "Technologies",
+      icon: Code2,
+    },
+    {
+      value: "DSA",
+      label: "Problem Solving",
+      icon: Target,
+    },
+  ];
+
   return (
     <section
       id="home"
       className="
-        relative
-        w-full
+        relative isolate
+        flex min-h-[calc(100vh-72px)]
+        w-full items-center
         overflow-hidden
-        px-5
-        pt-24
-        pb-16
-        sm:px-8
-        sm:pt-28
-        lg:px-10
-        lg:pt-28
-        lg:pb-20
+        px-5 py-16
+        sm:px-8 sm:py-20
+        lg:px-10 lg:py-24
         xl:px-12
       "
     >
-      {/* =================================================
+      {/* =====================================================
           BACKGROUND
-          Very subtle — keeps your dark portfolio clean.
-      ================================================= */}
+      ====================================================== */}
 
-      <div
-        className="
-          pointer-events-none
-          absolute
-          inset-0
-          overflow-hidden
-        "
-      >
-        {/* top left */}
+      <div className="pointer-events-none absolute inset-0 -z-10 overflow-hidden">
 
+        {/* Cyan glow */}
         <div
           className="
             absolute
-            -left-24
-            -top-24
-            h-[360px]
-            w-[360px]
+            -left-32 -top-32
+            h-[420px] w-[420px]
             rounded-full
-            bg-cyan-500/[0.035]
-            blur-[120px]
+            bg-cyan-500/[0.055]
+            blur-[130px]
           "
         />
 
-        {/* bottom right */}
-
+        {/* Green glow */}
         <div
           className="
             absolute
-            -bottom-32
-            -right-24
-            h-[380px]
-            w-[380px]
+            -bottom-40 -right-32
+            h-[460px] w-[460px]
+            rounded-full
+            bg-emerald-500/[0.045]
+            blur-[140px]
+          "
+        />
+
+        {/* Blue glow */}
+        <div
+          className="
+            absolute
+            left-[52%] top-[38%]
+            h-[320px] w-[320px]
             rounded-full
             bg-blue-600/[0.035]
             blur-[130px]
           "
         />
 
-        {/* center */}
-
+        {/* Subtle grid */}
         <div
           className="
             absolute
-            left-1/2
-            top-1/2
-            h-[260px]
-            w-[260px]
-            -translate-x-1/2
-            -translate-y-1/2
-            rounded-full
-            bg-purple-500/[0.018]
-            blur-[120px]
+            inset-0
+            opacity-[0.025]
           "
+          style={{
+            backgroundImage:
+              "linear-gradient(rgba(34,211,238,0.5) 1px, transparent 1px), linear-gradient(90deg, rgba(34,211,238,0.5) 1px, transparent 1px)",
+            backgroundSize: "48px 48px",
+          }}
         />
       </div>
 
-      {/* =================================================
+      {/* =====================================================
           MAIN CONTAINER
-      ================================================= */}
+      ====================================================== */}
 
       <div
         className="
@@ -190,20 +168,20 @@ export default function HeroSection() {
           z-10
           mx-auto
           w-full
-          max-w-[1280px]
+          max-w-[1240px]
         "
       >
         <div
           className="
             grid
-            grid-cols-1
             items-center
             gap-12
-            lg:grid-cols-[0.92fr_1.08fr]
-            lg:gap-14
-            xl:gap-20
+            lg:grid-cols-[1fr_0.9fr]
+            lg:gap-16
+            xl:gap-24
           "
         >
+
           {/* =================================================
               LEFT CONTENT
           ================================================= */}
@@ -211,20 +189,19 @@ export default function HeroSection() {
           <motion.div
             initial={{
               opacity: 0,
-              x: -30,
+              x: -24,
             }}
             animate={{
               opacity: 1,
               x: 0,
             }}
             transition={{
-              duration: 0.7,
+              duration: 0.65,
               ease: "easeOut",
             }}
-            className="
-              max-w-[590px]
-            "
+            className="max-w-[650px]"
           >
+
             {/* =================================================
                 AVAILABILITY BADGE
             ================================================= */}
@@ -232,18 +209,18 @@ export default function HeroSection() {
             <motion.div
               initial={{
                 opacity: 0,
-                y: 10,
+                y: 8,
               }}
               animate={{
                 opacity: 1,
                 y: 0,
               }}
               transition={{
-                delay: 0.1,
-                duration: 0.45,
+                delay: 0.08,
+                duration: 0.4,
               }}
               className="
-                mb-5
+                mb-6
                 inline-flex
                 items-center
                 gap-2
@@ -258,14 +235,8 @@ export default function HeroSection() {
                 text-emerald-400
               "
             >
-              <span
-                className="
-                  relative
-                  flex
-                  h-1.5
-                  w-1.5
-                "
-              >
+              <span className="relative flex h-1.5 w-1.5">
+
                 <span
                   className="
                     absolute
@@ -289,6 +260,7 @@ export default function HeroSection() {
                     bg-emerald-400
                   "
                 />
+
               </span>
 
               Open to Full-Stack Opportunities
@@ -302,18 +274,19 @@ export default function HeroSection() {
               className="
                 font-display
                 font-bold
-                leading-[0.95]
-                tracking-tight
+                leading-[0.98]
+                tracking-[-0.04em]
                 text-white
               "
             >
+
               <span
                 className="
                   block
                   text-4xl
                   sm:text-5xl
-                  lg:text-[56px]
-                  xl:text-[64px]
+                  lg:text-[58px]
+                  xl:text-[66px]
                 "
               >
                 Hi, I'm
@@ -321,18 +294,18 @@ export default function HeroSection() {
 
               <span
                 className="
-                  mt-1
+                  mt-2
                   block
-                  text-4xl
-                  sm:text-5xl
-                  lg:text-[56px]
-                  xl:text-[64px]
                   bg-gradient-to-r
                   from-cyan-400
                   via-blue-400
                   to-purple-500
                   bg-clip-text
+                  text-4xl
                   text-transparent
+                  sm:text-5xl
+                  lg:text-[58px]
+                  xl:text-[66px]
                 "
               >
                 Ankit Vishwakarma
@@ -340,17 +313,19 @@ export default function HeroSection() {
 
               <span
                 className="
-                  mt-3
+                  mt-5
                   block
                   text-2xl
                   font-semibold
-                  text-gray-300
+                  tracking-[-0.02em]
+                  text-gray-200
                   sm:text-3xl
-                  lg:text-[34px]
+                  lg:text-[35px]
                 "
               >
                 Full Stack Developer
               </span>
+
             </h1>
 
             {/* =================================================
@@ -359,8 +334,8 @@ export default function HeroSection() {
 
             <p
               className="
-                mt-6
-                max-w-[550px]
+                mt-7
+                max-w-[590px]
                 text-sm
                 leading-7
                 text-gray-400
@@ -376,31 +351,32 @@ export default function HeroSection() {
             <p
               className="
                 mt-3
-                max-w-[540px]
+                max-w-[570px]
                 text-sm
                 leading-6
                 text-gray-500
               "
             >
-              Currently strengthening my fundamentals through
-              real-world projects, backend systems, databases,
-              DSA, and software engineering.
+              Currently strengthening my skills through real-world
+              projects, backend systems, databases, DSA, and software
+              engineering.
             </p>
 
             {/* =================================================
-                ACTION BUTTONS
+                CTA BUTTONS
             ================================================= */}
 
             <div
               className="
-                mt-7
+                mt-8
                 flex
                 flex-wrap
                 items-center
                 gap-3
               "
             >
-              {/* View projects */}
+
+              {/* Explore Projects */}
 
               <a
                 href="#projects"
@@ -418,11 +394,11 @@ export default function HeroSection() {
                   text-sm
                   font-semibold
                   text-white
-                  shadow-[0_10px_30px_-12px_rgba(6,182,212,0.65)]
+                  shadow-[0_12px_30px_-14px_rgba(6,182,212,0.8)]
                   transition-all
                   duration-300
                   hover:-translate-y-0.5
-                  hover:shadow-[0_15px_35px_-12px_rgba(6,182,212,0.8)]
+                  hover:shadow-[0_16px_36px_-14px_rgba(6,182,212,0.9)]
                 "
               >
                 Explore My Work
@@ -448,7 +424,7 @@ export default function HeroSection() {
                   gap-2
                   rounded-lg
                   border
-                  border-white/10
+                  border-white/[0.12]
                   bg-white/[0.025]
                   px-5
                   py-3
@@ -473,6 +449,7 @@ export default function HeroSection() {
                   "
                 />
               </Link>
+
             </div>
 
             {/* =================================================
@@ -481,12 +458,13 @@ export default function HeroSection() {
 
             <div
               className="
-                mt-6
+                mt-7
                 flex
                 items-center
                 gap-2.5
               "
             >
+
               <span
                 className="
                   mr-1
@@ -558,7 +536,7 @@ export default function HeroSection() {
               {/* Email */}
 
               <a
-                href="ankit789.en@gmail.com"
+                href="mailto:ankit789.en@gmail.com"
                 aria-label="Email"
                 className="
                   flex
@@ -581,44 +559,44 @@ export default function HeroSection() {
               >
                 <FaEnvelope size={14} />
               </a>
+
             </div>
+
           </motion.div>
 
           {/* =================================================
-              RIGHT PROFILE CARD
+              RIGHT — DEVELOPER SNAPSHOT
           ================================================= */}
 
           <motion.div
             initial={{
               opacity: 0,
-              x: 30,
+              x: 24,
             }}
             animate={{
               opacity: 1,
               x: 0,
             }}
             transition={{
-              duration: 0.7,
+              duration: 0.65,
               delay: 0.1,
               ease: "easeOut",
             }}
             className="
               relative
               w-full
-              max-w-[570px]
-              justify-self-end
+              lg:justify-self-end
             "
           >
-            {/* =================================================
-                VERY SUBTLE CARD GLOW
-            ================================================= */}
+
+            {/* Card Glow */}
 
             <div
               className="
                 pointer-events-none
                 absolute
-                -inset-4
-                rounded-[32px]
+                -inset-5
+                rounded-[30px]
                 bg-cyan-500/[0.025]
                 blur-3xl
               "
@@ -634,21 +612,25 @@ export default function HeroSection() {
                 overflow-hidden
                 rounded-2xl
                 border
-                border-white/[0.08]
+                border-white/[0.09]
                 bg-[#080d14]/95
-                shadow-[0_25px_70px_-40px_rgba(0,0,0,0.95)]
+                shadow-[0_30px_80px_-45px_rgba(0,0,0,0.95)]
               "
             >
+
               {/* =================================================
                   CARD HEADER
               ================================================= */}
 
               <div
                 className="
+                  border-b
+                  border-white/[0.06]
                   p-5
                   sm:p-6
                 "
               >
+
                 <div
                   className="
                     flex
@@ -657,28 +639,26 @@ export default function HeroSection() {
                     gap-4
                   "
                 >
-                  {/* Profile identity */}
+
+                  {/* Identity */}
 
                   <div
                     className="
                       flex
                       items-center
-                      gap-3
+                      gap-3.5
                     "
                   >
+
                     {/* Avatar */}
 
-                    <div
-                      className="
-                        relative
-                        shrink-0
-                      "
-                    >
+                    <div className="relative shrink-0">
+
                       <div
                         className="
                           flex
-                          h-13
-                          w-13
+                          h-12
+                          w-12
                           items-center
                           justify-center
                           rounded-full
@@ -707,10 +687,12 @@ export default function HeroSection() {
                           bg-emerald-400
                         "
                       />
+
                     </div>
 
                     <div>
-                      <h2
+
+                      <p
                         className="
                           text-lg
                           font-bold
@@ -718,8 +700,8 @@ export default function HeroSection() {
                           sm:text-xl
                         "
                       >
-                        Ankit Vishwakarma
-                      </h2>
+                        Developer Snapshot
+                      </p>
 
                       <p
                         className="
@@ -729,7 +711,7 @@ export default function HeroSection() {
                           sm:text-sm
                         "
                       >
-                        Full Stack Developer
+                        Full Stack • Backend • Problem Solving
                       </p>
 
                       <span
@@ -751,154 +733,133 @@ export default function HeroSection() {
                         <GraduationCap size={11} />
                         Early Career Developer
                       </span>
+
                     </div>
+
                   </div>
 
-                  {/* Availability */}
+                  {/* Status */}
 
                   <div
                     className="
                       hidden
-                      items-center
-                      gap-2
                       rounded-lg
                       border
                       border-emerald-400/15
                       bg-emerald-400/[0.04]
                       px-2.5
                       py-1.5
-                      sm:flex
+                      sm:block
                     "
                   >
-                    <Sparkles
-                      size={13}
-                      className="text-emerald-400"
-                    />
+                    <p className="text-[8px] text-gray-600">
+                      Status
+                    </p>
 
-                    <div>
-                      <p className="text-[8px] text-gray-600">
-                        Open to
-                      </p>
-
-                      <p className="text-[10px] font-semibold text-emerald-400">
-                        Opportunities
-                      </p>
-                    </div>
+                    <p
+                      className="
+                        text-[10px]
+                        font-semibold
+                        text-emerald-400
+                      "
+                    >
+                      Available
+                    </p>
                   </div>
+
                 </div>
 
-                {/* =================================================
-                    CARD DESCRIPTION
-                ================================================= */}
+                {/* Card description */}
 
                 <p
                   className="
-                    mt-4
-                    max-w-[500px]
+                    mt-5
+                    max-w-[510px]
                     text-xs
                     leading-5
                     text-gray-400
                     sm:text-sm
                   "
                 >
-                  I enjoy turning ideas into practical products —
-                  from responsive interfaces and REST APIs to
-                  databases, authentication, and deployment.
+                  I turn ideas into practical products — from
+                  responsive interfaces and REST APIs to databases,
+                  authentication, and deployment.
                 </p>
 
-                <div
-                  className="
-                    my-4
-                    h-px
-                    bg-white/[0.06]
-                  "
-                />
-
-                {/* =================================================
-                    STATS
-                ================================================= */}
-
-                <div
-                  className="
-                    grid
-                    grid-cols-2
-                    gap-2
-                    sm:grid-cols-4
-                  "
-                >
-                  {stats.map((stat, index) => {
-                    const Icon = stat.icon;
-
-                    return (
-                      <motion.div
-                        key={stat.label}
-                        initial={{
-                          opacity: 0,
-                          y: 10,
-                        }}
-                        animate={{
-                          opacity: 1,
-                          y: 0,
-                        }}
-                        transition={{
-                          delay:
-                            0.4 +
-                            index * 0.07,
-                          duration: 0.35,
-                        }}
-                        className="
-                          group
-                          rounded-xl
-                          border
-                          border-white/[0.06]
-                          bg-white/[0.02]
-                          p-2.5
-                          text-center
-                          transition-all
-                          duration-300
-                          hover:border-white/[0.1]
-                          hover:bg-white/[0.04]
-                        "
-                      >
-                        <Icon
-                          size={14}
-                          className={`
-                            ${stat.color}
-                            mx-auto
-                            mb-1
-                            transition-transform
-                            duration-300
-                            group-hover:scale-110
-                          `}
-                        />
-
-                        <p
-                          className="
-                            text-sm
-                            font-bold
-                            text-white
-                          "
-                        >
-                          {stat.value}
-                        </p>
-
-                        <p
-                          className="
-                            mt-0.5
-                            text-[9px]
-                            text-gray-600
-                          "
-                        >
-                          {stat.label}
-                        </p>
-                      </motion.div>
-                    );
-                  })}
-                </div>
               </div>
 
               {/* =================================================
-                  TECH STACK
+                  HIGHLIGHTS
+              ================================================= */}
+
+              <div
+                className="
+                  grid
+                  grid-cols-3
+                  gap-2
+                  p-5
+                  sm:p-6
+                "
+              >
+
+                {highlights.map((item) => {
+                  const Icon = item.icon;
+
+                  return (
+                    <div
+                      key={item.label}
+                      className="
+                        rounded-xl
+                        border
+                        border-white/[0.06]
+                        bg-white/[0.02]
+                        p-3
+                        text-center
+                        transition-all
+                        duration-300
+                        hover:-translate-y-0.5
+                        hover:border-cyan-400/20
+                        hover:bg-white/[0.04]
+                      "
+                    >
+
+                      <Icon
+                        size={14}
+                        className="
+                          mx-auto
+                          mb-1.5
+                          text-cyan-400
+                        "
+                      />
+
+                      <p
+                        className="
+                          text-sm
+                          font-bold
+                          text-white
+                        "
+                      >
+                        {item.value}
+                      </p>
+
+                      <p
+                        className="
+                          mt-0.5
+                          text-[9px]
+                          text-gray-600
+                        "
+                      >
+                        {item.label}
+                      </p>
+
+                    </div>
+                  );
+                })}
+
+              </div>
+
+              {/* =================================================
+                  CORE TECHNOLOGIES
               ================================================= */}
 
               <div
@@ -906,8 +867,10 @@ export default function HeroSection() {
                   px-5
                   pb-5
                   sm:px-6
+                  sm:pb-6
                 "
               >
+
                 <div
                   className="
                     mb-3
@@ -916,6 +879,7 @@ export default function HeroSection() {
                     justify-between
                   "
                 >
+
                   <h3
                     className="
                       text-xs
@@ -923,7 +887,7 @@ export default function HeroSection() {
                       text-white
                     "
                   >
-                    Technologies I Work With
+                    Core Technologies
                   </h3>
 
                   <a
@@ -938,9 +902,11 @@ export default function HeroSection() {
                       hover:text-cyan-300
                     "
                   >
-                    Explore stack
+                    View stack
+
                     <ArrowRight size={10} />
                   </a>
+
                 </div>
 
                 <div
@@ -951,6 +917,7 @@ export default function HeroSection() {
                     sm:grid-cols-4
                   "
                 >
+
                   {techStack.map((tech) => (
                     <div
                       key={tech.name}
@@ -970,6 +937,7 @@ export default function HeroSection() {
                         hover:bg-white/[0.045]
                       "
                     >
+
                       <span
                         className={`
                           w-5
@@ -991,9 +959,12 @@ export default function HeroSection() {
                       >
                         {tech.name}
                       </span>
+
                     </div>
                   ))}
+
                 </div>
+
               </div>
 
               {/* =================================================
@@ -1010,6 +981,7 @@ export default function HeroSection() {
                   sm:px-6
                 "
               >
+
                 <div
                   className="
                     flex
@@ -1017,7 +989,6 @@ export default function HeroSection() {
                     gap-3
                   "
                 >
-                  {/* icon */}
 
                   <div
                     className="
@@ -1034,10 +1005,8 @@ export default function HeroSection() {
                       text-cyan-400
                     "
                   >
-                    <GraduationCap size={15} />
+                    <Sparkles size={15} />
                   </div>
-
-                  {/* text */}
 
                   <div
                     className="
@@ -1045,6 +1014,7 @@ export default function HeroSection() {
                       flex-1
                     "
                   >
+
                     <p
                       className="
                         text-xs
@@ -1065,9 +1035,8 @@ export default function HeroSection() {
                     >
                       Full-Stack Projects & Backend Systems
                     </p>
-                  </div>
 
-                  {/* status */}
+                  </div>
 
                   <div
                     className="
@@ -1076,6 +1045,7 @@ export default function HeroSection() {
                       gap-1
                     "
                   >
+
                     <span
                       className="
                         h-1.5
@@ -1094,13 +1064,18 @@ export default function HeroSection() {
                         sm:block
                       "
                     >
-                      Building
+                      Active
                     </span>
+
                   </div>
+
                 </div>
+
               </div>
+
             </div>
           </motion.div>
+
         </div>
       </div>
     </section>
