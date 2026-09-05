@@ -1,5 +1,10 @@
 import { useEffect, useState } from "react";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import {
+  BrowserRouter,
+  Routes,
+  Route,
+  useLocation,
+} from "react-router-dom";
 
 import HeroSection from "./components/HeroSection";
 import TechStack from "./components/TechStack";
@@ -20,6 +25,22 @@ import Resume from "./pages/Resume";
 
 
 
+function ScrollToTop() {
+  const { pathname } = useLocation();
+
+  useEffect(() => {
+    window.scrollTo({
+      top: 0,
+      left: 0,
+      behavior: "instant",
+    });
+  }, [pathname]);
+
+  return null;
+}
+
+
+
 function Home() {
   return (
     <div
@@ -34,10 +55,6 @@ function Home() {
         selection:text-green-100
       "
     >
-      {/* Custom Cursor */}
-      {/* <CustomCursor /> */}
-
-   
 
       <div
         className="
@@ -47,10 +64,7 @@ function Home() {
           min-h-screen
         "
       >
- 
-
         <Navbar />
-
 
         <main
           className="
@@ -61,7 +75,6 @@ function Home() {
             flex-col
           "
         >
-         
 
           <section
             id="home"
@@ -74,8 +87,6 @@ function Home() {
             <HeroSection />
           </section>
 
-       
-
           <section
             id="tech-stack"
             className="
@@ -86,7 +97,6 @@ function Home() {
           >
             <TechStack />
           </section>
-
 
           <section
             id="projects"
@@ -99,8 +109,6 @@ function Home() {
             <FeaturedProjects />
           </section>
 
-     
-
           <section
             id="about"
             className="
@@ -111,9 +119,7 @@ function Home() {
           >
             <AboutSection />
           </section>
-
-
-          <section
+ <section
             id="skills"
             className="
               w-full
@@ -123,22 +129,6 @@ function Home() {
           >
             <SkillsSection />
           </section>
-
-         
-
-          {/* <section
-            id="education"
-            className="
-              w-full
-              m-0
-              p-0
-            "
-          >
-            <EducationSection />
-          </section> */}
-
-
-
           <section
             id="contact"
             className="
@@ -151,16 +141,11 @@ function Home() {
           </section>
         </main>
 
-        
-
         <Footer />
       </div>
     </div>
   );
 }
-
-
-
 
 export default function App() {
   const [loading, setLoading] = useState(true);
@@ -175,46 +160,38 @@ export default function App() {
     };
   }, []);
 
-
   if (loading) {
     return <Loader />;
   }
 
-
-
   return (
     <BrowserRouter>
-      <Routes>
 
-      
+      <ScrollToTop />
+
+      <Routes>
 
         <Route
           path="/"
           element={<Home />}
         />
 
-      
-
         <Route
           path="/resume"
           element={<Resume />}
         />
 
-        
-
         <Route
           path="/projects"
           element={<AllProjects />}
         />
-
-  
-
         <Route
           path="/projects/:slug"
           element={<ProjectDetails />}
         />
 
       </Routes>
+
     </BrowserRouter>
   );
 }
