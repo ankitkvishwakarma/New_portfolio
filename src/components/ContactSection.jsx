@@ -27,7 +27,8 @@ const contactLinks = [
     title: "WhatsApp",
     value: "Chat directly on WhatsApp",
     description: "Quick and easy",
-    href: "https://wa.me/917654418072",
+    href: "https://wa.me/",//add number
+    
     icon: FaWhatsapp,
     color: "green",
   },
